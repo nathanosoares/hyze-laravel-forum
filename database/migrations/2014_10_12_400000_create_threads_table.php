@@ -25,10 +25,6 @@ class CreateThreadsTable extends Migration
             $table->foreign('forum_id')->references('id')->on('forums')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-
-            $table->foreign('user_id')->references('id')->on('users')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
         });
     }
 
