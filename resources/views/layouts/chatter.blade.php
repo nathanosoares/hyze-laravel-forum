@@ -18,6 +18,8 @@
     <!-- Styles -->
     <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
 
+    {!! NoCaptcha::renderJs() !!}
+
     @yield('css')
 
     @routes

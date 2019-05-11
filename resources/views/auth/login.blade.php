@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.chatter')
 
 @section('content')
     <div class="container">
@@ -41,6 +41,8 @@
                                 @endif
                             </div>
 
+                            {!! NoCaptcha::display() !!}
+
                             <div class="form-group ">
                                 <div class="">
                                     <div class="form-check">
@@ -56,7 +58,7 @@
 
                             <div class="form-group mb-0">
                                 <div class="">
-                                    <button type="submit" class="btn btn-custom-secondary">
+                                    <button type="submit" class="btn btn-primary">
                                         {{ __('Login') }}
                                     </button>
 
@@ -68,9 +70,6 @@
                                 </div>
                             </div>
                         </form>
-
-                        <hr>
-
 
                     </div>
                 </div>
