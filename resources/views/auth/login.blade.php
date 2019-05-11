@@ -41,13 +41,6 @@
                                 @endif
                             </div>
 
-                            {!! NoCaptcha::displaySubmit('login', 'submit now!', ['class' => 'btn btn-primary']) !!}
-                            @if ($errors->has('g-recaptcha-response'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
-                            </span>
-                            @endif
-
                             <div class="form-group ">
                                 <div class="">
                                     <div class="form-check">
@@ -63,9 +56,13 @@
 
                             <div class="form-group mb-0">
                                 <div class="">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Login') }}
-                                    </button>
+                                    {!! NoCaptcha::displaySubmit('login', 'Entrar', ['class' => 'btn btn-primary']) !!}
+
+                                    @if ($errors->has('g-recaptcha-response'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                        </span>
+                                    @endif
 
                                     @if (Route::has('password.request'))
                                         <a class="btn btn-link" href="{{ route('password.request') }}">
