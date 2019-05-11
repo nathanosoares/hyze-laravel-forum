@@ -1,0 +1,60 @@
+// Body
+//
+// Settings for the `<body>` element.
+
+$body-bg: #f8f9fd;
+$body-color: $gray-600;
+
+
+// // Fonts
+// //
+// // Font, line-height, and color for body text, headings, and more.
+
+// $text-muted: #adb5bd;
+
+// // Grid containers
+// //
+// // Define the maximum width of `.container` for different screen sizes.
+
+// $container-max-widths: (
+//         xl: 1200px
+// );
+
+// Links
+//
+// Style anchor elements.
+
+$link-color: theme-color("primary");
+
+// Typography
+
+$font-family-sans-serif: 'Varela Round', sans-serif;
+$text-muted: $gray-500;
+
+// // Forms
+
+// $input-bg: #0c1523;
+// $input-border-color: #302f2c;
+// $input-color: $body-color;
+// $input-line-height: 1.5em;
+// $input-padding-y: 0.8em;
+// $input-padding-x: 1em;
+// $input-font-size: 0.9em;
+
+// $input-focus-border-color: #ab8742;
+// $input-focus-box-shadow: none;
+// $input-focus-color: #fff;
+
+// // Pagination
+
+// $pagination-bg: $input-bg;
+// $pagination-border-color: #302f2c;
+// $pagination-color: $body-color;
+
+// $pagination-hover-color: #fff;
+// $pagination-hover-bg: #0f1829;
+// $pagination-hover-border-color: $pagination-border-color;
+
+// $pagination-active-color: $pagination-hover-color;
+// $pagination-active-bg: #225b8b;
+// $pagination-active-border-color: $pagination-border-color;

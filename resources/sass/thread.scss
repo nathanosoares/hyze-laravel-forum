@@ -1,0 +1,23 @@
+.thread-wrapper {
+  .thread-header {
+    h1 {
+      font-family: 'penumbra-serif-std', serif;
+      font-weight: bold;
+      color: #c1d7e6;
+    }
+
+    p {
+      font-size: 1.2em;
+    }
+  }
+
+  .post-body {
+    img {
+      max-width: 100%;
+      height: auto;
+      margin: 1em 0;
+      cursor: pointer;
+      transition: box-shadow .2s;
+    }
+  }
+}
