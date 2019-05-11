@@ -41,7 +41,7 @@
                                 @endif
                             </div>
 
-                            {!! NoCaptcha::displaySubmit('login', 'submit now!') !!}
+                            {!! NoCaptcha::displaySubmit('login', 'submit now!', ['class' => 'btn btn-primary']) !!}
                             @if ($errors->has('g-recaptcha-response'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
