@@ -6,7 +6,7 @@
             <div class="">
                 <div class="">
                     <div class="bg-ghost py-3 px-4">
-                        <form method="POST" action="{{ route('login') }}">
+                        <form method="POST" action="{{ route('login') }}" id="login">
                             @csrf
 
                             <div class="form-group">
@@ -41,7 +41,7 @@
                                 @endif
                             </div>
 
-                            {!! NoCaptcha::display() !!}
+                            {!! NoCaptcha::displaySubmit('login', 'submit now!']) !!}
                             @if ($errors->has('g-recaptcha-response'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
