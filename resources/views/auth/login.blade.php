@@ -27,7 +27,7 @@
 
                             <div class="form-group">
                                 <label for="password" class="text-md-right">
-                                    Senha utilizada no servidor:   
+                                    Senha utilizada no servidor:
                                 </label>
 
                                 <input id="password" type="password"
@@ -42,6 +42,11 @@
                             </div>
 
                             {!! NoCaptcha::display() !!}
+                            @if ($errors->has('g-recaptcha-response'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                            </span>
+                            @endif
 
                             <div class="form-group ">
                                 <div class="">
