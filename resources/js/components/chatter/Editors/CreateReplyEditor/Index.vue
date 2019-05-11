@@ -6,12 +6,12 @@
 
         <div class="mt-2 mx-2 d-flex">
             <div class="ml-auto">
-                <a class="btn btn-custom-secondary btn-sm"
+                <a class="btn btn-secondary btn-sm"
                    @click.stop.prevent="$emit('cancel')">
                     Cancelar
                 </a>
 
-                <a class="btn btn-custom-primary btn-sm" :disabled="!canSubmit"
+                <a class="btn btn-primary btn-sm" :disabled="!canSubmit"
                    @click.stop.prevent="tryReplyPost">
                     Responder
                 </a>

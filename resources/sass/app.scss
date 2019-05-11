@@ -59,8 +59,8 @@ a {
 
 .editor-toolbar,
 .editor-toolbar.fullscreen {
-    background: #0c1523;
-    border-color: #302f2c;
+    //background: #0c1523;
+    border-color: #ddd;
     opacity: 1;
 
     a {
@@ -82,7 +82,7 @@ a {
 .editor-toolbar a.active,
 .editor-toolbar a:hover {
     background: transparent;
-    border-color: #ab8742;
+    border-color: #ddd;
 }
 
 .editor-toolbar i.separator {
@@ -96,7 +96,7 @@ a {
 .editor-preview,
 .editor-preview-side {
     background: #15374b;
-    border-color: #ab8742;
+    border-color: #ddd;
 }
 
 @media (max-width: 992px) {

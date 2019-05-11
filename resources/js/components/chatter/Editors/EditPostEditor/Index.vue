@@ -4,12 +4,11 @@
 
         <div class="mt-2 mx-2 d-flex">
             <div class="ml-auto">
-                <a class="btn btn-custom-secondary btn-sm"
-                   @click.stop.prevent="$emit('cancel:edit')">
+                <a class="btn btn-secondary btn-sm" @click.stop.prevent="$emit('cancel:edit')">
                     Cancelar
                 </a>
 
-                <a class="btn btn-custom-primary btn-sm" :disabled="sending || !canSubmit"
+                <a class="btn btn-primary btn-sm" :disabled="sending || !canSubmit"
                    @click.stop.prevent="tryEditPost">
                     Salvar alterações
                 </a>

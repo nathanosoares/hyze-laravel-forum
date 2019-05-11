@@ -39,13 +39,13 @@
                             </small>
 
                             <div class="ml-auto">
-                                <a class="btn btn-ghost btn-sm" href="#"
+                                <a class="btn btn-primary btn-sm" href="#"
                                    @click.prevent.stop="editable = true"
                                    v-if="canEdit()">
                                     <i class="far fa-edit"></i> Editar
                                 </a>
 
-                                <a class="btn btn-ghost btn-sm" href="#"
+                                <a class="btn btn-primary btn-sm" href="#"
                                    @click.stop.prevent="tryDestroyPost"
                                    v-if="canDestroy()">
                                     <i class="far fa-trash-alt"></i> Excluir
@@ -104,7 +104,7 @@
                                              v-on:success="responding = false"/>
                     </div>
 
-                    <button href="#" class="btn btn-ghost"
+                    <button href="#" class="btn btn-primary"
                             v-if="!responding"
                             @click.prevent.stop="doReply">
                         <i class="fas fa-comment"></i> Responder

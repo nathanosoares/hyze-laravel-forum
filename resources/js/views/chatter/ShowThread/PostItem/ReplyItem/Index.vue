@@ -2,7 +2,7 @@
     <div class="d-flex mb-2" :id="'reply__' + reply.id">
         <user-avatar :user="reply.author" size="s"/>
 
-        <div class="ml-3 bg-ghost w-100 p-3 d-flex flex-column">
+        <div class="ml-3 bg-white shadow-sm rounded w-100 p-3 d-flex flex-column">
             <div>
                 <span class="font-weight-light">{{ reply.author.name }} <span class="text-muted">(@{{ reply.author.username }})</span> disse:</span>
 
