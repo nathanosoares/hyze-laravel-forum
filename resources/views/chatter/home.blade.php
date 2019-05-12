@@ -72,22 +72,22 @@
                     </h4>
                     
                     <div class="p-3 shadow bg-white rounded">
-                        @foreach($category->forums as $forum)
+                        @foreach($category->items as $item)
 
                             <h5 class="m-0">
-                                <a href="{{ route('chatter.forum', [$forum->slug, $forum->id]) }}">
-                                    {{ $forum->name }}
+                                <a href="{{ $item->getRoute() }}">
+                                    {{ $item->getDisplayName() }}
                                 </a>
                             </h5>
 
-                            <p class="m-0 text-muted">{{ $forum->description }}</p>
+                            <p class="m-0 text-muted">{{ $item->getDescription() }}</p>
 
-                            @if(count($forum->children))
+                            @if(count($item->getChildren()))
                                 <ul class="list-inline m-0">
-                                    @foreach($forum->children as $child)
+                                    @foreach($item->getChildren() as $child)
                                         <li class="list-inline-item">
-                                            <a href="{{ route('chatter.forum', [$child->slug, $child->id]) }}" class="text-dark">
-                                                {{ $child->name }}
+                                            <a href="{{ $child->getRoute() }}" class="text-dark">
+                                                {{ $child->getDisplayName() }}
                                             </a>
                                         </li>
                                     @endforeach
