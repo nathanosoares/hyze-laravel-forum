@@ -5,9 +5,8 @@ namespace App\Models\Chatter;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Collection;
 
-class Forum extends Model implements Sluggable
+class Forum extends Model
 {
 
     use SoftDeletes;
@@ -39,30 +38,5 @@ class Forum extends Model implements Sluggable
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
-    }
-
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function getDisplayName(): string
-    {
-        return $this->name;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function getRoute(): string
-    {
-        return route('chatter.forum', [$this->slug, $this->id]);
-    }
-
-    public function getChildren(): Collection
-    {
-        return $this->children;
     }
 }
