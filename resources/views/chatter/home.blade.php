@@ -83,15 +83,15 @@
                             <p class="m-0 text-muted">{{ $forum->description }}</p>
 
                             @if(count($forum->children))
-                                <ul class="list-inline m-0">
+                                <div class="d-flex m-0">
                                     @foreach($forum->children as $child)
-                                        <li class="list-inline-item">
+                                        <div class="d-inline-block w-50 m-0">
                                             <a href="{{ route('chatter.forum', [$child->slug, $child->id]) }}" class="text-dark">
                                                 {{ $child->name }}
                                             </a>
-                                        </li>
+                                        </div>
                                     @endforeach
-                                </ul>
+                                </div>
                             @endif
                             
                             @if (!$loop->last)
