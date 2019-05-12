@@ -85,7 +85,7 @@
                             @if(count($forum->children))
                                 <div class="d-flex m-0">
                                     @foreach($forum->children as $child)
-                                        <div class="d-inline-block w-50 m-0">
+                                        <div class="d-inline-block mr-3">
                                             <a href="{{ route('chatter.forum', [$child->slug, $child->id]) }}" class="text-dark">
                                                 {{ $child->name }}
                                             </a>
