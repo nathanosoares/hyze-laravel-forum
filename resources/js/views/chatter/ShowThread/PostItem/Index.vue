@@ -13,7 +13,7 @@
 
                         <div>
                             <user-twitter-anchor :user="post.author">
-                                {{ post.author.name }} <span class="text-muted">@{{ post.author.username }}</span>
+                                {{ post.author.nick }}
                             </user-twitter-anchor>
                             <span class="text-muted">&#183; {{ moment(post.created_at).fromNow() }}</span>
                         </div>
@@ -30,27 +30,33 @@
                     </div>
 
                     <div class="mt-auto">
-                        <div class="d-flex flex-row align-items-end">
-                            <small class="font-weight-lighter d-none d-lg-block">
-                                <i class="far fa-clock mr-2"></i>
-                                <time :datetime="moment(post.created_at).format()">{{ moment(post.created_at).fromNow()
-                                    }}
-                                </time>
+                        <div class="mt-3 d-flex flex-row align-items-end">
+
+                            <template v-if="canEdit() || canDestroy()">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" :id="`dropdownMenuButton${post.id}`" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-cog"></i>&nbsp;
+                                    </button>
+                                    <div class="dropdown-menu" :aria-labelledby="`dropdownMenuButton${post.id}`">
+                                        <a class="dropdown-item" href="#"
+                                           @click.prevent.stop="editable = true"
+                                           v-if="canEdit()">
+                                            <i class="far fa-edit"></i> Editar
+                                        </a>
+
+                                        <a class="dropdown-item" href="#"
+                                           @click.stop.prevent="tryDestroyPost"
+                                           v-if="canDestroy()">
+                                            <i class="far fa-trash-alt"></i> Excluir
+                                        </a>
+                                    </div>
+                                </div>
+                            </template>
+
+                            <small class="ml-auto font-weight-lighter d-none d-lg-block">
+                                <i class="far fa-clock mr-1"></i>
+                                <time :datetime="moment(post.created_at).format()">{{ moment(post.created_at).fromNow() }}</time>
                             </small>
-
-                            <div class="ml-auto">
-                                <a class="btn btn-primary btn-sm" href="#"
-                                   @click.prevent.stop="editable = true"
-                                   v-if="canEdit()">
-                                    <i class="far fa-edit"></i> Editar
-                                </a>
-
-                                <a class="btn btn-primary btn-sm" href="#"
-                                   @click.stop.prevent="tryDestroyPost"
-                                   v-if="canDestroy()">
-                                    <i class="far fa-trash-alt"></i> Excluir
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -206,7 +212,7 @@
             canDestroy: function () {
                 return this.$gate.allow('destroy', 'post', this.post) && this.$gate.allow('write', 'forum', this.thread.forum)
             },
-            canEdit: function() {
+            canEdit: function () {
                 return this.$gate.allow('edit', 'post', this.post) && this.$gate.allow('write', 'forum', this.thread.forum)
             }
         }

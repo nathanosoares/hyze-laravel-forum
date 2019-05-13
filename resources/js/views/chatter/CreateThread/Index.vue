@@ -10,7 +10,7 @@
 
         <create-thread-editor v-model="body"></create-thread-editor>
 
-        <button class="btn btn-custom-primary ml-auto mt-4" :disabled="!canSubmit" @click="tryCreateThread">
+        <button class="btn btn-primary ml-auto mt-4" :disabled="!canSubmit" @click="tryCreateThread">
             Postar thread
         </button>
     </div>

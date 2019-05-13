@@ -28,7 +28,7 @@
             },
             defaultImg: {
                 type: String,
-                default: '/images/no-avatar.jpg'
+                default: '/images/no-avatar.png'
             }
         },
         computed: {
@@ -67,7 +67,3 @@
         }
     }
 </script>
-
-<style scoped>
-
-</style>

@@ -4,7 +4,7 @@
 
         <div class="ml-3 bg-white shadow-sm rounded w-100 p-3 d-flex flex-column">
             <div>
-                <span class="font-weight-light">{{ reply.author.name }} <span class="text-muted">(@{{ reply.author.username }})</span> disse:</span>
+                <span class="font-weight-light">{{ reply.author.nick }} disse:</span>
 
                 <edit-post-editor v-if="editable" class="w-100 mb-3" :post="reply" :content="reply.body"
                                   v-on:cancel:edit="editable = false"
@@ -16,24 +16,31 @@
             </div>
 
             <div class="mt-auto">
-                <div class="d-flex flex-row align-items-end">
-                    <small class="font-weight-lighter">
-                        <i class="far fa-clock mr-2"></i><time :datetime="moment(reply.created_at).format()">{{ moment(reply.created_at).fromNow() }}</time>
+                <div class="mt-3 d-flex flex-row align-items-end">
+                    <template v-if="$gate.allow('edit', 'post', reply) || $gate.allow('destroy', 'post', reply)">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" :id="`dropdownMenuButton-${reply.id}`" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-cog"></i>&nbsp;
+                            </button>
+                            <div class="dropdown-menu" :aria-labelledby="`dropdownMenuButton-${reply.id}`">
+                                <a class="dropdown-item" href="#"
+                                   @click.stop.prevent="toggleEditMode($event)"
+                                   v-if="$gate.allow('edit', 'post', reply)">
+                                    <i class="far fa-edit"></i> Editar
+                                </a>
+
+                                <a class="dropdown-item" href="#"
+                                   @click.stop.prevent="tryDeletePost"
+                                   v-if="$gate.allow('destroy', 'post', reply)">
+                                    <i class="far fa-trash-alt"></i> Excluir
+                                </a>
+                            </div>
+                        </div>
+                    </template>
+
+                    <small class="ml-auto font-weight-lighter">
+                        <i class="far fa-clock mr-1"></i><time :datetime="moment(reply.created_at).format()">{{ moment(reply.created_at).fromNow() }}</time>
                     </small>
-
-                    <div class="ml-auto">
-                        <a class="btn btn-ghost btn-sm" href="#"
-                           @click.stop.prevent="toggleEditMode($event)"
-                           v-if="$gate.allow('edit', 'post', reply)">
-                            <i class="far fa-edit"></i> Editar
-                        </a>
-
-                        <a class="btn btn-ghost btn-sm" href="#"
-                           @click.stop.prevent="tryDeletePost"
-                           v-if="$gate.allow('destroy', 'post', reply)">
-                            <i class="far fa-trash-alt"></i> Excluir
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
