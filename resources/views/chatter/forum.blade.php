@@ -5,7 +5,7 @@
 
     @if($forum->children()->exists())
         <div class="mb-3">
-            <div class="bg-ghost p-3">
+            <div class="bg-white rounded shadow-sm p-3">
                 <ul class="list-inline m-0">
                     @foreach($forum->children as $child)
                         <li class="list-inline-item">
@@ -24,13 +24,13 @@
     @if(count($threads))
         @can('write', $forum)
             <a href="{{ route('chatter.forum.create_thread', [$forum->slug, $forum->id]) }}"
-               class="mb-3 btn btn-custom-secondary">
+               class="mb-3 btn btn-secondary">
                 {{ __('Criar novo post') }}
             </a>
         @endcan
     @endif
 
-    <div class="bg-ghost p-3">
+    <div class="bg-white rounded shadow-sm p-3">
         @forelse ($threads as $thread)
             <div class="d-flex {{ $loop->count == 1 ? '' : ($loop->last ? 'pt-3' : 'border-bottom ' . ($loop->first ? 'pb-3' : 'py-3'))}}">
                 <div>
@@ -53,12 +53,10 @@
             </div>
         @empty
             <div class="text-center p-4">
-                <img src="{{ asset('images/kweeback.png') }}" alt="">
-
                 @can('write', $forum)
                     <p class="m-4">Nenhuma postagem até o momento. Seja o primeiro a postar algo!</p>
                     <a href="{{ route('chatter.forum.create_thread', [$forum->slug, $forum->id]) }}"
-                       class="btn btn-lg btn-custom-secondary">
+                       class="btn btn-lg btn-secondary">
                         {{ __('Criar novo post') }}
                     </a>
                 @else
