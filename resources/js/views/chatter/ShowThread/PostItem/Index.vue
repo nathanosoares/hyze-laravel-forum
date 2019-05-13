@@ -6,7 +6,7 @@
             </div>
 
             <div class="d-flex d-lg-block col-lg-10">
-                <div class="shadow rounded bg-white h-100 p-3 d-flex flex-column w-100" :id="'post-' + post.id">
+                <div class="shadow-sm rounded bg-white h-100 p-3 d-flex flex-column w-100" :id="'post-' + post.id">
 
                     <div class="d-lg-none d-flex mb-2">
                         <user-avatar :user="post.author" size="s" class="mr-2"/>

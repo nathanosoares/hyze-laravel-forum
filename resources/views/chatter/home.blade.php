@@ -10,7 +10,7 @@
                 Tópicos recentes
             </h4>
 
-            <div class="p-3 mb-4 shadow bg-white rounded">
+            <div class="p-3 mb-4 shadow-sm bg-white rounded">
                 @foreach($recent as $thread)
                     <div class="d-none d-lg-flex flex-nowrap bg-ghost align-items-center">
                         <div>
@@ -21,18 +21,14 @@
                             <a href="{{ thread_url($thread) }}"
                             class="text-decoration-none text-body h5">{{ $thread->title }}</a>
                             <div>
-                                Postado por <user-twitter-anchor :user="{{ $thread->author }}"
-                                                                label="{{ $thread->author->nick }}"></user-twitter-anchor>,
-                                {{ $thread->created_at->diffForHumans() }}
+                                Postado por {{ $thread->author->nick }}, {{ $thread->created_at->diffForHumans() }}
                             </div>
                         </div>
 
                         <div class="flex-shrink-0 ml-auto text-right">
                             <div class="d-block">Última resposta</div>
                             <div class="d-block">
-                                <user-twitter-anchor :user="{{ $thread->last_post->author }}"
-                                                    label="{{ $thread->last_post->author->name }}"></user-twitter-anchor>,
-                                {{ $thread->last_post->created_at->diffForHumans() }}
+                                {{ $thread->last_post->author->nick }}, {{ $thread->last_post->created_at->diffForHumans() }}
                             </div>
                         </div>
                     </div>
@@ -71,7 +67,7 @@
                         {{ $category->name }}
                     </h4>
                     
-                    <div class="p-3 shadow bg-white rounded">
+                    <div class="p-3 shadow-sm bg-white rounded">
                         @foreach($category->forums as $forum)
 
                             <h5 class="m-0">
