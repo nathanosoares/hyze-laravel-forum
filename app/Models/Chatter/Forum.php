@@ -15,7 +15,7 @@ class Forum extends Model
     public $timestamps = true;
 
     protected $visible = [
-        'id', 'name', 'slug', 'parent', 'category', 'restrict_read', 'restrict_write'
+        'id', 'name', 'slug', 'parent', 'category', 'restrict_read', 'restrict_write', 'children'
     ];
 
     protected $with = ['parent', 'category'];

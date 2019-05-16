@@ -42,4 +42,12 @@ Route::prefix('forums')->name('chatter.')->namespace('Chatter')->group(function 
     Route::get('/thread/{thread_slug}.{thread_id}', 'ThreadController@show')->name('thread');
 });
 
+
+Route::prefix('admin')->name('admin.')->namespace('Admin')->middleware('super.admin')->group(function () {
+    Route::get('/', 'DashboardController@index')->name('dashboard');
+    
+    Route::get('/forums', 'ForumController@index')->name('forums');
+    Route::post('/forums/sort', 'ForumController@sort')->name('forums.sort');
+});
+
 Route::get('/home', 'HomeController@index')->name('home');

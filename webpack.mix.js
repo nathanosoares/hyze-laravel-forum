@@ -12,8 +12,15 @@ const mix = require('laravel-mix');
  */
 mix.webpackConfig(require('./webpack.config'));
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css', {
+// Forum
+mix.js('resources/forum/js/app.js', 'public/assets/forum/js')
+    .sass('resources/forum/sass/app.scss', 'public/assets/forum/css', {
+        data: "$env: " + process.env.NODE_ENV + ";"
+    });
+
+// Admin
+mix.js('resources/admin/js/app.js', 'public/assets/admin/js')
+    .sass('resources/admin/sass/app.scss', 'public/assets/admin/css', {
         data: "$env: " + process.env.NODE_ENV + ";"
     });
 

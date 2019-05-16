@@ -28,6 +28,6 @@ class Category extends Model
 
     public function forums()
     {
-        return $this->hasMany(Forum::class,'category_id');
+        return $this->hasMany(Forum::class,'category_id')->orderBy('order');
     }
 }

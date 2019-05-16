@@ -1,4 +1,4 @@
-@extends('layouts.chatter')
+@extends('layouts.forum')
 
 @section('content')
     {{ Breadcrumbs::render('chatter.forum', $forum) }}

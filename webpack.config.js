@@ -15,15 +15,15 @@ module.exports = {
         alias: {
             "@components": path.resolve(
                 __dirname,
-                "resources/js/components"
+                "resources/forum/js/components"
             ),
             "@views": path.resolve(
                 __dirname,
-                "resources/js/views"
+                "resources/forum/js/views"
             ),
             "@store": path.resolve(
                 __dirname,
-                "resources/js/store"
+                "resources/forum/js/store"
             )
         }
     }
