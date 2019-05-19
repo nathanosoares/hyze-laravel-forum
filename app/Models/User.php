@@ -25,7 +25,7 @@ class User extends Authenticatable
         'id', 'nick'
     ];
 
-    protected $visible = ['id', 'is_super_admin', 'all_permissions', 'nick'];
+    protected $visible = ['id', 'nick', 'is_super_admin', 'groups', 'highest_group'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -36,7 +36,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    protected $appends = ['is_super_admin', 'all_permissions'];
+    protected $appends = ['is_super_admin', 'groups', 'highest_group'];
 
     /**
      * Determine if the user is a super admin.
@@ -51,17 +51,5 @@ class User extends Authenticatable
     public function isSuperAdmin(): bool
     {
         return $this->is_super_admin;
-    }
-
-    public function getAllPermissionsAttribute()
-    {
-        try {
-        return $this->getAllPermissions()
-            ->map(function ($permission) {
-                return $permission->name;
-            });
-        } catch (\Exception $e) {
-            return collect();
-        }
     }
 }

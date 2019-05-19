@@ -19,7 +19,14 @@ trait HasGroup
 
     public function getHighestGroup(): Group
     {
-        return $this->groups->sortBy('value')->first() ?? Group::DEFAULT();
+        return $this->groups->sortBy(function ($group) {
+            return $group->value['priority'];
+        })->first() ?? Group::DEFAULT();
+    }
+
+    public function getHighestGroupAttribute(): Group
+    {
+        return $this->getHighestGroup();
     }
 
     public function getGroupsAttribute(): Collection
@@ -43,6 +50,10 @@ trait HasGroup
             ->unique(function ($item) {
                 return $item->key;
             });
+
+        if ($groups->count() < 1) {
+            $groups = collect([Group::DEFAULT()]);
+        }
 
         $this->attributes['groups'] = $groups;
 
