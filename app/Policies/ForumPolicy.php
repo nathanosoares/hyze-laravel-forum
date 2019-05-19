@@ -13,11 +13,13 @@ class ForumPolicy
 
     public function read(?User $user, Forum $forum)
     {
-        return $this->can($user, 'read', 'forum', $forum, true) && Gate::forUser($user)->allows('read', $forum->category);
+        return Gate::forUser($user)->allows('read', $forum->category)
+            && $this->can($user, 'read', 'forum', $forum, true);
     }
 
     public function write(?User $user, Forum $forum)
     {
-        return $this->can($user, 'write', 'forum', $forum, true) && Gate::forUser($user)->allows('write', $forum->category);
+        return Gate::forUser($user)->allows('write', $forum->category)
+            && $this->can($user, 'write', 'forum', $forum, true);
     }
 }

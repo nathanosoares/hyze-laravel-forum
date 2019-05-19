@@ -3,70 +3,76 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Chatter\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use App\Models\Chatter\Forum;
+use App\Extensions\Permission\Group;
+use BenSampo\Enum\Rules\EnumKey;
+use Illuminate\Validation\Rule;
+use App\Models\Chatter\Category;
 
 class ForumController extends Controller
 {
-    public function __construct()
+
+    public function edit(Forum $forum)
     {
-        $this->middleware('super.admin');
+        $groups = Group::getInstances();
+        return view('admin.forums.edit', compact('forum', 'groups'));
     }
 
-    public function index()
+    public function create()
     {
-        $categories = Category::with(['forums' => function ($query) {
-            $query->where('parent_id', null);
-        }, 'forums.children'])->get();
-
-        return view('admin.forums', compact('categories'));
+        $categories = Category::all();
+        $groups = Group::getInstances();
+        return view('admin.forums.create', compact('categories', 'groups'));
     }
 
-    public function sort(Request $request)
+    public function update(Forum $forum, Request $request)
     {
         $this->validate($request, [
-            'categories' => 'required|array',
-            'categories.*.id' => 'required|integer|exists:categories,id',
-            'categories.*.forums' => 'array',
-            'categories.*.forums.*.id' => 'required|integer|exists:forums,id',
+            'name' => ['required', 'max:191', 'min:1'],
+            'slug' => ['required', 'max:191', 'min:1', Rule::unique('forums')->ignore($forum->id)],
+            'description' => ['max:1024'],
+            'restrict_read' => ['required', new EnumKey(Group::class)],
+            'restrict_write' => ['required', new EnumKey(Group::class)],
         ]);
 
-        $categories = collect($request->get('categories'));
+        $forum->fill($request->only([
+            'name',
+            'slug',
+            'description',
+            'restrict_read',
+            'restrict_write'
+        ]));
 
-        $categories->each(function ($item, $key) {
-            $category = Category::find($item['id']);
+        $forum->save();
 
-            if ($category) {
-                $category->order = $key;
-                $category->save();
+        return redirect()->route('admin.tree');
+    }
 
-                $process = function ($forums, $parentId = null) use ($category, &$process) {
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name' => ['required', 'max:191', 'min:1'],
+            'slug' => ['required', 'max:191', 'min:1'],
+            'category_id' => ['required', 'exists:categories,id'],
+            'description' => ['max:1024'],
+            'restrict_read' => ['required', new EnumKey(Group::class)],
+            'restrict_write' => ['required', new EnumKey(Group::class)],
+        ]);
 
-                    $forums->each(function ($item, $key) use ($parentId, $category, &$process) {
-                        $forum = Forum::find($item['id']);
+        $forum = new Forum();
 
-                        if ($forum) {
-                            $forum->category_id = $category->id;
-                            $forum->order = $key;
-                            $forum->parent_id = $parentId;
+        $forum->fill($request->only([
+            'name',
+            'slug',
+            'category_id',
+            'description',
+            'restrict_read',
+            'restrict_write'
+        ]));
 
-                            $forum->save();
+        $forum->save();
 
-                            if ($item['children']) {
-                                $process(collect($item['children']), $forum->id);
-                            }
-                        }
-                    });
-                };
-
-                if (isset($item['forums'])) {
-                    $process(collect($item['forums']));
-                }
-            }
-        });
-
-        return response()->json($categories);
+        return redirect()->route('admin.tree');
     }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Extensions\Permission\Group;
 
 class CreateForumsTable extends Migration
 {
@@ -16,8 +17,8 @@ class CreateForumsTable extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('slug');
-            $table->boolean('restrict_read')->default(false);
-            $table->boolean('restrict_write')->default(false);
+            $table->string('restrict_read')->default(Group::DEFAULT()->key);
+            $table->string('restrict_write')->default(Group::DEFAULT()->key);
             $table->timestamps();
             $table->softDeletes();
         });

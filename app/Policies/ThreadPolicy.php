@@ -12,26 +12,26 @@ class ThreadPolicy
 
     public function update(User $user, Thread $discussion)
     {
-        return $user->id === $discussion->user_id || $user->hasPermissionTo('chatter edit any thread');
+        return $user->id === $discussion->user_id || $user->hasGroup(Group::GAME_MASTER());
     }
 
     public function delete(User $user, Thread $discussion)
     {
-        return $user->id === $discussion->user_id || $user->hasPermissionTo('chatter delete any thread');
+        return $user->id === $discussion->user_id || $user->hasGroup(Group::GAME_MASTER());
     }
 
     public function forceDelete(User $user, Thread $discussion)
     {
-        return $user->hasPermissionTo('chatter force delete any thread');
+        $user->hasGroup(Group::GAME_MASTER());
     }
 
     public function promote(User $user, Thread $discussion)
     {
-        return $user->hasPermissionTo('chatter promote thread');
+        $user->hasGroup(Group::GAME_MASTER());
     }
 
     public function create(User $user)
     {
-        return $user->hasPermissionTo('chatter create thread');
+        $user->hasGroup(Group::GAME_MASTER());
     }
 }

@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Collection;
 use Laravel\Passport\HasApiTokens;
-use Spatie\Permission\Traits\HasRoles;
+use App\Extensions\Permission\Traits\HasGroup;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasRoles, HasApiTokens;
+    use Notifiable, HasApiTokens, HasGroup;
 
     protected $connection = 'hyze';
     protected $table = 'users';

@@ -6,6 +6,8 @@ return [
         'chatter.*',
         'api.parsedown',
         'auth.redirect',
-        'admin.forums.sort'
+        'admin.tree.sort',
+        'admin.categories.*',
+        'admin.forums.*',
     ],
 ];

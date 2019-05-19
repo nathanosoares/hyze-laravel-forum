@@ -1,16 +1,55 @@
 <template>
   <div class="d-flex flex-column">
-    <button class="btn btn-success ml-auto mb-4" @click="trySaveForums">Salvar</button>
+    <div class="d-flex align-items-center mb-4">
+      <div class="ml-auto">
+        <a class="btn btn-primary btn-sm" :href="route('admin.categories.create')">
+          <i class="fas fa-plus"></i>
+          Categoria
+        </a>
+
+        <a class="btn btn-primary btn-sm" :href="route('admin.forums.create')">
+          <i class="fas fa-plus"></i>
+          Forum
+        </a>
+      </div>
+    </div>
 
     <div>
       <draggable handle=".move" :list="sorted" :group="{ name: 'categories' }">
         <transition-group>
           <div v-for="category in sorted" :key="category.id">
-            <div class="border py-2 px-3">
+            <div class="border py-2 px-3 d-flex align-items-center">
               <span class="mr-3 move">
                 <i class="fas fa-sort"></i>
               </span>
+
               <span>{{ category.name }}</span>
+
+              <div class="ml-auto d-flex align-items-center">
+                <span class="text-muted">Categoria</span>
+
+                <div class="dropdown ml-3">
+                  <button
+                    class="btn"
+                    type="button"
+                    :id="'categoryDropdowMenu' + category.id"
+                    data-toggle="dropdown"
+                    aria-haspopup="false"
+                    aria-expanded="false"
+                  >
+                    <i class="fas fa-ellipsis-v"></i>
+                  </button>
+                  <div
+                    class="dropdown-menu dropdown-menu-right"
+                    :aria-labelledby="'categoryDropdowMenu' + category.id"
+                  >
+                    <a
+                      class="dropdown-item"
+                      :href="route('admin.categories.edit', category.id)"
+                    >Editar</a>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div>
@@ -19,6 +58,10 @@
           </div>
         </transition-group>
       </draggable>
+    </div>
+
+    <div class="ml-auto mt-4">
+      <button class="btn btn-success" @click="trySaveForums">Salvar</button>
     </div>
   </div>
 </template>
@@ -69,15 +112,15 @@ export default {
     },
     trySaveForums: function() {
       axios
-        .post(route("admin.forums.sort"), {
+        .post(route("admin.tree.sort"), {
           categories: this.sorted
         })
         .then(function(response) {
-          console.log("Sucesso!");
+          alert("Sucesso!");
           console.log(response);
         })
         .catch(function(error) {
-          console.log("Erro!");
+          alert("Erro!");
           console.log(error);
         });
     }

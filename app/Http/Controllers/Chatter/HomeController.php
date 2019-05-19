@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Chatter\Category;
 use App\Models\Chatter\Thread;
 use Illuminate\Support\Facades\Gate;
+use App\Extensions\Permission\Group;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -37,7 +39,6 @@ class HomeController extends Controller
 
             return $category;
         });
-
 
         return view('chatter.home', compact('recent', 'categories'));
     }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Extensions\Permission\Group;
 
 class CreateThreadsTable extends Migration
 {
@@ -19,6 +20,8 @@ class CreateThreadsTable extends Migration
             $table->integer('views')->unsigned()->default('0');
             $table->boolean('answered')->default(false);
             $table->timestamp('last_reply_at')->useCurrent();
+            $table->string('restrict_read')->default(Group::DEFAULT()->key);
+            $table->string('restrict_write')->default(Group::DEFAULT()->key);
             $table->timestamps();
             $table->softDeletes();
 

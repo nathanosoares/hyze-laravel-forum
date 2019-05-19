@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Extensions\Permission\Group;
 
 class CreateCategoriesTable extends Migration
 {
@@ -12,10 +13,9 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->integer('order')->default(1);
             $table->string('name');
-            $table->string('color', 20);
             $table->string('slug');
-            $table->boolean('restrict_read')->default(false);
-            $table->boolean('restrict_write')->default(false);
+            $table->string('restrict_read')->default(Group::DEFAULT()->key);
+            $table->string('restrict_write')->default(Group::DEFAULT()->key);
             $table->timestamps();
             $table->softDeletes();
         });

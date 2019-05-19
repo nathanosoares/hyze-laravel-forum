@@ -46,8 +46,16 @@ Route::prefix('forums')->name('chatter.')->namespace('Chatter')->group(function 
 Route::prefix('admin')->name('admin.')->namespace('Admin')->middleware('super.admin')->group(function () {
     Route::get('/', 'DashboardController@index')->name('dashboard');
     
-    Route::get('/forums', 'ForumController@index')->name('forums');
-    Route::post('/forums/sort', 'ForumController@sort')->name('forums.sort');
+    Route::get('/tree', 'TreeController@index')->name('tree');
+    Route::post('/tree/sort', 'TreeController@sort')->name('tree.sort');
+
+    Route::resource('categories', 'CategoryController')->only([
+        'create', 'store', 'edit', 'update'
+    ]);
+
+    Route::resource('forums', 'ForumController')->only([
+        'create', 'store', 'edit', 'update'
+    ]);
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
