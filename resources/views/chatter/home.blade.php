@@ -17,7 +17,6 @@
                     <user-avatar :user="{{$thread->author}}" :classes="['mr-3', 'rounded']" size="s"></user-avatar>
                 </div>
 
-                {{ dd($thread->author->highest_group->value) }}
 
                 <div class="mr-3">
                     <a href="{{ thread_url($thread) }}" class="text-primary h5">
@@ -29,7 +28,8 @@
                                 <small><i class="fas fa-user"></i> {{ $thread->author->nick }}</small>
                             </li>
                             <li class="list-inline-item">
-                                <small><i class="fas fa-clock"></i> {{ $thread->author->highest_group->value['display_name'] }}</small>
+                                <small><i class="fas fa-clock"></i>
+                                    {{ $thread->author->highest_group->value['display_name'] }}</small>
                             </li>
                             <li class="list-inline-item">
                                 <small><i class="fas fa-clock"></i> {{ $thread->created_at->diffForHumans() }}</small>
