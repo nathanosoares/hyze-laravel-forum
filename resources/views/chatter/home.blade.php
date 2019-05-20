@@ -17,7 +17,6 @@
                     <user-avatar :user="{{$thread->author}}" :classes="['mr-3', 'rounded']" size="s"></user-avatar>
                 </div>
 
-
                 <div class="mr-3">
                     <a href="{{ thread_url($thread) }}" class="text-primary h5">
                         {{ $thread->title }}
@@ -87,11 +86,9 @@
             <div class="p-3 shadow-sm bg-white rounded">
                 @foreach($category->forums as $forum)
 
-                <h5 class="m-0">
-                    <a href="{{ route('chatter.forum', [$forum->slug, $forum->id]) }}" class="text-primary">
-                        {{ $forum->name }}
-                    </a>
-                </h5>
+                <a href="{{ route('chatter.forum', [$forum->slug, $forum->id]) }}" class="text-primary text-lg">
+                    {{ $forum->name }}
+                </a>
 
                 <p class="m-0 text-muted">{{ $forum->description }}</p>
 

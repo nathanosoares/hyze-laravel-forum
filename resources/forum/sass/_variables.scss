@@ -5,7 +5,6 @@
 $body-bg: #f8f9fd;
 $body-color: $gray-600;
 
-
 // // Fonts
 // //
 // // Font, line-height, and color for body text, headings, and more.
@@ -28,8 +27,27 @@ $link-color: #ff9600;
 
 // Typography
 
-$font-family-sans-serif: 'Varela Round', sans-serif;
+$font-family-sans-serif: "Varela Round", sans-serif;
 $text-muted: $gray-500;
+
+$font-sizes: () !default;
+
+$font-sizes: map-merge(
+  (
+    "xs": $font-size-base * 0.75,
+    "sm": $font-size-base * 0.875,
+    "base": $font-size-base,
+    "lg": $font-size-base * 1.125,
+    "xl": $font-size-base * 1.25
+  ),
+  $sizes
+);
+
+@each $size, $value in $font-sizes {
+  .text-#{$size} {
+    font-size: $value;
+  }
+}
 
 // // Forms
 
