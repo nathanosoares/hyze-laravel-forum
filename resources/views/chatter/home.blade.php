@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="mr-3">
-                    <a href="{{ thread_url($thread) }}" class="text-primary h5">
+                    <a href="{{ thread_url($thread) }}" class="text-primary text-lg">
                         {{ $thread->title }}
                     </a>
                     <div class="">
