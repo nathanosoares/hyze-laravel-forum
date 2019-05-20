@@ -95,7 +95,7 @@
           <a
             v-if="post.replies.length > 0 && canShowReplies"
             href="#"
-            class="font-weight-bold"
+            class="font-weight-bold text-primary"
             @click.prevent.stop="canShowReplies = false"
           >
             Ocultar respostas
@@ -117,7 +117,7 @@
           <a
             v-if="hasMoreReplies && canShowReplies"
             href="#"
-            class="font-weight-bold"
+            class="font-weight-bold text-primary"
             @click.prevent.stop="loadMoreReplies"
             v-html="showMoreText"
           >{{ showMoreText }}</a>
@@ -125,7 +125,7 @@
           <a
             v-if="post.replies.length > 0 && !canShowReplies"
             href="#"
-            class="font-weight-bold"
+            class="font-weight-bold text-primary"
             @click.prevent.stop="canShowReplies = true"
           >
             Mostrar {{ post.replies.length }} respostas

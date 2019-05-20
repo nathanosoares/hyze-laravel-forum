@@ -42,6 +42,11 @@ class Thread extends Model
         return $this->hasMany(Post::class, 'thread_id');
     }
 
+    public function replies()
+    {
+        return $this->hasMany(Post::class, 'thread_id')->where('parent_id', null);
+    }
+
     public function getMainPostAttribute()
     {
         return once(function () {

@@ -1,33 +1,45 @@
 @extends('layouts.forum')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
+<div class="row">
+    <div class="col-12">
 
-                @foreach ($threads as $thread)
-                    <a class="text-decoration-none text-body bg-ghost d-block" href="{{ thread_url($thread) }}">
-                        <div class="p-4">
-                            <div class="h2 text-primary ">
-                                {{ $thread->title }}
-                            </div>
+        @foreach ($threads as $thread)
+        <div class="row mb-3">
+            <div class="d-none d-lg-block col-lg-2">
+                <author-card-normal :author='@json($thread->author)'></author-card-normal>
+            </div>
 
-                            <p>{!! html_cut($thread->main_post->body, 300) !!}</p>
-
-                            <div class="d-flex flex-row">
-                                <div>{{ $thread->created_at->diffForHumans() }}</div>
-                                <div class="ml-auto">
-                                    Postado por {{ $thread->author->name }}
-                                </div>
-                            </div>
-                        </div>
+            <div class="d-flex d-lg-block col-lg-10">
+                <div class="shadow-sm rounded bg-white h-100 p-3 d-flex flex-column w-100">
+                    <a href="{{ thread_url($thread) }}" class="h3 text-primary">
+                        {{ $thread->title }}
                     </a>
-                @endforeach
 
-                <div class="mx-auto">
-                    {{ $threads->links() }}
+                    <p>{!! html_cut($thread->main_post->body, 400) !!}...</p>
+
+                    <div class="d-flex align-items-center mt-1">
+                        <a href="{{ thread_url($thread) }}" class="btn btn-primary rounded-pill">
+                            Continuar lendo...
+                        </a>
+
+                        <div class="ml-auto">
+                            <span class="mr-1">
+                                <i class="fas fa-clock"></i> {{ $thread->created_at->diffForHumans() }}
+                            </span>
+                            <span>
+                                <i class="far fa-comment-dots"></i> {{ $thread->replies()->count() - 1 }} respostas
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        @endforeach
+
+        <div class="mx-auto">
+            {{ $threads->links() }}
+        </div>
     </div>
+</div>
 @endsection

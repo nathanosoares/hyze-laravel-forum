@@ -24,7 +24,7 @@
     @if(count($threads))
         @can('write', $forum)
             <a href="{{ route('chatter.forum.create_thread', [$forum->slug, $forum->id]) }}"
-               class="mb-3 btn btn-secondary">
+               class="btn btn-primary mb-3 rounded-pill">
                 {{ __('Criar novo post') }}
             </a>
         @endcan
@@ -56,7 +56,7 @@
                 @can('write', $forum)
                     <p class="m-4">Nenhuma postagem até o momento. Seja o primeiro a postar algo!</p>
                     <a href="{{ route('chatter.forum.create_thread', [$forum->slug, $forum->id]) }}"
-                       class="btn btn-lg btn-secondary">
+                       class="btn btn-lg btn-primary rounded-pill">
                         {{ __('Criar novo post') }}
                     </a>
                 @else

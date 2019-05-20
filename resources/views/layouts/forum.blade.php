@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-100">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="theme-color" content="#0b1828"/>
+    <meta name="theme-color" content="#0b1828" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- CSRF Token -->
@@ -24,31 +25,37 @@
 
     @routes
 </head>
-<body>
 
-<noscript>
-    This app works best with JavaScript enabled.
-</noscript>
-@auth
+<body class="d-flex flex-column h-100">
+
+    <noscript>
+        This app works best with JavaScript enabled.
+    </noscript>
+
+
+    <main id="app" class="flex-shrink-0">
+        @include('layouts.components.forum.navbar')
+
+        <main class="py-4 container">
+            @yield('content')
+        </main>
+    </main>
+
+    <footer class="footer mt-auto py-3">
+        <div class="container">
+        <p class="m-0">&copy; {{ now()->year }} <a href="{{ route('home') }}">Hyze</a>. Todos direitos reservados.</p>
+            <small>O Hyze não é, de maneira alguma, afiliado à ou endossado pela Mojang.</small>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    @auth
     <script>
         window.user = @json(auth()->user())
     </script>
-@endauth
-
-<div id="app" class="d-flex flex-column">
-    @include('layouts.components.forum.navbar')
-
-    <main class="py-4 container">
-        @yield('content')
-    </main>
-
-    <footer class="py-4 text-center w-100 mt-auto">
-        <p>&copy; 2018 - {{ now()->year }} HYZE</p>
-    </footer>
-</div>
-
-<!-- Scripts -->
-<script src="{{ mix('/assets/forum/js/app.js') }}"></script>
-@yield('js')
+    @endauth
+    <script src="{{ mix('/assets/forum/js/app.js') }}"></script>
+    @yield('js')
 </body>
+
 </html>

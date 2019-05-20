@@ -2,7 +2,7 @@
     <div class="d-flex flex-column">
         <markdown-editor v-model="content" :configs="$simplemde.configs"></markdown-editor>
 
-        <button class="btn btn-secondary ml-auto mt-4" :disabled="!canSubmit" @click="tryReplyThread">
+        <button class="btn btn-secondary rounded-pill ml-auto mt-4" :disabled="!canSubmit" @click="tryReplyThread">
             Responder
         </button>
     </div>

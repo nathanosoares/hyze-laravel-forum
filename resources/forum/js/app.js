@@ -69,6 +69,7 @@ Vue.component('create-thread-view', require('@views/chatter/CreateThread/Index')
 Vue.component('user-avatar', require('@components/UserAvatar'));
 Vue.component('user-twitter-anchor', require('@components/UserTwitterAnchor'));
 Vue.component('login-modal', require('@components/LoginModal/Index'));
+Vue.component('author-card-normal', require('@components/chatter/AuthorCard/Normal'));
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))
