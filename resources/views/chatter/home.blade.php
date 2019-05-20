@@ -88,7 +88,7 @@
                 @foreach($category->forums as $forum)
 
                 <h5 class="m-0">
-                    <a href="{{ route('chatter.forum', [$forum->slug, $forum->id]) }}">
+                    <a href="{{ route('chatter.forum', [$forum->slug, $forum->id]) }}" class="text-primary">
                         {{ $forum->name }}
                     </a>
                 </h5>
