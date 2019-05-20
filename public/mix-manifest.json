@@ -1,6 +1,6 @@
 {
-    "/assets/forum/js/app.js": "/assets/forum/js/app.js?id=edf4f30a2ba64cd9069e",
-    "/assets/forum/css/app.css": "/assets/forum/css/app.css?id=d6d09e698856ae630260",
-    "/assets/admin/css/app.css": "/assets/admin/css/app.css?id=53f2ab364a4a8a6633b3",
-    "/assets/admin/js/app.js": "/assets/admin/js/app.js?id=7fda80d2ae9b76da8c55"
+    "/assets/forum/js/app.js": "/assets/forum/js/app.js",
+    "/assets/forum/css/app.css": "/assets/forum/css/app.css",
+    "/assets/admin/css/app.css": "/assets/admin/css/app.css",
+    "/assets/admin/js/app.js": "/assets/admin/js/app.js"
 }
