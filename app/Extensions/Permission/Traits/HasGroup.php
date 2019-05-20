@@ -19,7 +19,7 @@ trait HasGroup
 
     public function getHighestGroup(): Group
     {
-        return $this->groups->sortBy(function ($group) {
+        return $this->groups->sortByDesc(function ($group) {
             return $group->value['priority'];
         })->first() ?? Group::DEFAULT();
     }
