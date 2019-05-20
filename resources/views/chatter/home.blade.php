@@ -28,7 +28,7 @@
                                 <small><i class="fas fa-user"></i> {{ $thread->author->nick }}</small>
                             </li>
                             <li class="list-inline-item">
-                                <small><i class="fas fa-clock"></i>
+                                <small><i class="fas fa-shield-alt"></i>
                                     {{ $thread->author->highest_group->value['display_name'] }}</small>
                             </li>
                             <li class="list-inline-item">
