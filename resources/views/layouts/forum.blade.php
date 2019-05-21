@@ -43,8 +43,25 @@
 
     <footer class="footer mt-auto py-3">
         <div class="container">
-        <p class="m-0">&copy; {{ now()->year }} <a href="{{ route('home') }}">Hyze</a>. Todos direitos reservados.</p>
-            <small>O Hyze não é, de maneira alguma, afiliado à ou endossado pela Mojang.</small>
+            <div class="d-flex align-items-center">
+                <div>
+                    <p class="m-0">
+                        &copy; {{ now()->year }} <a href="{{ route('home') }}">Hyze</a>. Todos direitos reservados.
+                    </p>
+                    <small>O Hyze não é, de maneira alguma, afiliado à ou endossado pela Mojang.</small>
+                </div>
+                <div class="ml-auto d-flex flex-column text-right">
+                    <span title="Code by Nathan Soares">
+                        <i class="fas fa-code"></i> by <a href="https://twitter.com/nathanosoares" target="_blank"
+                            class="text-muted">Nathan</a>
+                    </span>
+
+                    <span title="Layout by kadoo">
+                        <i class="fas fa-pencil-ruler"></i> by <a href="https://twitter.com/srkadoo" target="_blank"
+                            class="text-muted">kadoo</a>
+                    </span>
+                </div>
+            </div>
         </div>
     </footer>
 
