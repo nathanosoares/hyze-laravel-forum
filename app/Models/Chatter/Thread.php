@@ -20,12 +20,12 @@ class Thread extends Model
     ];
 
     protected $visible = [
-        'id', 'title', 'slug', 'forum', 'author', 'main_post', 'created_at'
+        'id', 'title', 'slug', 'forum', 'author', 'main_post', 'created_at', 'replies_count'
     ];
 
     protected $with = ['author'];
 
-    protected $appends = ['main_post'];
+    protected $appends = ['main_post', 'replies_count'];
 
     public function forum()
     {
@@ -45,6 +45,19 @@ class Thread extends Model
     public function replies()
     {
         return $this->hasMany(Post::class, 'thread_id')->where('parent_id', null);
+    }
+
+    public function getRepliesCountAttribute()
+    {
+        if (isset($this->attributes['replies_count'])) {
+            return $this->attributes['replies_count'];
+        }
+
+        $count = $this->replies()->count() - 1;
+
+        $this->attributes['replies_count'] = $count;
+
+        return $count;
     }
 
     public function getMainPostAttribute()

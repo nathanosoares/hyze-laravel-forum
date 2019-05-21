@@ -32,11 +32,23 @@
                         <li class="list-inline-item">
                             <small><i class="fas fa-clock"></i> {{ $thread->created_at->diffForHumans() }}</small>
                         </li>
+                        <li class="list-inline-item">
+                            <small>
+                                <i class="far fa-comment-dots"></i>
+                                {{ plural('resposta', 'respostas', $thread->replies_count, 'nenhuma resposta') }}
+                            </small>
+                        </li>
                     </ul>
                 </div>
 
                 <div class="flex-shrink-0 ml-auto text-right">
-                    <div class="d-block">Última resposta</div>
+                    <div class="d-block">
+                        @if ($thread->replies_count > 0)
+                        Última resposta
+                        @else
+                        Postado por
+                        @endif
+                    </div>
                     <div class="d-block">
                         {{ $thread->last_post->author->nick }}, {{ $thread->last_post->created_at->diffForHumans() }}
                     </div>

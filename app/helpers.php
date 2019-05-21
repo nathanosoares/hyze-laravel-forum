@@ -49,7 +49,8 @@ if (!function_exists('html_cut')) {
         $stripped_text = strip_tags($text);
 
         while ($i < strlen($text) && $stripped < strlen($stripped_text) && $stripped < $max_length) {
-            $symbol = $text{$i};
+            $symbol = $text{
+                $i};
             $result .= $symbol;
 
             switch ($symbol) {
@@ -115,5 +116,13 @@ if (!function_exists('html_cut')) {
         }
 
         return $result;
+    }
+}
+
+
+if (!function_exists('plural')) {
+    function plural(string $singular, string $plural, int $amount, string $zero = null): string
+    {
+        return $amount == 1 ? "${amount} ${singular}" : ($amount == 0 && $zero ? "${zero}" : "${amount} ${plural}");
     }
 }

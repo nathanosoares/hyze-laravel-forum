@@ -52,29 +52,25 @@
                     <li class="list-inline-item">
                         <small><i class="fas fa-clock"></i> {{ $thread->created_at->diffForHumans() }}</small>
                     </li>
+                    <li class="list-inline-item">
+                        <small>
+                            <i class="far fa-comment-dots"></i>
+                            {{ plural('resposta', 'respostas', $thread->replies_count, 'nenhuma resposta') }}
+                        </small>
+                    </li>
                 </ul>
             </div>
             <div class="ml-auto text-right">
-                <div>
-                    <div class="d-block">Última resposta</div>
-                    <div class="d-block">
-                        {{ $thread->last_post->author->nick }}, {{ $thread->last_post->created_at->diffForHumans() }}
-                    </div>
-                </div>
-                <div>
-                    <span class="mr-1">
-                        <i class="fas fa-clock"></i> {{ $thread->created_at->diffForHumans() }}
-                    </span>
-                    <span>
-                        <i class="far fa-comment-dots"></i> {{ $thread->replies()->count() - 1 }} respostas
-                    </span>
+                <div class="d-block">Última resposta</div>
+                <div class="d-block">
+                    {{ $thread->last_post->author->nick }}, {{ $thread->last_post->created_at->diffForHumans() }}
                 </div>
             </div>
         </div>
     </div>
 
     @if(!$loop->last)
-        <hr class="dashed">
+    <hr class="dashed">
     @endif
 
     @empty

@@ -28,7 +28,8 @@
                                 <i class="fas fa-clock"></i> {{ $thread->created_at->diffForHumans() }}
                             </span>
                             <span>
-                                <i class="far fa-comment-dots"></i> {{ $thread->replies()->count() - 1 }} respostas
+                                <i class="far fa-comment-dots"></i>
+                                {{ plural('resposta', 'respostas', $thread->replies_count, 'nenhuma resposta') }}
                             </span>
                         </div>
                     </div>
