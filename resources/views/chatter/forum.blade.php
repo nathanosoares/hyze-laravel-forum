@@ -32,29 +32,51 @@
 
 <div class="bg-white rounded shadow-sm p-3">
     @forelse ($threads as $thread)
-    <div
-        class="d-flex {{ $loop->count == 1 ? '' : ($loop->last ? 'pt-3' : 'border-bottom ' . ($loop->first ? 'pb-3' : 'py-3'))}}">
+    <div class="d-flex align-items-center">
         <div>
             <user-avatar :user="{{$thread->author}}" :classes="['mr-3', 'rounded']" size="s"></user-avatar>
         </div>
-        <div>
-            <a href="{{ route('chatter.thread', [$thread->slug, $thread->id]) }}" class="text-primary text-lg">
-                {{ $thread->title }}
-            </a>
-            <ul class="list-inline text-secondary mt-1 mb-0">
-                <li class="list-inline-item">
-                    <small><i class="fas fa-user"></i> {{ $thread->author->nick }}</small>
-                </li>
-                <li class="list-inline-item">
-                    <small><i class="fas fa-shield-alt"></i>
-                        {{ $thread->author->highest_group->value['display_name'] }}</small>
-                </li>
-                <li class="list-inline-item">
-                    <small><i class="fas fa-clock"></i> {{ $thread->created_at->diffForHumans() }}</small>
-                </li>
-            </ul>
+        <div class="d-flex w-100 align-items-center">
+            <div>
+                <a href="{{ route('chatter.thread', [$thread->slug, $thread->id]) }}" class="text-primary text-lg">
+                    {{ $thread->title }}
+                </a>
+                <ul class="list-inline text-secondary mt-1 mb-0">
+                    <li class="list-inline-item">
+                        <small><i class="fas fa-user"></i> {{ $thread->author->nick }}</small>
+                    </li>
+                    <li class="list-inline-item">
+                        <small><i class="fas fa-shield-alt"></i>
+                            {{ $thread->author->highest_group->value['display_name'] }}</small>
+                    </li>
+                    <li class="list-inline-item">
+                        <small><i class="fas fa-clock"></i> {{ $thread->created_at->diffForHumans() }}</small>
+                    </li>
+                </ul>
+            </div>
+            <div class="ml-auto text-right">
+                <div>
+                    <div class="d-block">Última resposta</div>
+                    <div class="d-block">
+                        {{ $thread->last_post->author->nick }}, {{ $thread->last_post->created_at->diffForHumans() }}
+                    </div>
+                </div>
+                <div>
+                    <span class="mr-1">
+                        <i class="fas fa-clock"></i> {{ $thread->created_at->diffForHumans() }}
+                    </span>
+                    <span>
+                        <i class="far fa-comment-dots"></i> {{ $thread->replies()->count() - 1 }} respostas
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
+
+    @if(!$loop->last)
+        <hr class="dashed">
+    @endif
+
     @empty
     <div class="text-center p-4">
         @can('write', $forum)
