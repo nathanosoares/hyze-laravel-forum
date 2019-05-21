@@ -14,7 +14,7 @@ class CreateCategoriesTable extends Migration
             $table->integer('order')->default(1);
             $table->string('name');
             $table->string('slug');
-            $table->string('restrict_read')->default(Group::DEFAULT()->key);
+            $table->string('restrict_read')->nullable();
             $table->string('restrict_write')->default(Group::DEFAULT()->key);
             $table->timestamps();
             $table->softDeletes();

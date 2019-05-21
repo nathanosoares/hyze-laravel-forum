@@ -3,6 +3,7 @@
 @section('content')
 
 <div>
+    {{ dump($errors) }}
     <h2 class="mb-4">Editando forum {{ $forum->name }} <span class="text-muted">({{ $forum->id }})</span></h2>
 
     <form class="d-flex flex-column" action="{{ route('admin.forums.update', $forum) }}" method="POST">
@@ -27,10 +28,12 @@
         <div class="form-group row">
             <label for="inputRestrictRead" class="col-sm-2 col-form-label">Quem pode ler?</label>
             <div class="col-sm-10">
-                <select class="custom-select" name="restrict_read" id="inputRestrictRead" required>
+                <select class="custom-select" name="restrict_read" id="inputRestrictRead">
+                    <option value>Visitantes</option>
                     @foreach ($groups as $group)
                     <option value="{{ $group->key }}" {{ $forum->restrict_read == $group->key ? 'selected' : '' }}>
-                        {{ $group->key }}</option>
+                        {{ $group->value['display_name'] }}
+                    </option>
                     @endforeach
                 </select>
             </div>
@@ -42,7 +45,8 @@
                 <select class="custom-select" name="restrict_write" id="inputRestrictWrite" required>
                     @foreach ($groups as $group)
                     <option value="{{ $group->key }}" {{ $forum->restrict_write == $group->key ? 'selected' : '' }}>
-                        {{ $group->key }}</option>
+                        {{ $group->value['display_name'] }}
+                    </option>
                     @endforeach
                 </select>
             </div>

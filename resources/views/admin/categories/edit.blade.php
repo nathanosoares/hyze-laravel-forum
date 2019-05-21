@@ -25,10 +25,12 @@
         <div class="form-group row">
             <label for="inputSlug" class="col-sm-2 col-form-label">Quem pode ler?</label>
             <div class="col-sm-10">
-                <select class="custom-select" name="restrict_read" required>
+                <select class="custom-select" name="restrict_read">
+                    <option value>Visitantes</option>
                     @foreach ($groups as $group)
                     <option value="{{ $group->key }}" {{ $category->restrict_read == $group->key ? 'selected' : '' }}>
-                        {{ $group->key }}</option>
+                        {{ $group->value['display_name'] }}
+                    </option>
                     @endforeach
                 </select>
             </div>
@@ -40,7 +42,8 @@
                 <select class="custom-select" name="restrict_write" required>
                     @foreach ($groups as $group)
                     <option value="{{ $group->key }}" {{ $category->restrict_write == $group->key ? 'selected' : '' }}>
-                        {{ $group->key }}</option>
+                        {{ $group->value['display_name'] }}
+                    </option>
                     @endforeach
                 </select>
             </div>

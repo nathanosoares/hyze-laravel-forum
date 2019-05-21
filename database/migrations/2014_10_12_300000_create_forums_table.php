@@ -17,7 +17,7 @@ class CreateForumsTable extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('slug');
-            $table->string('restrict_read')->default(Group::DEFAULT()->key);
+            $table->string('restrict_read')->nullable();
             $table->string('restrict_write')->default(Group::DEFAULT()->key);
             $table->timestamps();
             $table->softDeletes();

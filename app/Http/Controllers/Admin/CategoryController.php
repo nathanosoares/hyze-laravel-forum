@@ -29,7 +29,7 @@ class CategoryController extends Controller
         $this->validate($request, [
             'name' => ['required', 'max:191', 'min:1'],
             'slug' => ['required', 'max:191', 'min:1', Rule::unique('categories')->ignore($category->id)],
-            'restrict_read' => ['required', new EnumKey(Group::class)],
+            'restrict_read' => ['nullable', new EnumKey(Group::class)],
             'restrict_write' => ['required', new EnumKey(Group::class)],
         ]);
 
@@ -45,7 +45,7 @@ class CategoryController extends Controller
         $this->validate($request, [
             'name' => ['required', 'max:191', 'min:1'],
             'slug' => ['required', 'max:191', 'min:1'],
-            'restrict_read' => ['required', new EnumKey(Group::class)],
+            'restrict_read' => ['nullable', new EnumKey(Group::class)],
             'restrict_write' => ['required', new EnumKey(Group::class)],
         ]);
 

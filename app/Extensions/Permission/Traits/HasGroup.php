@@ -15,8 +15,8 @@ trait HasGroup
 
     public function hasGroup(Group $group): bool
     {
-        if ($this->getHighestGroup() == null) {
-            return false;
+        if (is_null($group)) {
+            return true;
         }
 
         return !$group->isHigher($this->getHighestGroup());

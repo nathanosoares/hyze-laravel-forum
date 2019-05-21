@@ -18,14 +18,20 @@ trait RestrictablePolice
                     break;
                 }
 
-                if (!isset(Group::getInstances()[$current->{"restrict_{$rule}"}])) {
+                $rawGroup = $current->{"restrict_{$rule}"};
+                
+                if (is_null($rawGroup)) {
+                    continue;
+                }
+
+                if (!isset(Group::getInstances()[$rawGroup])) {
                     return false;
                 }
 
-                $group = Group::getInstances()[$current->{"restrict_{$rule}"}];
+                $group = Group::getInstances()[$rawGroup];
 
-                if (is_null($user)) {
-                    return $group->is(Group::GUEST);
+                if (is_null($user) && !is_null($group)) {
+                    return false;
                 }
 
                 if (!$user->hasGroup($group)) {
@@ -36,14 +42,16 @@ trait RestrictablePolice
             return true;
         }
 
-        if (!isset(Group::getInstances()[$current->{"restrict_{$rule}"}])) {
-            return false;
+        $rawGroup = $current->{"restrict_{$rule}"};
+                
+        if (is_null($rawGroup)) {
+            return true;
         }
 
-        $group = Group::getInstances()[$current->{"restrict_{$rule}"}];
+        $group = Group::getInstances()[$rawGroup];
 
-        if (is_null($user)) {
-            return $group->is(Group::GUEST);
+        if (is_null($user) && !is_null($group)) {
+            return false;
         }
 
         return $user->hasGroup($group);

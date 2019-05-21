@@ -32,7 +32,7 @@ class ForumController extends Controller
             'name' => ['required', 'max:191', 'min:1'],
             'slug' => ['required', 'max:191', 'min:1', Rule::unique('forums')->ignore($forum->id)],
             'description' => ['max:1024'],
-            'restrict_read' => ['required', new EnumKey(Group::class)],
+            'restrict_read' => ['nullable', new EnumKey(Group::class)],
             'restrict_write' => ['required', new EnumKey(Group::class)],
         ]);
 
@@ -56,7 +56,7 @@ class ForumController extends Controller
             'slug' => ['required', 'max:191', 'min:1'],
             'category_id' => ['required', 'exists:categories,id'],
             'description' => ['max:1024'],
-            'restrict_read' => ['required', new EnumKey(Group::class)],
+            'restrict_read' => ['nullable', new EnumKey(Group::class)],
             'restrict_write' => ['required', new EnumKey(Group::class)],
         ]);
 
