@@ -50,16 +50,16 @@
                     </p>
                     <small>O Hyze não é, de maneira alguma, afiliado à ou endossado pela Mojang.</small>
                 </div>
-                <div class="ml-auto d-flex flex-column text-right">
-                    <span title="Code by Nathan Soares">
-                        <i class="fas fa-code"></i> by <a href="https://twitter.com/nathanosoares" target="_blank"
-                            class="text-muted">Nathan</a>
-                    </span>
+                <div class="ml-auto d-flex text-right mt-auto">
+                    <a href="https://twitter.com/nathanosoares" target="_blank" data-toggle="tooltip"
+                        title="Desenvolvido por Nathan Soares." class="text-secondary mr-3">
+                        <small><i class="fas fa-heart"></i> N</small>
+                    </a>
 
-                    <span title="Layout by kadoo">
-                        <i class="fas fa-pencil-ruler"></i> by <a href="https://twitter.com/srkadoo" target="_blank"
-                            class="text-muted">kadoo</a>
-                    </span>
+                    <a href="http://twitter.com/srkadoo" target="_blank" data-toggle="tooltip"
+                        title="Layout por Ricardo Vinicius." class="text-secondary">
+                        <small><i class="fas fa-heart"></i> R</small>
+                    </a>
                 </div>
             </div>
         </div>

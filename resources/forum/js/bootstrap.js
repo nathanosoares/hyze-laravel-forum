@@ -7,8 +7,18 @@
 try {
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
+
     require('bootstrap');
+
+    // tooltips on hover
+    $('[data-toggle="tooltip"]').tooltip();
+
+    // Makes tooltips work on ajax generated content
+    $(document).ajaxStop(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
 } catch (e) {
+    console.log(e);
 }
 
 /**
