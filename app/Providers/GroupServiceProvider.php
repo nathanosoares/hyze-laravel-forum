@@ -15,7 +15,7 @@ class GroupServiceProvider extends ServiceProvider
     public function boot()
     {
         Group::macro('isHigher', function (?Group $group) {
-            if (isnull($group)) {
+            if (is_null($group)) {
                 return true;
             }
 
@@ -23,7 +23,7 @@ class GroupServiceProvider extends ServiceProvider
         });
 
         Group::macro('isSameOrHigher', function (?Group $group) {
-            if (isnull($group)) {
+            if (is_null($group)) {
                 return true;
             }
 

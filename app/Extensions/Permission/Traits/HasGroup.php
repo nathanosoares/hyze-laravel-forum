@@ -10,7 +10,7 @@ trait HasGroup
 {
     public function hasStrictGroup(Group $group): bool
     {
-        return $this->groups->contains('key', $group->key);
+        return $this->groups_due->contains('key', $group->key);
     }
 
     public function hasGroup(Group $group): bool
@@ -24,9 +24,11 @@ trait HasGroup
 
     public function getHighestGroup()
     {
-        return $this->groups->sortByDesc(function ($group) {
+        return $this->groups_due->sortByDesc(function ($group) {
             return $group->priority;
-        })->first();
+        })->map(function($group) {
+            return $group->raw;
+        })->first() ?? Group::DEFAULT();
     }
 
     public function getHighestGroupAttribute()
@@ -34,10 +36,10 @@ trait HasGroup
         return $this->getHighestGroup();
     }
 
-    public function getGroupsAttribute(): Collection
+    public function getGroupsDueAttribute(): Collection
     {
-        if (isset($this->attributes['groups'])) {
-            return $this->attributes['groups'];
+        if (isset($this->attributes['groups_due'])) {
+            return $this->attributes['groups_due'];
         }
 
         $result = $this->getConnection()->table('user_groups')
@@ -60,6 +62,7 @@ trait HasGroup
 
 
                 $group = (object)[
+                    'raw' => $rawGroup,
                     'name' => $rawGroup->key,
                     'display_name' => $rawGroup->value['display_name'],
                     'priority' => $rawGroup->value['priority'],
@@ -77,8 +80,8 @@ trait HasGroup
             return null;
         })->filter();
 
-        $this->attributes['groups'] = $groups;
+        $this->attributes['groups_due'] = $groups;
 
-        return $this->attributes['groups'];
+        return $this->attributes['groups_due'];
     }
 }

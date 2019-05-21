@@ -3,7 +3,7 @@
 @section('profile.content')
 <div class="shadow-sm rounded bg-white p-4">
     <h3>Grupos no servidor</h3>
-    @if(count(auth()->user()->groups))
+    @if(count(auth()->user()->groups_due))
     <table class="table table-borderless">
         <thead>
             <tr>
@@ -13,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (auth()->user()->groups as $group)
+            @foreach (auth()->user()->groups_due as $group)
             <tr>
                 <td>{{ $group->display_name }}</td>
                 <td>{{ $group->server }}</td>
