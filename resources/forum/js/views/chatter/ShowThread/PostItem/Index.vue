@@ -21,7 +21,7 @@
 
           <div class="position-relative">
             <div
-              class="dropdown position-absolute"
+              class="dropdown float-right"
               style="right: 0;"
               v-if="canEdit() || canDestroy()"
             >

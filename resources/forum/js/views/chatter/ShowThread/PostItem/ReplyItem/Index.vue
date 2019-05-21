@@ -5,7 +5,7 @@
     <div class="ml-3 bg-white shadow-sm rounded w-100 p-3 d-flex flex-column">
       <div class="position-relative">
         <div
-          class="position-absolute"
+          class="float-right"
           style="right: 0;"
           v-if="$gate.allow('edit', 'post', reply) || $gate.allow('destroy', 'post', reply)"
         >

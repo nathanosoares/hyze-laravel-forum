@@ -96,7 +96,7 @@
                 <div class="d-flex m-0">
                     @foreach($forum->children as $child)
                     <div class="d-inline-block mr-3">
-                        <a href="{{ route('chatter.forum', [$child->slug, $child->id]) }}" class="text-dark">
+                        <a href="{{ route('chatter.forum', [$child->slug, $child->id]) }}" class="text-secondary">
                             {{ $child->name }}
                         </a>
                     </div>
