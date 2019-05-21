@@ -21,20 +21,18 @@
                     <a href="{{ thread_url($thread) }}" class="text-primary text-lg">
                         {{ $thread->title }}
                     </a>
-                    <div class="">
-                        <ul class="list-inline text-secondary mt-1 mb-0">
-                            <li class="list-inline-item">
-                                <small><i class="fas fa-user"></i> {{ $thread->author->nick }}</small>
-                            </li>
-                            <li class="list-inline-item">
-                                <small><i class="fas fa-shield-alt"></i>
-                                    {{ $thread->author->highest_group->value['display_name'] }}</small>
-                            </li>
-                            <li class="list-inline-item">
-                                <small><i class="fas fa-clock"></i> {{ $thread->created_at->diffForHumans() }}</small>
-                            </li>
-                        </ul>
-                    </div>
+                    <ul class="list-inline text-secondary mt-1 mb-0">
+                        <li class="list-inline-item">
+                            <small><i class="fas fa-user"></i> {{ $thread->author->nick }}</small>
+                        </li>
+                        <li class="list-inline-item">
+                            <small><i class="fas fa-shield-alt"></i>
+                                {{ $thread->author->highest_group->value['display_name'] }}</small>
+                        </li>
+                        <li class="list-inline-item">
+                            <small><i class="fas fa-clock"></i> {{ $thread->created_at->diffForHumans() }}</small>
+                        </li>
+                    </ul>
                 </div>
 
                 <div class="flex-shrink-0 ml-auto text-right">
