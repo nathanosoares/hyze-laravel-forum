@@ -13,12 +13,20 @@ class GroupServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    { 
-        Group::macro('isHigher', function (Group $group) {
+    {
+        Group::macro('isHigher', function (?Group $group) {
+            if (isnull($group)) {
+                return true;
+            }
+
             return $group != null && $this->value < $group->value;
         });
 
-        Group::macro('isSameOrHigher', function (Group $group) {
+        Group::macro('isSameOrHigher', function (?Group $group) {
+            if (isnull($group)) {
+                return true;
+            }
+
             return $group != null && $this->value <= $group->value;
         });
     }
@@ -29,7 +37,5 @@ class GroupServiceProvider extends ServiceProvider
      * @return void
      */
     public function register()
-    { 
-        
-    }
+    { }
 }

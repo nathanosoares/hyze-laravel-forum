@@ -71,10 +71,4 @@ final class Group extends Enum
         'color' => '#AAAAAA',
         'priority' => 1
     ];
-
-    const GUEST = [
-        'display_name' => 'Visitante',
-        'color' => '#555555',
-        'priority' => 0
-    ];
 }

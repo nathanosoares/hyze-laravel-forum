@@ -46,10 +46,6 @@ body {
 a {
   transition: all 0.1s ease-in;
 
-  &:hover {
-    color: unset;
-    filter: brightness(120%);
-  }
 }
 
 .author-avatar {

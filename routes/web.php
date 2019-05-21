@@ -34,7 +34,7 @@ Route::prefix('forums')->name('chatter.')->namespace('Chatter')->group(function 
     Route::get('/', 'HomeController@index')->name('home');
 
     Route::get('/{forum_slug}.{forum_id}/create-thread', 'ThreadController@create')
-//        ->middleware('auth:web')
+        //        ->middleware('auth:web')
         ->name('forum.create_thread');
 
     Route::get('/{forum_slug}.{forum_id}', 'ForumController@index')->name('forum');
@@ -42,10 +42,20 @@ Route::prefix('forums')->name('chatter.')->namespace('Chatter')->group(function 
     Route::get('/thread/{thread_slug}.{thread_id}', 'ThreadController@show')->name('thread');
 });
 
+Route::middleware('auth')->group(function () {
+    Route::prefix('profile')->name('profile.')->group(function () {
+        Route::get('details', 'Profile\DetailsController@index')->name('details');
+
+        // Security
+        Route::get('security', 'Profile\SecurityController@index')->name('security');
+        Route::put('security/update/email', 'Profile\SecurityController@updateEmail')->name('security.update.email');
+        Route::put('security/update/password', 'Profile\SecurityController@updatePassword')->name('security.update.password');
+    });
+});
 
 Route::prefix('admin')->name('admin.')->namespace('Admin')->middleware('super.admin')->group(function () {
     Route::get('/', 'DashboardController@index')->name('dashboard');
-    
+
     Route::get('/tree', 'TreeController@index')->name('tree');
     Route::post('/tree/sort', 'TreeController@sort')->name('tree.sort');
 

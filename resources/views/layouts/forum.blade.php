@@ -19,8 +19,6 @@
     <!-- Styles -->
     <link href="{{ mix('/assets/forum/css/app.css') }}" rel="stylesheet">
 
-    {!! NoCaptcha::renderJs() !!}
-
     @yield('css')
 
     @routes
@@ -32,11 +30,42 @@
         This app works best with JavaScript enabled.
     </noscript>
 
-
     <main id="app" class="flex-shrink-0">
         @include('layouts.components.forum.navbar')
 
         <main class="py-4 container">
+            @auth
+            @if(!auth()->user()->email)
+            <div class="alert alert-warning d-flex align-items-center" role="alert">
+                <div>
+                    <p class="text-lg">Recomendamos que você defina um e-mail para sua conta.</p>
+                    <p>Seu email poderá ser usado para recuperar sua conta caso você se esqueça da sua senha.</p>
+                </div>
+
+                @if(!request()->routeIs('profile.security'))
+                <div class="ml-auto mt-2">
+                    <a href="{{ route('profile.security') }}" class="btn btn-info rounded-pill">
+                        Definir email
+                    </a>
+                </div>
+                @endif
+            </div>
+            @elseif(!auth()->user()->hasVerifiedEmail())
+            <div class="alert alert-warning d-flex align-items-center" role="alert">
+                <div>
+                    <p class="text-lg">Você precisa confirmar seu e-mail.</p>
+                    <p>Seu email poderá ser usado para recuperar sua conta caso você se esqueça da sua senha.</p>
+                </div>
+
+                <div class="ml-auto mt-2">
+                    <button class="btn btn-info rounded-pill" type="button" id="button-addon2">
+                        Enviar confirmação de email
+                    </button>
+                </div>
+            </div>
+            @endif
+            @endauth
+
             @yield('content')
         </main>
     </main>
@@ -71,8 +100,11 @@
         window.user = @json(auth()->user())
     </script>
     @endauth
+
+    {!! NoCaptcha::renderJs() !!}
     <script src="{{ mix('/assets/forum/js/app.js') }}"></script>
-    @yield('js')
+
+    @stack('scripts')
 </body>
 
 </html>
