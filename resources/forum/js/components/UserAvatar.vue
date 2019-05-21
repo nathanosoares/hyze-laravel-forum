@@ -54,7 +54,7 @@ export default {
       if (this.user.nick) {
         let pixels = size.replace(/\D/g, "");
 
-        styles += `background-image: url(https://cravatar.eu/avatar/${
+        styles += `background-image: url(https://cravatar.eu/helmavatar/${
           this.user.nick
         }/${pixels}), url(${this.defaultImg});`;
       }
