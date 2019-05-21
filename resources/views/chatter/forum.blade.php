@@ -9,7 +9,7 @@
         <ul class="list-inline m-0">
             @foreach($forum->children as $child)
             <li class="list-inline-item">
-                <a href="{{ route('chatter.forum', [$child->slug, $child->id]) }}" class="text-secondary">
+                <a href="{{ route('chatter.forum', [$child->slug, $child->id]) }}" class="text-lg text-secondary">
                     {{ $child->name }}
                 </a>
             </li>
