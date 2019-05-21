@@ -17,6 +17,10 @@ class HomeController extends Controller
     {
         $recent = Thread::orderBy('last_reply_at', 'desc')->limit(10)->get();
 
+        $recent = $recent->filter(function ($thread) {
+            return Gate::allows('read', $thread);
+        });
+
         $categories = Category::orderBy('order')->get();
 
         $categories = $categories->filter(function ($category) {
