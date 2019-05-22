@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Chatter;
+namespace App\Http\Requests\Forums;
 
 use Illuminate\Foundation\Http\FormRequest;
 

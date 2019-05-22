@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Chatter\Category;
+use App\Models\Forums\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use App\Models\Chatter\Forum;
+use App\Models\Forums\Forum;
 
 class TreeController extends Controller
 {

@@ -18,7 +18,7 @@ if (!function_exists('user_url')) {
 if (!function_exists('thread_url')) {
     function thread_url($thread)
     {
-        return route('chatter.thread', [$thread->slug, $thread->id]);
+        return route('forums.thread', [$thread->slug, $thread->id]);
     }
 }
 
@@ -26,7 +26,7 @@ if (!function_exists('thread_url')) {
 if (!function_exists('forum_url')) {
     function forum_url($forum)
     {
-        return route('chatter.forum', [$forum->slug, $forum->id]);
+        return route('forums.forum', [$forum->slug, $forum->id]);
     }
 }
 

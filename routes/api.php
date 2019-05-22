@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::namespace('Chatter\Api')
+Route::namespace('Forums\Api')
     ->middleware('auth:api')
     ->group(function () {
         Route::post('/parsedown', 'ParsedownController@converter')
@@ -21,8 +21,8 @@ Route::namespace('Chatter\Api')
 
     });
 
-Route::name('chatter.api.')
-    ->namespace('Chatter\Api')
+Route::name('forums.api.')
+    ->namespace('Forums\Api')
     ->group(function () {
 
         Route::middleware('auth:api')

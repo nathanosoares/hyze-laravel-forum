@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Chatter\Category;
+use App\Models\Forums\Category;
 use Illuminate\Http\Request;
 use App\Extensions\Permission\Group;
 use Illuminate\Validation\Rule;

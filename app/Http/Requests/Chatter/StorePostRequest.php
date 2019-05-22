@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests\Chatter;
+namespace App\Http\Requests\Forums;
 
-use App\Models\Chatter\Post;
+use App\Models\Forums\Post;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Validator;
 

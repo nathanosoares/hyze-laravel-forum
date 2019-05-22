@@ -16,8 +16,8 @@
                         <a class="nav-link" href="{{ route('home') }}">Início</a>
                     </li>
 
-                    <li class="nav-item {{ request()->routeIs('chatter.*') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('chatter.home') }}">
+                    <li class="nav-item {{ request()->routeIs('forums.*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('forums.home') }}">
                             Comunidade
                         </a>
                     </li>

@@ -21,7 +21,7 @@
 
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a href="{{ route('chatter.home')}}" target="_blank" class="nav-link">Ver fórum</a>
+          <a href="{{ route('forums.home')}}" target="_blank" class="nav-link">Ver fórum</a>
         </li>
       </ul>
     </div>

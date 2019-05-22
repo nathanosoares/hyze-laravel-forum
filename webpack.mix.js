@@ -13,8 +13,8 @@ const mix = require('laravel-mix');
 mix.webpackConfig(require('./webpack.config'));
 
 // Forum
-mix.js('resources/forum/js/app.js', 'public/assets/forum/js')
-    .sass('resources/forum/sass/app.scss', 'public/assets/forum/css', {
+mix.js('resources/forums/js/app.js', 'public/assets/forums/js')
+    .sass('resources/forums/sass/app.scss', 'public/assets/forums/css', {
         data: "$env: " + process.env.NODE_ENV + ";"
     });
 

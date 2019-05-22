@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ mix('/assets/forum/css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('/assets/forums/css/app.css') }}" rel="stylesheet">
 
     @yield('css')
 
@@ -97,7 +97,7 @@
     @endauth
 
     {!! NoCaptcha::renderJs() !!}
-    <script src="{{ mix('/assets/forum/js/app.js') }}"></script>
+    <script src="{{ mix('/assets/forums/js/app.js') }}"></script>
 
     @stack('scripts')
 </body>

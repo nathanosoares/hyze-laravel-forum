@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
-use App\Models\Chatter\Category;
-use App\Models\Chatter\Thread;
+use App\Models\Forums\Category;
+use App\Models\Forums\Thread;
 use Illuminate\Support\Facades\Gate;
 
 class DashboardController extends Controller

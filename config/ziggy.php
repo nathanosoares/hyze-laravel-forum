@@ -3,7 +3,7 @@
 return [
     'whitelist' => [
         'home',
-        'chatter.*',
+        'forums.*',
         'api.parsedown',
         'auth.redirect',
         'admin.tree.sort',

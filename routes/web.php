@@ -30,7 +30,7 @@ Route::get('/', 'HomeController@index')->name('home');
 //     return redirect((string) $url);
 // })->name('login');
 
-Route::prefix('forums')->name('chatter.')->namespace('Chatter')->group(function () {
+Route::prefix('forums')->name('forums.')->namespace('Forums')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
 
     Route::get('/{forum_slug}.{forum_id}/create-thread', 'ThreadController@create')

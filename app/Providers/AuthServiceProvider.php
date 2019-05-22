@@ -3,10 +3,10 @@
 namespace App\Providers;
 
 use App\Extensions\HyzeUserProvider;
-use App\Models\Chatter\Category;
-use App\Models\Chatter\Forum;
-use App\Models\Chatter\Post;
-use App\Models\Chatter\Thread;
+use App\Models\Forums\Category;
+use App\Models\Forums\Forum;
+use App\Models\Forums\Post;
+use App\Models\Forums\Thread;
 use App\Models\User;
 use App\Policies\CategoryPolicy;
 use App\Policies\ForumPolicy;

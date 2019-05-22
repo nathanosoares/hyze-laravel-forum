@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\Chatter\Forum;
-use App\Models\Chatter\Thread;
+use App\Models\Forums\Forum;
+use App\Models\Forums\Thread;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -37,7 +37,7 @@ class RouteServiceProvider extends ServiceProvider
             }
 
             if ($forum->slug != $route->parameter('forum_slug')) {
-                return redirect()->route('chatter.forum', [$forum->slug, $id], 301)->send();
+                return redirect()->route('forums.forum', [$forum->slug, $id], 301)->send();
             }
 
             return $forum;
@@ -55,7 +55,7 @@ class RouteServiceProvider extends ServiceProvider
             }
 
             if ($thread->slug != $route->parameter('thread_slug')) {
-                return redirect()->route('chatter.thread', [$thread->slug, $id], 301)->send();
+                return redirect()->route('forums.thread', [$thread->slug, $id], 301)->send();
             }
 
             return $thread;

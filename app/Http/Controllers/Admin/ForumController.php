@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Chatter\Forum;
+use App\Models\Forums\Forum;
 use App\Extensions\Permission\Group;
 use BenSampo\Enum\Rules\EnumKey;
 use Illuminate\Validation\Rule;
-use App\Models\Chatter\Category;
+use App\Models\Forums\Category;
 
 class ForumController extends Controller
 {

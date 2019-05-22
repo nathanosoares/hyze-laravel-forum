@@ -12,9 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            UsersTableSeeder::class,
-            ChatterTablesSeeder::class,
-            RolesAndPermissionsSeeder::class,
+            // UsersTableSeeder::class
         ]);
     }
 }
