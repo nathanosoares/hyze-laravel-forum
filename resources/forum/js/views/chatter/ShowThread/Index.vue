@@ -1,6 +1,6 @@
 <template>
   <div class="thread-wrapper">
-    <div class="thread-header mt-2">
+    <div class="thread-header mt-2 mb-4">
       <div class="collapse" :id="'thread-options-collapse-' + thread.id">
         <div class="bg-white shadow-sm rounded p-4 mb-4">
           <div class="custom-control custom-switch">
