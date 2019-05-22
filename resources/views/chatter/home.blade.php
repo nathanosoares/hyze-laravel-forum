@@ -19,22 +19,30 @@
 
                 <div class="mr-3">
                     <a href="{{ thread_url($thread) }}" class="text-primary text-lg">
+                        @if($thread->sticky)<small><i class="fas fa-thumbtack fa-fw"></i></small> @endif
                         {{ $thread->title }}
                     </a>
-                    <ul class="list-inline text-secondary mt-1 mb-0">
+                    <ul class="list-inline text-secondary mb-0">
                         <li class="list-inline-item">
-                            <small><i class="fas fa-user"></i> {{ $thread->author->nick }}</small>
-                        </li>
-                        <li class="list-inline-item">
-                            <small><i class="fas fa-shield-alt"></i>
-                                {{ $thread->author->highest_group->value['display_name'] }}</small>
-                        </li>
-                        <li class="list-inline-item">
-                            <small><i class="fas fa-clock"></i> {{ $thread->created_at->diffForHumans() }}</small>
+                            <small>
+                                <i class="fas fa-user fa-fw"></i> {{ $thread->author->nick }}
+                            </small>
                         </li>
                         <li class="list-inline-item">
                             <small>
-                                <i class="far fa-comment-dots"></i>
+                                <i class="fas fa-shield-alt fa-fw"></i>
+                                {{ $thread->author->highest_group->value['display_name'] }}
+                            </small>
+                        </li>
+                        <li class="list-inline-item">
+                            <small>
+                                <i class="fas fa-clock fa-fw"></i>
+                                {{ $thread->created_at->diffForHumans() }}
+                            </small>
+                        </li>
+                        <li class="list-inline-item">
+                            <small>
+                                <i class="far fa-comment-dots fa-fw"></i>
                                 {{ plural('resposta', 'respostas', $thread->replies_count, 'nenhuma resposta') }}
                             </small>
                         </li>

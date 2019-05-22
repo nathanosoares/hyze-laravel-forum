@@ -35,7 +35,7 @@ class Forum extends Model
 
     public function threads()
     {
-        return $this->hasMany(Thread::class,'forum_id')->orderBy('created_at', 'desc');
+        return $this->hasMany(Thread::class,'forum_id');
     }
 
     public function category()

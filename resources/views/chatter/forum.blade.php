@@ -19,7 +19,7 @@
 </div>
 @endif
 
-{{ $threads->links() }}
+{{-- {{ $threads->links() }} --}}
 
 @if(count($threads))
 @can('write', $forum)
@@ -39,6 +39,7 @@
         <div class="d-flex w-100 align-items-center">
             <div>
                 <a href="{{ route('chatter.thread', [$thread->slug, $thread->id]) }}" class="text-primary text-lg">
+                    @if($thread->sticky)<small><i class="fas fa-thumbtack fa-fw"></i></small> @endif
                     {{ $thread->title }}
                 </a>
                 <ul class="list-inline text-secondary mt-1 mb-0">

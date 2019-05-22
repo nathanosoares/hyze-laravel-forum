@@ -84,11 +84,6 @@
                         title="Desenvolvido por Nathan Soares." class="text-secondary mr-3">
                         <small><i class="fas fa-heart"></i> N</small>
                     </a>
-
-                    <a href="http://twitter.com/srkadoo" target="_blank" data-toggle="tooltip"
-                        title="Layout por Ricardo Vinicius." class="text-secondary">
-                        <small><i class="fas fa-heart"></i> R</small>
-                    </a>
                 </div>
             </div>
         </div>

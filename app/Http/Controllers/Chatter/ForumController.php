@@ -14,7 +14,10 @@ class ForumController extends Controller
         $this->authorize('read', $forum->category);
         $this->authorize('read', $forum);
 
-        $threads = $forum->threads()->paginate(20);
+        $threads = $forum->threads()
+            ->orderBy('sticky', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->paginate(20);
 
         return view('chatter.forum', compact('forum', 'threads'));
     }

@@ -1,13 +1,9 @@
 .thread-wrapper {
   .thread-header {
     h1 {
-      font-family: 'penumbra-serif-std', serif;
+      font-family: "penumbra-serif-std", serif;
       font-weight: bold;
       color: #c1d7e6;
-    }
-
-    p {
-      font-size: 1.2em;
     }
   }
 
@@ -17,7 +13,7 @@
       height: auto;
       margin: 1em 0;
       cursor: pointer;
-      transition: box-shadow .2s;
+      transition: box-shadow 0.2s;
     }
   }
 }

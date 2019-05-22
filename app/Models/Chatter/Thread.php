@@ -20,7 +20,7 @@ class Thread extends Model
     ];
 
     protected $visible = [
-        'id', 'title', 'slug', 'forum', 'author', 'main_post', 'created_at', 'replies_count'
+        'id', 'title', 'slug', 'forum', 'author', 'main_post', 'created_at', 'replies_count', 'promoted', 'sticky'
     ];
 
     protected $with = ['author'];
