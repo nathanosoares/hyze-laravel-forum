@@ -1,5 +1,5 @@
 <template>
-  <div class="py-4">
+  <div class>
     <div class="row mb-3">
       <div class="d-none d-lg-block col-lg-2">
         <author-card-normal :author="post.author"></author-card-normal>
@@ -20,11 +20,7 @@
           </div>
 
           <div class="position-relative">
-            <div
-              class="dropdown float-right"
-              style="right: 0;"
-              v-if="canEdit() || canDestroy()"
-            >
+            <div class="dropdown float-right" style="right: 0;" v-if="canEdit() || canDestroy()">
               <button
                 class="btn btn-sm"
                 type="button"
@@ -76,12 +72,65 @@
 
           <div class="mt-auto">
             <div class="mt-3 d-flex flex-row align-items-end">
-              <small class="ml-auto font-weight-lighter d-none d-lg-block">
-                <i class="fas fa-clock mr-1"></i>
-                <time
-                  :datetime="moment(post.created_at).format()"
-                >{{ moment(post.created_at).fromNow() }}</time>
-              </small>
+              <div>
+                <button
+                  type="button"
+                  v-if="post.replies.length > 0 && canShowReplies"
+                  class="btn btn-danger rounded-pill"
+                  @click.prevent.stop="canShowReplies = false"
+                >
+                  Ocultar respostas
+                  <i class="fas fa-angle-up align-middle ml-1"></i>
+                </button>
+
+                <button
+                  type="button"
+                  v-if="hasMoreReplies && canShowReplies && post.replies.length == 0"
+                  class="btn btn-secondary rounded-pill"
+                  @click.prevent.stop="loadMoreReplies"
+                  v-html="showMoreText"
+                >{{ showMoreText }}</button>
+
+                <button
+                  type="button"
+                  v-if="post.replies.length > 0 && !canShowReplies"
+                  class="btn btn-secondary rounded-pill"
+                  @click.prevent.stop="canShowReplies = true"
+                >
+                  Mostrar {{ post.replies.length }} respostas
+                  <i
+                    class="fas fa-angle-down align-middle ml-1"
+                  ></i>
+                </button>
+
+                <button
+                  type="button"
+                  class="btn btn-primary rounded-pill"
+                  v-if="canReply()"
+                  @click.prevent.stop="doReply"
+                >
+                  <span v-if="responding">
+                    <i class="fas fa-comment-slash fa-fw"></i> Responder
+                  </span>
+                  <span v-else>
+                    <i class="fas fa-comment fa-fw"></i> Responder
+                  </span>
+                </button>
+              </div>
+
+              <div class="ml-auto d-none d-lg-block">
+                <small class="font-weight-lighter mr-2" v-if="thread.main_post.id == post.id">
+                  <i class="far fa-comment-dots fa-fw"></i>
+                  {{ thread.replies_count }} respostas
+                </small>
+
+                <small class="font-weight-lighter">
+                  <i class="fas fa-clock fa-fw"></i>
+                  <time
+                    :datetime="moment(post.created_at).format()"
+                  >{{ moment(post.created_at).fromNow() }}</time>
+                </small>
+              </div>
             </div>
           </div>
         </div>
@@ -90,71 +139,42 @@
 
     <div class="row">
       <div class="col-lg-10 ml-lg-auto">
-        <!--<div v-if="post.replies_count > 0 || post.replies.length > 0" class="d-flex flex-column mb-3">-->
         <div class="d-flex flex-column mb-3">
-          <a
-            v-if="post.replies.length > 0 && canShowReplies"
-            href="#"
-            class="font-weight-bold text-primary"
-            @click.prevent.stop="canShowReplies = false"
-          >
-            Ocultar respostas
-            <i class="fas fa-angle-up align-middle ml-1"></i>
-          </a>
-
-          <reply-item
-            v-if="canShowReplies"
-            class="my-3"
-            v-for="reply in orderedReplies"
-            :reply="reply"
-            :key="reply.id"
-          />
+          <div v-show="canShowReplies">
+            <reply-item
+              class="my-3"
+              v-for="reply in orderedReplies"
+              :reply="reply"
+              :key="reply.id"
+            />
+          </div>
 
           <div v-if="loadingReplies" class="text-center">
             <i class="fas fa-circle-notch fa-spin"></i>
           </div>
 
           <a
-            v-if="hasMoreReplies && canShowReplies"
+            v-if="hasMoreReplies && canShowReplies &&  post.replies.length > 0"
             href="#"
-            class="font-weight-bold text-primary"
+            class="font-weight-bold text-primary mb-3"
             @click.prevent.stop="loadMoreReplies"
             v-html="showMoreText"
           >{{ showMoreText }}</a>
-
-          <a
-            v-if="post.replies.length > 0 && !canShowReplies"
-            href="#"
-            class="font-weight-bold text-primary"
-            @click.prevent.stop="canShowReplies = true"
-          >
-            Mostrar {{ post.replies.length }} respostas
-            <i
-              class="fas fa-angle-down align-middle ml-1"
-            ></i>
-          </a>
         </div>
 
-        <template v-if="canReply()">
-          <div v-if="responding" class="d-flex my-4">
-            <user-avatar :user="$user" size="s"></user-avatar>
+        <div v-show="canReply() && responding">
+          <div class="d-flex text-break w-100 my-4">
+            <user-avatar :user="$user" size="s" :classes="['rounded', 'flex-shrink-0']"></user-avatar>
+
             <create-reply-editor
-              class="w-100 ml-3"
+              v-if="responding"
+              class="w-100 ml-3 text-break"
               :post="post"
               v-on:cancel="responding = false"
               v-on:success="responding = false"
             />
           </div>
-
-          <button
-            href="#"
-            class="btn btn-primary rounded-pill"
-            v-if="!responding"
-            @click.prevent.stop="doReply"
-          >
-            <i class="fas fa-comment"></i> Responder
-          </button>
-        </template>
+        </div>
       </div>
     </div>
   </div>

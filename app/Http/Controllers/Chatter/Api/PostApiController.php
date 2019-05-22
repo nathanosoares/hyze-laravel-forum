@@ -77,6 +77,6 @@ class PostApiController extends Controller
     {
         $this->authorize('read', $post->thread->forum);
 
-        return response()->json($post->replies()->paginate(5));
+        return response()->json($post->replies()->paginate(2));
     }
 }
