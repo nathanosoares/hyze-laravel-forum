@@ -12,11 +12,11 @@ class CategoryPolicy
 
     public function read(?User $user, Category $category)
     {
-        return $this->can($user, 'read', 'category', $category, true);
+        return $this->can($user, 'read', $category, true);
     }
 
     public function write(?User $user, Category $category)
     {
-        return $this->can($user, 'write', 'category', $category, true);
+        return $this->can($user, 'write', $category, true);
     }
 }

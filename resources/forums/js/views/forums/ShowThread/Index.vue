@@ -1,30 +1,24 @@
 <template>
   <div class="thread-wrapper">
     <div class="thread-header mt-2 mb-4">
-      <div class="collapse" :id="'thread-options-collapse-' + thread.id">
-        <div class="bg-white shadow-sm rounded p-4 mb-4">
-          <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="customSwitch1" :checked="thread.promoted">
-            <label class="custom-control-label" for="customSwitch1">Promover para home</label>
-          </div>
-
-          <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="customSwitch1" :checked="thread.sticky">
-            <label class="custom-control-label" for="customSwitch1">Fixar no topo</label>
+      <div v-if="hasGroup(Group.ADMINISTRATOR)">
+        <div class="collapse" :id="'thread-options-collapse-' + thread.id">
+          <div class="bg-white shadow-sm rounded p-4 mb-4">
+            <thread-settings :thread="thread"/>
           </div>
         </div>
-      </div>
 
-      <div class="float-right">
-        <button
-          class="btn shadow-none"
-          type="button"
-          data-toggle="collapse"
-          :data-target="'#thread-options-collapse-' + thread.id"
-          aria-expanded
-        >
-          <i class="fas fa-chevron-down"></i>
-        </button>
+        <div class="float-right">
+          <button
+            class="btn shadow-none"
+            type="button"
+            data-toggle="collapse"
+            :data-target="'#thread-options-collapse-' + thread.id"
+            aria-expanded
+          >
+            <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
       </div>
 
       <h3 class="title">{{ thread.title }}</h3>
@@ -72,16 +66,20 @@
 import Pagination from "laravel-vue-pagination";
 import VueScrollTo from "vue-scrollto";
 import queryString from "query-string";
-import PostItem from "./PostItem/Index";
+import PostItem from "./components/PostItem/Index";
+import ThreadSettings from "./components/ThreadSettings/Index";
 import CreatePostEditor from "@components/forums/Editors/CreatePostEditor/Index";
 import * as mutation from "@store/mutation-types";
+
+import { Group, hasGroup } from "@base/forums/js/GroupManager";
 
 export default {
   name: "ThreadView",
   components: {
     Pagination,
     PostItem,
-    CreatePostEditor
+    CreatePostEditor,
+    ThreadSettings
   },
   props: {
     thread: {
@@ -100,6 +98,11 @@ export default {
       type: Boolean,
       required: true
     }
+  },
+  data: function() {
+    return {
+      Group
+    };
   },
   computed: {
     posts() {
@@ -128,6 +131,9 @@ export default {
     });
   },
   methods: {
+    hasGroup: function(group) {
+      return hasGroup(this.$user, group);
+    },
     paginationChangePage(page = 1) {
       let query = queryString.parse(location.search);
       query.page = page;

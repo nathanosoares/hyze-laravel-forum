@@ -10,7 +10,7 @@ use App\Extensions\Permission\Group;
 
 trait RestrictablePolice
 {
-    public function can(?User $user, string $rule, string $modelLabel, Model $model, bool $recursive, string $recursiveLabel = 'parent'): bool
+    public function can(?User $user, string $rule, Model $model, bool $recursive = false, string $recursiveLabel = 'parent'): bool
     {
         if ($recursive) {
             for ($current = $model;; $current = $current->{$recursiveLabel}) {
@@ -42,7 +42,7 @@ trait RestrictablePolice
             return true;
         }
 
-        $rawGroup = $current->{"restrict_{$rule}"};
+        $rawGroup = $model->{"restrict_{$rule}"};
                 
         if (is_null($rawGroup)) {
             return true;

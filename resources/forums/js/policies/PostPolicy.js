@@ -1,4 +1,4 @@
-import Group from './../Group';
+import { Group } from './../GroupManager';
 
 export default class PostPolicy {
     // static create(user) {

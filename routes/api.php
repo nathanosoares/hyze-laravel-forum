@@ -18,7 +18,6 @@ Route::namespace('Forums\Api')
     ->group(function () {
         Route::post('/parsedown', 'ParsedownController@converter')
             ->name('api.parsedown');
-
     });
 
 Route::name('forums.api.')
@@ -27,8 +26,14 @@ Route::name('forums.api.')
 
         Route::middleware('auth:api')
             ->group(function () {
-                Route::post('/forums/{forum}/threads', 'ThreadApiController@store')
-                    ->name('forums.threads');
+
+                Route::resource('/forums/{forum}/threads', 'ThreadApiController')->only([
+                    'store', 'update'
+                ]);
+
+                Route::resource('threads', 'ThreadApiController')->only([
+                    'update'
+                ]);
 
                 Route::get('/threads/{thread}/posts', 'ThreadApiController@posts')
                     ->name('threads.posts');
@@ -44,8 +49,6 @@ Route::name('forums.api.')
 
                 Route::post('/posts/{post}/replies', 'PostApiController@reply')
                     ->name('posts.replies.store');
-
-
             });
 
         Route::get('/posts/{post}/replies', 'PostApiController@replies')

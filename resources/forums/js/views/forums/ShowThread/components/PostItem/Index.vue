@@ -153,13 +153,15 @@
             <i class="fas fa-circle-notch fa-spin"></i>
           </div>
 
-          <a
-            v-if="hasMoreReplies && canShowReplies &&  post.replies.length > 0"
-            href="#"
-            class="font-weight-bold text-primary mb-3"
-            @click.prevent.stop="loadMoreReplies"
-            v-html="showMoreText"
-          >{{ showMoreText }}</a>
+          <div>
+            <button
+              v-if="hasMoreReplies && canShowReplies &&  post.replies.length > 0"
+              href="#"
+              class="btn btn-secondary btn-sm rounded-pill"
+              @click.prevent.stop="loadMoreReplies"
+              v-html="showMoreText"
+            >{{ showMoreText }}</button>
+          </div>
         </div>
 
         <div v-show="canReply() && responding">
@@ -181,7 +183,7 @@
 </template>
 
 <script>
-import ReplyItem from "./ReplyItem/Index";
+import ReplyItem from "../ReplyItem/Index";
 import AuthorCardNormal from "@components/forums/AuthorCard/Normal";
 import UserAvatar from "@components/UserAvatar";
 import AuthorCardSmall from "@components/forums/AuthorCard/Small";

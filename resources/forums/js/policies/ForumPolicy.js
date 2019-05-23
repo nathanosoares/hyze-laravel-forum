@@ -1,4 +1,4 @@
-import Group from './../Group';
+import { Group } from './../GroupManager';
 
 export default class ForumPolicy {
     static write(user, forum) {

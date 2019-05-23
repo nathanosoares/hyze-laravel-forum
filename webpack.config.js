@@ -24,7 +24,11 @@ module.exports = {
             "@store": path.resolve(
                 __dirname,
                 "resources/forums/js/store"
-            )
+            ),
+            "@base": path.resolve(
+                __dirname,
+                "resources"
+            ),
         }
     }
 };

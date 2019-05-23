@@ -18,10 +18,13 @@ class Thread extends Model
     protected $dates = ['deleted_at', 'last_reply_at'];
     protected $casts = [
         'promoted' => 'boolean',
+        'sticky' => 'boolean'
     ];
 
     protected $visible = [
-        'id', 'title', 'slug', 'forum', 'author', 'main_post', 'created_at', 'replies_count', 'promoted', 'sticky'
+        'id', 'title', 'slug', 'forum', 'author', 'main_post',
+        'created_at', 'replies_count', 'promoted', 'sticky',
+        'restrict_write', 'restrict_read'
     ];
 
     protected $with = ['author'];
@@ -94,11 +97,13 @@ class Thread extends Model
 
         return $query->where(function ($query) use ($currentHighestGroup) {
             if (auth()->user()) {
-                $query->orWhere('user_id', auth()->user()->id)
-                    ->orWhere('restrict_read', null)
-                    ->orWhereIn('restrict_read', $currentHighestGroup->sameOrLower()->map(function ($item) {
-                        return $item->key;
-                    }));
+                $query->where('user_id', auth()->user()->id)
+                    ->orWhere(function ($query) use ($currentHighestGroup) {
+                        $query->where('restrict_read', null)
+                            ->orWhereIn('restrict_read', $currentHighestGroup->sameOrLower()->map(function ($item) {
+                                return $item->key;
+                            }));
+                    });
             } else {
                 $query->where('restrict_read', null);
             }

@@ -44,7 +44,7 @@ const BUILDER = new Group('Construtor', '#55FF55', 2);
 
 const DEFAULT = new Group('Membro', '#AAAAAA', 1);
 
-export default {
+const groups = {
     GAME_MASTER,
     MANAGER,
     ADMINISTRATOR,
@@ -55,5 +55,23 @@ export default {
     VIP_PLUS,
     VIP,
     BUILDER,
-    DEFAULT
+    DEFAULT,
+}
+
+export {
+    groups as Group,
+};
+
+export function hasGroup(user, group) {
+    if (!user || !user.highest_group) {
+        return false;
+    }
+
+    if (groups.hasOwnProperty(user.highest_group.key)) {
+        let highest_group = groups[user.highest_group.key];
+
+        return highest_group.isSameOrHigher(group);
+    }
+
+    return false;
 };

@@ -1,6 +1,5 @@
 import PostPolicy from './policies/PostPolicy';
 import ForumPolicy from './policies/ForumPolicy';
-import Group from './Group';
 
 export default class Gate {
 

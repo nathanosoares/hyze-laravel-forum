@@ -13,7 +13,6 @@ class ThreadController extends Controller
 
     public function create(Forum $forum)
     {
-        $this->authorize('write', $forum->category);
         $this->authorize('write', $forum);
 
         return view('forums.thread.create', compact('forum'));
@@ -21,8 +20,7 @@ class ThreadController extends Controller
 
     public function show(Thread $thread)
     {
-        $this->authorize('read', $thread->forum->category);
-        $this->authorize('read', $thread->forum);
+        $this->authorize('read', $thread);
 
         $thread->load(['forum']);
 
