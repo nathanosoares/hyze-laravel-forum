@@ -11,7 +11,9 @@ class HomeController extends Controller
     {
         $pagination_results = config('forums.paginate.num_of_results', 10);
 
-        $threads = Thread::where('promoted', true)->orderBy('last_reply_at', 'desc')->paginate($pagination_results);
+        $threads = Thread::where('promoted', true)
+            ->allowed()
+            ->orderBy('last_reply_at', 'desc')->paginate($pagination_results);
 
         return view('home', compact('threads'));
     }

@@ -31,4 +31,26 @@ class Category extends Model
     {
         return $this->hasMany(Forum::class, 'category_id')->orderBy('order');
     }
+
+    /**
+     * Scope a query to only include allowed categories to current user.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeAllowed($query)
+    {
+        $currentHighestGroup  = optional(auth()->user())->highest_group;
+
+        return $query->where(function ($query) use ($currentHighestGroup) {
+
+            $query->where('restrict_read', null);
+
+            if (auth()->user()) {
+                $query->orWhereIn('restrict_read', $currentHighestGroup->sameOrLower()->map(function ($item) {
+                    return $item->key;
+                }));
+            }
+        });
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Models\Forums;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Extensions\Permission\GroupCache;
 
 class Thread extends Model
 {
@@ -72,5 +73,35 @@ class Thread extends Model
         return once(function () {
             return $this->posts()->latest()->first();
         });
+    }
+
+    /**
+     * Scope a query to only include allowed threads to current user.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeAllowed($query)
+    {
+        $groupCache = resolve(GroupCache::class);
+        $currentHighestGroup  = optional(auth()->user())->highest_group;
+
+        $allowedForumsToRead = $groupCache->getAllowedForumsToRead($currentHighestGroup);
+
+        $allowedForumsToReadIds = $allowedForumsToRead->map(function ($item) {
+            return $item->id;
+        });
+
+        return $query->where(function ($query) use ($currentHighestGroup) {
+            if (auth()->user()) {
+                $query->orWhere('user_id', auth()->user()->id)
+                    ->orWhere('restrict_read', null)
+                    ->orWhereIn('restrict_read', $currentHighestGroup->sameOrLower()->map(function ($item) {
+                        return $item->key;
+                    }));
+            } else {
+                $query->where('restrict_read', null);
+            }
+        })->whereIn('forum_id', $allowedForumsToReadIds);
     }
 }

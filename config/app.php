@@ -175,7 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\MarkdownParserServiceProvider::class,
-        App\Providers\GroupServiceProvider::class,
+        App\Extensions\Permission\Providers\GroupServiceProvider::class,
 
     ],
 
