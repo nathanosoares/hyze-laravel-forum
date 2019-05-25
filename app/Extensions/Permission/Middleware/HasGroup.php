@@ -19,8 +19,9 @@ class HasGroup
     public function handle($request, Closure $next, $groupKey = 'default')
     {
         if (!Auth::guest()) {
-            if (isset(Group::getInstances()[strtoupper($groupKey)])) {
-                if (Auth::user()->hasGroup(Group::getInstances())) {
+            $key = strtoupper($groupKey);
+            if (isset(Group::getInstances()[$key])) {
+                if (Auth::user()->hasGroup(Group::getInstances()[$key])) {
                     return $next($request);
                 }
             }
