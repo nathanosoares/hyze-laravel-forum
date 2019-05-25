@@ -49,6 +49,7 @@ class SecurityController extends Controller
         $this->validate($request, [
             'email' => [
                 'required',
+                'email',
                 'confirmed',
                 Rule::unique('hyze.users', 'email')->ignore($user->id)
             ]
@@ -58,10 +59,12 @@ class SecurityController extends Controller
             // TODO enviar confirmação para o email atual
         }
 
-        $user->email_verified_at = null;
-        $user->email = $request->get('email');
+        if ($user->email != $request->get('email')) {
+            $user->email_verified_at = null;
+            $user->email = $request->get('email');
 
-        $user->save();
+            $user->save();
+        }
 
         return redirect()
             ->route('profile.security')
