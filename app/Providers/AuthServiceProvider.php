@@ -15,6 +15,7 @@ use App\Policies\ThreadPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Passport\Passport;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -39,7 +40,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-//        Passport::routes();
+        //        Passport::routes();
+
+        Passport::cookie(config('session.cookie') . '_token');
 
         Gate::before(function (User $user, $ability) {
             if ($user->isSuperAdmin()) {
