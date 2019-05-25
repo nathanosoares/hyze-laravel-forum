@@ -5,7 +5,6 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Auth\Notifications\VerifyEmail;
-use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,9 +17,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        // if (app()->environment() === 'production') {
-            URL::forceScheme('https');
-        // }
+        if (app()->environment() === 'production') {
+            url()->forceScheme('https');
+        }
 
         // VerifyEmail::toMailUsing(function ($notifiable) {
         //     $verificationUrl = $this->verificationUrl($notifiable);
