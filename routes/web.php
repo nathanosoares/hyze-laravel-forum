@@ -72,6 +72,4 @@ Route::middleware('group:helper')->group(function () {
             'create', 'store', 'edit', 'update'
         ]);
     });
-
-    Route::get('/home', 'HomeController@index')->name('home');
 });
