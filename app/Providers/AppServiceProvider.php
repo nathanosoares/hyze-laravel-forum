@@ -17,9 +17,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        if (app()->environment() === 'production') {
-            url()->forceScheme('https');
-        }
+        // if (app()->environment() === 'production') {
+            // url()->forceScheme('https');
+        // }
 
         // VerifyEmail::toMailUsing(function ($notifiable) {
         //     $verificationUrl = $this->verificationUrl($notifiable);
