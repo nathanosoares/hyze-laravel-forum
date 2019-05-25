@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Auth\Notifications\VerifyEmail;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,16 @@ class AppServiceProvider extends ServiceProvider
         if (app()->environment() === 'production') {
             url()->forceScheme('https');
         }
+
+        // VerifyEmail::toMailUsing(function ($notifiable) {
+        //     $verificationUrl = $this->verificationUrl($notifiable);
+
+        //     return (new MailMessage)
+        //         ->subject(Lang::getFromJson('Verificação de email'))
+        //         ->line(Lang::getFromJson('Please click the button below to verify your email address.'))
+        //         ->action(Lang::getFromJson('Verificar email'), $verificationUrl)
+        //         ->line(Lang::getFromJson('If you did not create an account, no further action is required.'));
+        // });
     }
 
     /**
@@ -27,7 +38,5 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function register()
-    {
-
-    }
+    { }
 }

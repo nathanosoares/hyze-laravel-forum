@@ -51,18 +51,11 @@
                 @endif
             </div>
             @elseif(!auth()->user()->hasVerifiedEmail())
-            <div class="alert alert-warning d-flex align-items-center" role="alert">
-                <div>
-                    <p class="text-lg">Você precisa confirmar seu e-mail.</p>
-                    <p>Seu email poderá ser usado para recuperar sua conta caso você se esqueça da sua senha.</p>
-                </div>
 
-                <div class="ml-auto mt-2">
-                    <button class="btn btn-info rounded-pill" type="button" id="button-addon2">
-                        Enviar confirmação de email
-                    </button>
-                </div>
-            </div>
+
+
+            @include('auth.components.emai_confirmation', ['email' => auth()->user()->email])
+
             @endif
             @endauth
 
