@@ -16,7 +16,7 @@ class TrustProxies extends Middleware
     protected $proxies = [
         'localhost',
         '127.0.0.1',
-        '0.0.0.0'
+        '192.168.1.10'
     ];
 
     /**
