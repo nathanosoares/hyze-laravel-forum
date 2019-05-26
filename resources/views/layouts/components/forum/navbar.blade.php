@@ -1,6 +1,6 @@
 <header>
     <div class="container">
-        <nav class="navbar navbar-expand-lg bd-navbar navbar-dark navbar-hyze">
+        <nav class="navbar navbar-expand-lg bd-navbar navbar-dark navbar-hyze mt-3 mb-3">
             <a class="navbar-brand mr-0 mr-md-2" href="{{ route('home') }}">
                 <span></span>
             </a>
@@ -23,8 +23,8 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link text-warning" href="https://loja.hyze.net" target="_blank">
-                            <i class="fa fa-star"></i> Loja
+                        <a class="nav-link" href="https://loja.hyze.net" target="_blank">
+                            Loja
                         </a>
                     </li>
 
