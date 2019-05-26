@@ -35,28 +35,31 @@
 
         <main class="py-4 container">
             @auth
-            @if(!auth()->user()->email)
-            <div class="alert alert-warning d-flex align-items-center" role="alert">
-                <div>
-                    <p class="text-lg">Recomendamos que você defina um e-mail para sua conta.</p>
-                    <p>Seu email poderá ser usado para recuperar sua conta caso você se esqueça da sua senha.</p>
-                </div>
+                @if(!auth()->user()->email)
+                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                        <div>
+                            <p class="text-lg">Recomendamos que você defina um e-mail para sua conta.</p>
+                            <p>Seu email poderá ser usado para recuperar sua conta caso você se esqueça da sua senha.</p>
+                        </div>
 
-                @if(!request()->routeIs('profile.security'))
-                <div class="ml-auto mt-2">
-                    <a href="{{ route('profile.security') }}" class="btn btn-info rounded-pill">
-                        Definir email
-                    </a>
-                </div>
+                        @if(!request()->routeIs('profile.security'))
+                        <div class="ml-auto mt-2">
+                            <a href="{{ route('profile.security') }}" class="btn btn-info rounded-pill">
+                                Definir email
+                            </a>
+                        </div>
+                        @endif
+                    </div>
+                @elseif(!auth()->user()->hasVerifiedEmail())
+                    @include('auth.components.emai_confirmation', ['email' => auth()->user()->email])
+                @elseif(session()->has('verified') && session()->get('verified'))
+                    <div class="alert alert-success">
+                        Seu e-mail foi confirmado com sucesso!
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 @endif
-            </div>
-            @elseif(!auth()->user()->hasVerifiedEmail())
-
-
-
-            @include('auth.components.emai_confirmation', ['email' => auth()->user()->email])
-
-            @endif
             @endauth
 
             @yield('content')
