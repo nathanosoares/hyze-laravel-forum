@@ -37,6 +37,8 @@ class SecurityController extends Controller
 
         $user->password = Hash::make($request->get('password'));
 
+        $user->save();
+
         return redirect()
             ->route('profile.security')
             ->with('success', 'Senha alterada com sucesso!');;
