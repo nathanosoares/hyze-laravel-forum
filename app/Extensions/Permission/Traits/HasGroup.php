@@ -8,6 +8,8 @@ use Carbon\Carbon;
 
 trait HasGroup
 {
+    protected $groupsDue;
+
     public function hasStrictGroup(Group $group): bool
     {
         return $this->groups_due->contains('key', $group->key);
@@ -38,8 +40,8 @@ trait HasGroup
 
     public function getGroupsDueAttribute(): Collection
     {
-        if (isset($this->attributes['groups_due'])) {
-            return $this->attributes['groups_due'];
+        if (isset($this->groupsDue) && !is_null($this->groupsDue)) {
+            return $this->groupsDue;
         }
 
         $result = $this->getConnection()->table('user_groups')
@@ -56,7 +58,7 @@ trait HasGroup
             ->get();
 
 
-        $groups = $result->map(function ($item) {
+        $groups_due = $result->map(function ($item) {
             if (isset(Group::getInstances()[$item->group_id])) {
                 $rawGroup = Group::getInstances()[$item->group_id];
 
@@ -80,8 +82,8 @@ trait HasGroup
             return null;
         })->filter();
 
-        $this->attributes['groups_due'] = $groups;
+        $this->groupsDue = $groups_due;
 
-        return $this->attributes['groups_due'];
+        return $this->groupsDue;
     }
 }

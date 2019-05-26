@@ -59,12 +59,10 @@ class SecurityController extends Controller
             // TODO enviar confirmação para o email atual
         }
 
-        dump($user);
         if ($user->email != $request->get('email')) {
             $user->email_verified_at = null;
             $user->email = $request->get('email');
 
-            dump($user);
             $user->save();
         }
 
