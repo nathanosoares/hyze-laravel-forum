@@ -12,7 +12,7 @@
                             Cancelar
                         </a>
 
-                        <a :href="route('auth.redirect', 'twitter')" class="btn btn-custom-primary">
+                        <a :href="route('login')" class="btn btn-custom-primary">
                             <i class="fab fa-twitter font-weight-light"></i> Entrar
                         </a>
                     </div>

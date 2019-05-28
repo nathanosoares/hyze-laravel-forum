@@ -74,7 +74,7 @@ export default {
       this.canSubmit = false;
 
       window.axios
-        .post(route("forums.api.forums.threads", this.forum.id), {
+        .post(route("forums.api.threads.store", this.forum.id), {
           title: this.title,
           body: this.body
         })

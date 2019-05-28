@@ -43,7 +43,7 @@ Route::middleware('group:helper')->group(function () {
             ->name('forum.create_thread');
 
         Route::get('/{forum_slug}.{forum_id}', 'ForumController@index')->name('forum');
-        Route::get('/category/{category_slug}', 'CategoryController@index')->name('category');
+        // Route::get('/category/{category_slug}', 'CategoryController@index')->name('category');
         Route::get('/thread/{thread_slug}.{thread_id}', 'ThreadController@show')->name('thread');
     });
 

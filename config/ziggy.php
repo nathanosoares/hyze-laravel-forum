@@ -5,7 +5,7 @@ return [
         'home',
         'forums.*',
         'api.parsedown',
-        'auth.redirect',
+        'login',
         'admin.tree.sort',
         'admin.categories.*',
         'admin.forums.*',
