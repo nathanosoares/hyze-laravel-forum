@@ -11,10 +11,10 @@ class ForumController extends Controller
 {
     public function index(Forum $forum)
     {
-        $this->authorize('read', $forum->category);
         $this->authorize('read', $forum);
 
         $threads = $forum->threads()
+            ->allowed()
             ->orderBy('sticky', 'desc')
             ->orderBy('created_at', 'desc')
             ->paginate(20);

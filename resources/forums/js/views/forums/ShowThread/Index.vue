@@ -41,14 +41,14 @@
     <div v-if="canReply">
       <div>
         <create-post-editor
-          v-if="$gate.allow('write', 'forum', thread.forum)"
+          v-if="$gate.allow('write', 'thread', thread)"
           :id="'reply__thread__' + thread.id"
           :thread="thread"
         ></create-post-editor>
 
         <div v-else>
           <p class="text-center my-4">
-            <span class="font-weight-light">Você não tem permissão para escrever neste fórum.</span>
+            <span class="font-weight-light">Você não tem permissão para escrever aqui.</span>
           </p>
         </div>
       </div>

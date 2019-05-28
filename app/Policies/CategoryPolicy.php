@@ -15,7 +15,7 @@ class CategoryPolicy
         return $this->can($user, 'read', $category, true);
     }
 
-    public function write(?User $user, Category $category)
+    public function write(User $user, Category $category)
     {
         return $this->can($user, 'write', $category, true);
     }

@@ -12,11 +12,6 @@ class PostPolicy
 {
     use HandlesAuthorization;
 
-    public function create(User $user, Thread $thread, Post $parent = null)
-    {
-        return true;
-    }
-
     public function update(User $user, Post $post)
     {
         return $user->id === $post->user_id || $user->hasGroup(Group::GAME_MASTER());

@@ -42,7 +42,7 @@ class PostApiController extends Controller
 
     public function store(StorePostRequest $request, Thread $thread)
     {
-        $this->authorize('write', $thread->forum);
+        $this->authorize('reply', $thread);
 
         $post = Post::fromRequest($request, $thread);
 
@@ -55,7 +55,7 @@ class PostApiController extends Controller
     {
         $thread = $post->thread;
 
-        $this->authorize('write', $thread->forum);
+        $this->authorize('reply', $thread->forum);
 
         $reply = Post::fromRequest($request, $post->thread, $post);
 

@@ -15,6 +15,11 @@ class ThreadPolicy
         return $user->id === $thread->user_id || $user->hasGroup(Group::GAME_MASTER());
     }
 
+    public function rename(User $user, Thread $thread)
+    {
+        return $thread->user_id === $user->id || $user->hasGroup(Group::GAME_MASTER());
+    }
+
     public function delete(User $user, Thread $thread)
     {
         return $user->id === $thread->user_id || $user->hasGroup(Group::GAME_MASTER());
@@ -23,11 +28,6 @@ class ThreadPolicy
     public function forceDelete(User $user, Thread $thread)
     {
         return $user->hasGroup(Group::GAME_MASTER());
-    }
-
-    public function rename(User $user, Thread $thread)
-    {
-        return $user->hasGroup(Group::GAME_MASTER()) || $thread->user_id === $user->id;
     }
 
     public function sticky(User $user, Thread $thread)
@@ -40,13 +40,15 @@ class ThreadPolicy
         return $user->hasGroup(Group::GAME_MASTER());
     }
 
-    public function create(User $user)
+    public function reply(User $user, Thread $thread)
     {
-        return $user->hasGroup(Group::GAME_MASTER());
+        return $this->can($user, 'write', $thread);
     }
 
     public function read(?User $user, Thread $thread)
     {
-        return $this->can($user, 'read', $thread->forum, true) && $this->can($user, 'read', $thread);
+        return $this->can($user, 'read', $thread->forum, true)
+            && $this->can($user, 'read', $thread->forum->category, true)
+            && $this->can($user, 'read', $thread);
     }
 }

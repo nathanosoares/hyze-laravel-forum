@@ -1,4 +1,5 @@
 import PostPolicy from './policies/PostPolicy';
+import ThreadPolicy from './policies/ThreadPolicy';
 import ForumPolicy from './policies/ForumPolicy';
 
 export default class Gate {
@@ -8,6 +9,7 @@ export default class Gate {
 
         this.policies = {
             post: PostPolicy,
+            thread: ThreadPolicy,
             forum: ForumPolicy
         };
     }
