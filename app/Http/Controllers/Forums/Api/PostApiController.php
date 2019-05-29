@@ -9,8 +9,6 @@ use App\Http\Requests\Forums\StorePostRequest;
 use App\Http\Requests\Forums\UpdatePost;
 use App\Models\Forums\Post;
 use App\Models\Forums\Thread;
-use Illuminate\Auth\Access\Gate;
-use Illuminate\Support\Facades\Auth;
 
 class PostApiController extends Controller
 {
@@ -79,6 +77,8 @@ class PostApiController extends Controller
 
     public function replies(Post $post)
     {
+        dd(auth()->user());
+        
         $this->authorize('read', $post->thread);
 
         return response()->json($post->replies()->paginate(2));
