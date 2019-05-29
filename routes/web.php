@@ -33,7 +33,8 @@ Route::get('/', 'HomeController@index')->name('home');
 //     return redirect((string) $url);
 // })->name('login');
 
-Route::middleware('group:helper')->group(function () {
+// Route::middleware('group:helper')->group(function () {
+Route::group(function () {
 
     Route::prefix('forums')->name('forums.')->namespace('Forums')->group(function () {
         Route::get('/', 'HomeController@index')->name('home');
