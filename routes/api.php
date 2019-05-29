@@ -49,8 +49,8 @@ Route::name('forums.api.')
 
                 Route::post('/posts/{post}/replies', 'PostApiController@reply')
                     ->name('posts.replies.store');
-
-                Route::get('/posts/{post}/replies', 'PostApiController@replies')
-                    ->name('posts.replies');
             });
+
+        Route::get('/posts/{post}/replies', 'PostApiController@replies')
+            ->name('posts.replies');
     });

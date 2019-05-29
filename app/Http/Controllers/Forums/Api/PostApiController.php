@@ -9,6 +9,8 @@ use App\Http\Requests\Forums\StorePostRequest;
 use App\Http\Requests\Forums\UpdatePost;
 use App\Models\Forums\Post;
 use App\Models\Forums\Thread;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class PostApiController extends Controller
 {
@@ -77,7 +79,9 @@ class PostApiController extends Controller
 
     public function replies(Post $post)
     {
-        $this->authorize('read', $post->thread);
+        if (!Gate::forUser(auth()->guard('api')->user())->allows('read', $post->thread)) {
+            throw new AuthorizationException();
+        }
 
         return response()->json($post->replies()->paginate(5));
     }
