@@ -99,4 +99,18 @@ return [
         ],
     ],
 
+    'allowed_email_domains' => [
+        'gmail.com',
+        'yahoo.com',
+        'yahoo.com.br',
+        'hotmail.com',
+        'hotmail.com.br',
+        'outlook.com',
+        'outlook.com.br',
+        'aol.com',
+        'uol.com.br',
+        'bol.com.br',
+        'mac.com',
+        'icloud.com'
+    ]
 ];

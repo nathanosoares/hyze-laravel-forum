@@ -51,7 +51,7 @@ class SecurityController extends Controller
         $this->validate($request, [
             'email' => [
                 'required',
-                'email',
+                'allowed_email',
                 'confirmed',
                 Rule::unique('hyze.users', 'email')->ignore($user->id)
             ]

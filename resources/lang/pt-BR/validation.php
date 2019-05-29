@@ -128,8 +128,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'email' => [
+            'allowed_email' => 'Você não pode usar este e-mail.',
         ],
     ],
 
