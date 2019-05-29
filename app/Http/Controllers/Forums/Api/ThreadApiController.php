@@ -20,13 +20,13 @@ class ThreadApiController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api');
+        // $this->middleware('auth:api');
     }
 
     public function posts(Thread $thread)
     {
-        dump('posts', $thread);
-        
+        dd('posts', $thread);
+
         $this->authorize('read', $thread->thread);
 
         $posts = $thread->posts()
