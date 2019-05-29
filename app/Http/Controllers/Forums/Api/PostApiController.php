@@ -79,7 +79,7 @@ class PostApiController extends Controller
 
     public function replies(Post $post)
     {
-        dd($post->thread);
+        dd(auth()->user());
         $this->authorize('read', $post->thread);
 
         return response()->json($post->replies()->paginate(2));
