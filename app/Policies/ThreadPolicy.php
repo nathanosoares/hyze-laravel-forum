@@ -47,7 +47,6 @@ class ThreadPolicy
 
     public function read(?User $user, Thread $thread)
     {
-        dd('$user', $user);
         return $this->can($user, 'read', $thread->forum->category, true)
             && $this->can($user, 'read', $thread->forum, true)
             && $this->can($user, 'read', $thread);
