@@ -60,9 +60,7 @@ class PostApiController extends Controller
             'body' => 'required|min:2'
         ]);
 
-        $thread = $post->thread;
-
-        $this->authorize('reply', $thread->thread);
+        $this->authorize('reply', $post->thread);
 
         $reply = Post::fromRequest($request, $post->thread, $post);
 
