@@ -45,7 +45,6 @@ body {
 
 a {
   transition: all 0.1s ease-in;
-
 }
 
 .author-avatar {
@@ -130,6 +129,24 @@ hr.dashed {
 }
 
 .post-content {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   color: #3c3c3c;
+  line-height: 1.5;
+
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    &:not(:first-child) {
+      margin-top: 1rem;
+    }
+  }
 }
