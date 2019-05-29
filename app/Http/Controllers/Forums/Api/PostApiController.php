@@ -41,6 +41,10 @@ class PostApiController extends Controller
 
     public function store(Request $request, Thread $thread)
     {
+        $this->validate($request, [
+            'body' => 'required|min:2'
+        ]);
+        
         $this->authorize('reply', $thread);
 
         $post = Post::fromRequest($request, $thread);
@@ -52,6 +56,10 @@ class PostApiController extends Controller
 
     public function reply(Request $request, Post $post)
     {
+        $this->validate($request, [
+            'body' => 'required|min:2'
+        ]);
+
         $thread = $post->thread;
 
         $this->authorize('reply', $thread->forum);
@@ -65,6 +73,10 @@ class PostApiController extends Controller
 
     public function update(Request $request, Post $post)
     {
+        $this->validate($request, [
+            'body' => 'required|min:2'
+        ]);
+
         $thread = $post->thread;
 
         $this->authorize('write', $thread->forum);
