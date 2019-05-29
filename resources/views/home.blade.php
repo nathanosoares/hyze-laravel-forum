@@ -16,7 +16,7 @@
                         {{ $thread->title }}
                     </a>
 
-                    <p>{!! html_cut($thread->main_post->body_parsed, 400) !!}...</p>
+                    <p>{!! html_cut(strip_tags($thread->main_post->body_parsed), 400) !!}...</p>
 
                     <div class="d-flex align-items-center mt-1">
                         <a href="{{ thread_url($thread) }}" class="btn btn-primary rounded-pill">
