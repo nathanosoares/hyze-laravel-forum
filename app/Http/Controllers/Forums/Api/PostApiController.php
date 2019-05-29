@@ -14,7 +14,7 @@ class PostApiController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api')->except('replies');
+        // $this->middleware('auth:api')->except('replies');
     }
 
     public function destroy(Post $post)
@@ -78,7 +78,7 @@ class PostApiController extends Controller
     public function replies(Post $post)
     {
         dd(auth()->user());
-        
+
         $this->authorize('read', $post->thread);
 
         return response()->json($post->replies()->paginate(2));
