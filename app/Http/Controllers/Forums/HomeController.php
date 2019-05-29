@@ -15,7 +15,7 @@ class HomeController extends Controller
     {
         $recent = Thread::orderBy('last_reply_at', 'desc')
             ->allowed()
-            ->limit(10)
+            ->limit(6)
             ->get();
 
         $categories = Category::allowed()
