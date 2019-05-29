@@ -25,6 +25,8 @@ class ThreadApiController extends Controller
 
     public function posts(Thread $thread)
     {
+        dump('posts', $thread);
+        
         $this->authorize('read', $thread->thread);
 
         $posts = $thread->posts()
