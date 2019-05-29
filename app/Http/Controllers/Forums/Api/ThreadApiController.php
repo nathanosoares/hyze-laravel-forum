@@ -20,14 +20,13 @@ class ThreadApiController extends Controller
 
     public function __construct()
     {
-        // $this->middleware('auth:api');
+        $this->middleware('auth:api');
     }
 
     public function posts(Thread $thread)
     {
-        dd('posts', $thread);
-
-        $this->authorize('read', $thread->thread);
+        $this->authorize('read', $thread->forum->category);
+        $this->authorize('read', $thread->forum);
 
         $posts = $thread->posts()
             ->doesntHave('parent')
