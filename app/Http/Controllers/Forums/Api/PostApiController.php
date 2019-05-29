@@ -44,7 +44,7 @@ class PostApiController extends Controller
         $this->validate($request, [
             'body' => 'required|min:2'
         ]);
-        
+
         $this->authorize('reply', $thread);
 
         $post = Post::fromRequest($request, $thread);
@@ -62,7 +62,7 @@ class PostApiController extends Controller
 
         $thread = $post->thread;
 
-        $this->authorize('reply', $thread->forum);
+        $this->authorize('reply', $thread->thread);
 
         $reply = Post::fromRequest($request, $post->thread, $post);
 
