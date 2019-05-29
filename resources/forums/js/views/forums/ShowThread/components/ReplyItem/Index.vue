@@ -60,7 +60,7 @@
             v-on:update:post="$emit('update:post', $event)"
           />
 
-          <div v-else v-html="reply.body_parsed"></div>
+          <div v-else v-html="reply.body_parsed" class="post-content"></div>
         </div>
 
         <div class="mt-auto">

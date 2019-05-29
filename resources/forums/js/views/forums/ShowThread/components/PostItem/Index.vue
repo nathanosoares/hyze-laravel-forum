@@ -67,7 +67,7 @@
               />
             </div>
 
-            <div v-else v-html="post.body_parsed" class="w-100"></div>
+            <div v-else v-html="post.body_parsed" class="w-100 post-content"></div>
           </div>
 
           <div class="mt-auto">

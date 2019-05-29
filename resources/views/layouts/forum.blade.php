@@ -10,11 +10,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Forum') }}</title>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" lazyload>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" lazyload>
 
     <!-- Styles -->
     <link href="{{ mix('/assets/forums/css/app.css') }}" rel="stylesheet">
