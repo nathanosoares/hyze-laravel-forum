@@ -14,7 +14,7 @@ class Thread extends Model
 
     protected $table = 'threads';
     public $timestamps = true;
-    protected $fillable = ['title', 'forum_id', 'user_id', 'slug', 'promoted'];
+    protected $fillable = ['title', 'forum_id', 'user_id', 'slug', 'restrict_read', 'restrict_write'];
     protected $dates = ['deleted_at', 'last_reply_at'];
     protected $casts = [
         'promoted' => 'boolean',

@@ -88,6 +88,11 @@ class ThreadApiController extends Controller
             'restrict_write' => ['required', new EnumKey(Group::class)],
         ]);
 
+        if (Gate::allows('rename', $thread)) {
+            $thread->title = $request->get('title');
+            $thread->slug = str_slug($request->title, '-');
+        }
+
         if (Gate::allows('promote', $thread)) {
             $thread->promoted = $request->get('promoted');
         }
