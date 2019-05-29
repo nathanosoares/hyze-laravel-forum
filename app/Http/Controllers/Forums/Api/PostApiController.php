@@ -77,8 +77,6 @@ class PostApiController extends Controller
 
     public function replies(Post $post)
     {
-        dd(auth()->guard('api')->user());
-
         $this->authorize('read', $post->thread);
 
         return response()->json($post->replies()->paginate(5));
