@@ -150,3 +150,49 @@ hr.dashed {
     }
   }
 }
+
+@include media-breakpoint-down(md) {
+  .breadcrumb-scroll {
+    max-width: 100%;
+    overflow: hidden;
+    height: 2.8rem;
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: " ";
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 1.6rem;
+    }
+
+    &::after {
+      right: 0;
+      background: linear-gradient(to right, transparent, white);
+    }
+
+    &::before {
+      left: 0;
+      background: linear-gradient(to left, transparent, white);
+    }
+
+    .breadcrumb {
+      border-radius: 0.25rem !important;
+      display: flex;
+      flex-direction: row !important;
+      padding-bottom: 2rem;
+      overflow-x: auto;
+      white-space: nowrap;
+      flex-wrap: nowrap;
+      -webkit-overflow-scrolling: touch;
+
+      .breadcrumb-item:last-child {
+        padding-right: 1rem;
+      }
+    }
+  }
+}

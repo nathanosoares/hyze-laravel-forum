@@ -2,7 +2,9 @@
 
 @section('content')
 
-    {{ Breadcrumbs::render('forums.thread', $thread) }}
+    <div class="breadcrumb-scroll rounded">
+        {{ Breadcrumbs::render('forums.thread', $thread) }}
+    </div>
 
     <show-thread-view :initial-posts='@json($posts)'
                       :thread='@json($thread)'

@@ -1,7 +1,13 @@
 <template>
   <div class="d-flex">
     <div class="mr-3">
-      <user-avatar :user="reply.author" size="80px" :classes="['rounded', 'flex-shrink-0']"/>
+      <div class="d-none d-lg-block col-lg-2">
+        <user-avatar :user="reply.author" size="80px" :classes="['rounded', 'flex-shrink-0']"/>
+      </div>
+
+      <div class="d-lg-none d-flex mb-2">
+        <user-avatar :user="reply.author" size="40px" :classes="['rounded', 'flex-shrink-0']"/>
+      </div>
     </div>
     <div class="d-flex text-break w-100">
       <div

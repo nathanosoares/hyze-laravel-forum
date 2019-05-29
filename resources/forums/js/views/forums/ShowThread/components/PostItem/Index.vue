@@ -11,7 +11,7 @@
           :id="'post-' + post.id"
         >
           <div class="d-lg-none d-flex mb-2">
-            <user-avatar :user="post.author" size="s" class="mr-2"/>
+            <user-avatar :user="post.author" size="s" class="mr-2 rounded"/>
 
             <div>
               <user-twitter-anchor :user="post.author">{{ post.author.nick }}</user-twitter-anchor>

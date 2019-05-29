@@ -1,8 +1,9 @@
 @extends('layouts.forum')
 
 @section('content')
-
-{{ Breadcrumbs::render('forums') }}
+<div class="breadcrumb-scroll rounded">
+    {{ Breadcrumbs::render('forums') }}
+</div>
 
 <div class="row">
     <div class="col-12">
@@ -12,7 +13,7 @@
 
         <div class="p-3 mb-4 shadow-sm bg-white rounded">
             @foreach($recent as $thread)
-            <div class="d-none d-lg-flex flex-nowrap bg-ghost align-items-center">
+            <div class="d-none d-md-flex flex-nowrap bg-ghost align-items-center">
                 <div>
                     <user-avatar :user="{{$thread->author}}" :classes="['mr-3', 'rounded']" size="s"></user-avatar>
                 </div>
@@ -63,28 +64,41 @@
                 </div>
             </div>
 
-            <div class="d-flex d-lg-none flex-nowrap bg-ghost mb-1 p-3 pb-2">
+            <div class="d-flex d-md-none flex-nowrap bg-ghost mb-1 ">
                 <div class="mr-2">
-                    <user-avatar :user="{{$thread->author}}" size="46px"></user-avatar>
+                    <user-avatar :user="{{$thread->author}}" size="46px" class="rounded mr-2"></user-avatar>
                 </div>
 
                 <div class="flex-grow-0 overflow-hidden">
                     <div>
-                        <user-twitter-anchor :user="{{ $thread->last_post->author }}">
-                            {{ $thread->last_post->author->name }} <span
-                                class="text-muted">{{ '@' . $thread->last_post->author->username }}</span>
-                        </user-twitter-anchor> <span class="text-muted">&#183; respondeu
-                            {{ $thread->last_post->created_at->diffForHumans() }}:</span>
+                        <ul class="list-inline text-secondary mb-0">
+                            <li class="list-inline-item">
+                                <small>
+                                    <i class="fas fa-user fa-fw"></i> {{ $thread->author->nick }}
+                                </small>
+                            </li>
+                            <li class="list-inline-item">
+                                <small>
+                                    <i class="fas fa-shield-alt fa-fw"></i>
+                                    {{ $thread->author->highest_group->value['display_name'] }}
+                                </small>
+                            </li>
+                            <li class="list-inline-item">
+                                <small>
+                                    @if ($thread->replies_count > 0)respondeu @else postou @endif
+                                    {{ $thread->last_post->created_at->diffForHumans() }}:</span>
+                                </small>
+                            </li>
+                        </ul>
                     </div>
 
                     <div class="my-2">
-                        {!! str_limit(strip_tags($thread->last_post->body_parsed, '<p><a><b><strong><i><em><br>'), 90,
-                                                '...') !!}
+                        {!! str_limit(strip_tags($thread->last_post->body_parsed), 90, '...') !!}
                     </div>
 
                     <div>
                         <span class="text-muted">em</span> <a href="{{ thread_url($thread) }}"
-                            class="text-decoration-none">{{ $thread->title }}</a>
+                            class="text-primary text-decoration-none">{{ $thread->title }}</a>
                     </div>
                 </div>
             </div>

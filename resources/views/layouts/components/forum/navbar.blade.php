@@ -1,6 +1,6 @@
 <header>
     <div class="container">
-        <nav class="navbar navbar-expand-lg bd-navbar navbar-dark navbar-hyze mt-3 mb-3">
+        <nav class="navbar navbar-expand-md bd-navbar navbar-dark navbar-hyze mt-3 mb-3">
             <a class="navbar-brand mr-0 mr-md-2" href="{{ route('home') }}">
                 <span></span>
             </a>

@@ -1,7 +1,9 @@
 @extends('layouts.forum')
 
 @section('content')
-{{ Breadcrumbs::render('forums.forum', $forum) }}
+<div class="breadcrumb-scroll rounded">
+    {{ Breadcrumbs::render('forums.forum', $forum) }}
+</div>
 
 @if($forum->children()->exists())
 <div class="mb-3">
