@@ -25,8 +25,7 @@ class ThreadApiController extends Controller
 
     public function posts(Thread $thread)
     {
-        $this->authorize('read', $thread->forum->category);
-        $this->authorize('read', $thread->forum);
+        $this->authorize('read', $thread->thread);
 
         $posts = $thread->posts()
             ->doesntHave('parent')
