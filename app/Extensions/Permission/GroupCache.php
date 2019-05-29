@@ -28,15 +28,25 @@ class GroupCache
 
     public function getAllowedForumsToRead(?Group $group)
     {
-        return $this->cacheManager->remember($this->getKey('forums', $group), 60, function () use ($group) {
-            if (is_null($group)) {
-                return Forum::where('restrict_read', null)->get();
+        return $this->cacheManager->remember($this->getKey('forums', $group), 1, function () use ($group) {
+
+            $query = Forum::where('restrict_read', null);
+
+            if (!is_null($group)) {
+                $query = Forum::orWhereIn('restrict_read', $group->sameOrLower()->map(function ($item) {
+                    return $item->key;
+                }))->orWhere('restrict_read', null);
             }
 
-            return Forum::whereIn('restrict_read', $group->sameOrLower()->map(function ($item) {
-                return $item->key;
-            }))->orWhere('restrict_read', null)
-                ->get();
+            return $query->whereHas('category', function ($query) use ($group) {
+                $query->where('restrict_read', null);
+
+                if (!is_null($group)) {
+                    $query->orWhereIn('restrict_read', $group->sameOrLower()->map(function ($item) {
+                        return $item->key;
+                    }));
+                }
+            })->get();
         });
     }
 }

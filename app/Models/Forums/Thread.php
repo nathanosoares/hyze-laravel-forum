@@ -86,26 +86,17 @@ class Thread extends Model
      */
     public function scopeAllowed($query)
     {
-        $groupCache = resolve(GroupCache::class);
         $currentHighestGroup  = optional(auth()->user())->highest_group;
 
-        $allowedForumsToRead = $groupCache->getAllowedForumsToRead($currentHighestGroup);
-
-        $allowedForumsToReadIds = $allowedForumsToRead->map(function ($item) {
-            return $item->id;
-        });
+        $allowedForumsToReadIds = resolve(GroupCache::class)
+            ->getAllowedForumsToRead($currentHighestGroup)
+            ->pluck('id');
 
         return $query->where(function ($query) use ($currentHighestGroup) {
-            if (auth()->user()) {
-                $query->where('user_id', auth()->user()->id)
-                    ->orWhere(function ($query) use ($currentHighestGroup) {
-                        $query->where('restrict_read', null)
-                            ->orWhereIn('restrict_read', $currentHighestGroup->sameOrLower()->map(function ($item) {
-                                return $item->key;
-                            }));
-                    });
-            } else {
-                $query->where('restrict_read', null);
+            $query->where('restrict_read', null);
+
+            if (!is_null($currentHighestGroup)) {
+                $query->orWhereIn('restrict_read', $currentHighestGroup->sameOrLower()->pluck('key'));
             }
         })->whereIn('forum_id', $allowedForumsToReadIds);
     }
