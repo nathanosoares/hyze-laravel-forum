@@ -284,14 +284,12 @@ export default {
     },
     canDestroy: function() {
       return (
-        this.$gate.allow("destroy", "post", this.post) &&
-        this.$gate.allow("write", "forum", this.thread.forum)
+        this.$gate.allow("destroy", "post", this.post)
       );
     },
     canEdit: function() {
       return (
-        this.$gate.allow("edit", "post", this.post) &&
-        this.$gate.allow("write", "forum", this.thread.forum)
+        this.$gate.allow("edit", "post", this.post)
       );
     },
     toggleEditMode: function($event) {

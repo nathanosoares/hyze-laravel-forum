@@ -42,7 +42,7 @@ class ThreadPolicy
 
     public function reply(User $user, Thread $thread)
     {
-        return $this->can($user, 'write', $thread);
+        return !$thread->trashed() && $this->can($user, 'write', $thread);
     }
 
     public function read(?User $user, Thread $thread)

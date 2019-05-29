@@ -19,7 +19,7 @@ trait RestrictablePolice
                 }
 
                 $rawGroup = $current->{"restrict_{$rule}"};
-                
+
                 if (is_null($rawGroup)) {
                     continue;
                 }
@@ -43,7 +43,7 @@ trait RestrictablePolice
         }
 
         $rawGroup = $model->{"restrict_{$rule}"};
-                
+
         if (is_null($rawGroup)) {
             return true;
         }

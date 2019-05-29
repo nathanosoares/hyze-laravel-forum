@@ -5,27 +5,26 @@ namespace App\Http\Controllers\Forums\Api;
 
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Forums\StorePostRequest;
-use App\Http\Requests\Forums\UpdatePost;
 use App\Models\Forums\Post;
 use App\Models\Forums\Thread;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\Request;
 
 class PostApiController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('auth:api')->except('replies');
+        $this->middleware('auth:api')->except('replies');
     }
 
     public function destroy(Post $post)
     {
         $thread = $post->thread;
 
-        $this->authorize('write', $thread->forum);
+        // $this->authorize('write', $thread->forum);
 
-        if ($thread->posts()->first()->id == $post->id) {
+        if ($thread->main_post->id === $post->id) {
             $this->authorize('destroy', $thread);
 
             $thread->delete();
@@ -40,7 +39,7 @@ class PostApiController extends Controller
         return response()->json(null, 204);
     }
 
-    public function store(StorePostRequest $request, Thread $thread)
+    public function store(Request $request, Thread $thread)
     {
         $this->authorize('reply', $thread);
 
@@ -51,7 +50,7 @@ class PostApiController extends Controller
         return response()->json($post);
     }
 
-    public function reply(StorePostRequest $request, Post $post)
+    public function reply(Request $request, Post $post)
     {
         $thread = $post->thread;
 
@@ -64,7 +63,7 @@ class PostApiController extends Controller
         return response()->json($reply);
     }
 
-    public function update(UpdatePost $request, Post $post)
+    public function update(Request $request, Post $post)
     {
         $thread = $post->thread;
 
