@@ -34,7 +34,7 @@ Route::get('/', 'HomeController@index')->name('home');
 // })->name('login');
 
 // Route::middleware('group:helper')->group(function () {
-Route::group(function () {
+// Route::group(function () {
 
     Route::prefix('forums')->name('forums.')->namespace('Forums')->group(function () {
         Route::get('/', 'HomeController@index')->name('home');
@@ -73,4 +73,4 @@ Route::group(function () {
             'create', 'store', 'edit', 'update'
         ]);
     });
-});
+// });
