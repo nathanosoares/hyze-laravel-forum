@@ -1,7 +1,9 @@
 @extends('layouts.forum')
 
 @section('content')
-    {{ Breadcrumbs::render('forums.forum', $forum) }}
+    <div class="breadcrumb-scroll rounded">
+        {{ Breadcrumbs::render('forums.forum', $forum) }}
+    </div>
 
     <create-thread-view :forum='@json($forum)'></create-thread-view>
 @stop
