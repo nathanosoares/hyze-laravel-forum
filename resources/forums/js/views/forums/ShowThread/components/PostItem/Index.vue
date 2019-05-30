@@ -251,12 +251,21 @@ export default {
   },
   methods: {
     tryDestroyPost: function() {
-      this.$store.dispatch(actions.DELETE_POST, { post: this.post })
-      .then(response => {
-        if (response.code == 204 && this.thread.main_post.id === this.post.id) {
-          window.location.href = this.$route('forums.threads', this.thread.id)
-        }
-      });
+      this.$store
+        .dispatch(actions.DELETE_POST, { post: this.post })
+        .then(response => {
+          if (
+            response.code == 204 &&
+            this.thread.main_post.id === this.postId
+          ) {
+            console.log(this.$route("forums.threads", this.thread.id));
+
+            window.location.href = this.$route(
+              "forums.threads",
+              this.thread.id
+            );
+          }
+        });
     },
     loadMoreReplies: function() {
       this.loadingReplies = true;
@@ -288,14 +297,10 @@ export default {
       );
     },
     canDestroy: function() {
-      return (
-        this.$gate.allow("destroy", "post", this.post)
-      );
+      return this.$gate.allow("destroy", "post", this.post);
     },
     canEdit: function() {
-      return (
-        this.$gate.allow("edit", "post", this.post)
-      );
+      return this.$gate.allow("edit", "post", this.post);
     },
     toggleEditMode: function($event) {
       $($event.target)
