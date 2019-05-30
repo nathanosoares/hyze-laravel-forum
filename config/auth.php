@@ -101,6 +101,7 @@ return [
 
     'allowed_email_domains' => [
         'gmail.com',
+        'gmail.com.br',
         'yahoo.com',
         'yahoo.com.br',
         'hotmail.com',
@@ -111,6 +112,7 @@ return [
         'uol.com.br',
         'bol.com.br',
         'mac.com',
-        'icloud.com'
+        'icloud.com',
+        'sapo.pt'
     ]
 ];
