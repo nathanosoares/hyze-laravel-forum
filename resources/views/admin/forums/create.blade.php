@@ -69,6 +69,35 @@
             </div>
         </div>
 
+        <hr>
+
+        <div class="form-group row">
+            <label for="inputThreadsRestrictRead" class="col-sm-2 col-form-label">Quem pode ler?</label>
+            <div class="col-sm-10">
+                <select class="custom-select" id="inputThreadsRestrictRead" name="threads_restrict_read">
+                    <option value>Visitantes</option>
+                    @foreach ($groups as $group)
+                    <option value="{{ $group->key }}">
+                        {{ $group->value['display_name'] }}
+                    </option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="inputThreadsRestrictWrite" class="col-sm-2 col-form-label">Quem pode escrever?</label>
+            <div class="col-sm-10">
+                <select class="custom-select" id="inputThreadsRestrictWrite" name="threads_restrict_write" required>
+                    @foreach ($groups as $group)
+                    <option value="{{ $group->key }}">
+                        {{ $group->value['display_name'] }}
+                    </option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+
         <div class="ml-auto">
             <a href="{{ route('admin.tree') }}" class="btn btn-secondary">Cancelar</a>
             <button class="btn btn-primary ml-auto" type="submit">Criar</button>

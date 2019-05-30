@@ -34,6 +34,8 @@ class ForumController extends Controller
             'description' => ['max:1024'],
             'restrict_read' => ['nullable', new EnumKey(Group::class)],
             'restrict_write' => ['required', new EnumKey(Group::class)],
+            'threads_restrict_read' => ['nullable', new EnumKey(Group::class)],
+            'threads_restrict_write' => ['required', new EnumKey(Group::class)],
         ]);
 
         $forum->fill($request->only([
@@ -41,7 +43,9 @@ class ForumController extends Controller
             'slug',
             'description',
             'restrict_read',
-            'restrict_write'
+            'restrict_write',
+            'threads_restrict_read',
+            'threads_restrict_write'
         ]));
 
         $forum->save();
@@ -58,6 +62,8 @@ class ForumController extends Controller
             'description' => ['max:1024'],
             'restrict_read' => ['nullable', new EnumKey(Group::class)],
             'restrict_write' => ['required', new EnumKey(Group::class)],
+            'threads_restrict_read' => ['nullable', new EnumKey(Group::class)],
+            'threads_restrict_write' => ['required', new EnumKey(Group::class)],
         ]);
 
         $forum = new Forum();
@@ -68,7 +74,9 @@ class ForumController extends Controller
             'category_id',
             'description',
             'restrict_read',
-            'restrict_write'
+            'restrict_write',
+            'threads_restrict_read',
+            'threads_restrict_write'
         ]));
 
         $forum->save();

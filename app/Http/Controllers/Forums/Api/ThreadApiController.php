@@ -62,8 +62,8 @@ class ThreadApiController extends Controller
             'forum_id' => $forum->id,
             'user_id' => $user_id,
             'slug' => $slug,
-            'restrict_read' => $forum->restrict_read,
-            'restrict_write' => $forum->restrict_write,
+            'restrict_read' => $forum->threads_restrict_read,
+            'restrict_write' => $forum->threads_restrict_write
         ];
 
         $thread = $forum->threads()->create($new_thread);
