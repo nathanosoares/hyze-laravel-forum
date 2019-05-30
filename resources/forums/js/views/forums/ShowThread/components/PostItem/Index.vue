@@ -251,7 +251,12 @@ export default {
   },
   methods: {
     tryDestroyPost: function() {
-      this.$store.dispatch(actions.DELETE_POST, { post: this.post });
+      this.$store.dispatch(actions.DELETE_POST, { post: this.post })
+      .then(response => {
+        if (response.code == 204 && this.thread.main_post.id === this.post.id) {
+          window.location.href = this.$route('forums.threads', this.thread.id)
+        }
+      });
     },
     loadMoreReplies: function() {
       this.loadingReplies = true;
