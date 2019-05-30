@@ -115,6 +115,7 @@ return [
         'icloud.com',
         'sapo.pt',
         'live.com',
-        'msn.com'
+        'msn.com',
+        'netvisao.pt'
     ]
 ];
