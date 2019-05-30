@@ -255,14 +255,12 @@ export default {
         .dispatch(actions.DELETE_POST, { post: this.post })
         .then(response => {
           if (
-            response.code == 204 &&
+            response.status == 204 &&
             this.thread.main_post.id === this.postId
           ) {
-            console.log(this.$route("forums.threads", this.thread.id));
-
-            window.location.href = this.$route(
-              "forums.threads",
-              this.thread.id
+            window.location.href = this.route(
+              "forums.forum",
+              [this.thread.forum.slug, this.thread.forum.id]
             );
           }
         });
