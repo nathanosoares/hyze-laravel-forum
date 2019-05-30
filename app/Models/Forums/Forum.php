@@ -14,7 +14,10 @@ class Forum extends Model
     protected $table = 'forums';
     public $timestamps = true;
 
-    protected $fillable = ['name', 'slug', 'restrict_read', 'restrict_write', 'description'];
+    protected $fillable = [
+        'name', 'slug', 'restrict_read', 'restrict_write',
+        'description', 'threads_restrict_read', 'threads_restrict_write'
+    ];
 
     protected $visible = [
         'id', 'name', 'slug', 'parent', 'category', 'restrict_read', 'restrict_write', 'children'
