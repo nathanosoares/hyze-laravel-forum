@@ -113,6 +113,8 @@ return [
         'bol.com.br',
         'mac.com',
         'icloud.com',
-        'sapo.pt'
+        'sapo.pt',
+        'live.com',
+        'msn.com'
     ]
 ];
