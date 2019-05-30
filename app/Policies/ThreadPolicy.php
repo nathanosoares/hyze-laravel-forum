@@ -47,6 +47,10 @@ class ThreadPolicy
 
     public function read(?User $user, Thread $thread)
     {
+        if ($user && $user->id == $thread->user_id) {
+            return true;
+        }
+        
         return $this->can($user, 'read', $thread->forum->category, true)
             && $this->can($user, 'read', $thread->forum, true)
             && $this->can($user, 'read', $thread);
