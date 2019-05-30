@@ -3,7 +3,6 @@
 @section('content')
 
 <div>
-    {{ dump($errors) }}
     <h2 class="mb-4">Editando forum {{ $forum->name }} <span class="text-muted">({{ $forum->id }})</span></h2>
 
     <form class="d-flex flex-column" action="{{ route('admin.forums.update', $forum) }}" method="POST">
