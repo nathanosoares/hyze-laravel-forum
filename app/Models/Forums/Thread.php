@@ -100,7 +100,7 @@ class Thread extends Model
             }
 
             if (auth()->user()) {
-                $query->orWhereIn('user_id', auth()->user()->id);
+                $query->orWhere('user_id', auth()->user()->id);
             }
         })->whereIn('forum_id', $allowedForumsToReadIds);
     }
