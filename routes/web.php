@@ -16,6 +16,7 @@
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
 Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
 
@@ -36,41 +37,44 @@ Route::get('/', 'HomeController@index')->name('home');
 // Route::middleware('group:helper')->group(function () {
 // Route::group(function () {
 
-    Route::prefix('forums')->name('forums.')->namespace('Forums')->group(function () {
-        Route::get('/', 'HomeController@index')->name('home');
+Route::prefix('forums')->name('forums.')->namespace('Forums')->group(function () {
+    Route::get('/', 'HomeController@index')->name('home');
 
-        Route::get('/{forum_slug}.{forum_id}/create-thread', 'ThreadController@create')
-            //        ->middleware('auth:web')
-            ->name('forum.create_thread');
+    Route::get('/{forum_slug}.{forum_id}/create-thread', 'ThreadController@create')
+        //        ->middleware('auth:web')
+        ->name('forum.create_thread');
 
-        Route::get('/{forum_slug}.{forum_id}', 'ForumController@index')->name('forum');
-        // Route::get('/category/{category_slug}', 'CategoryController@index')->name('category');
-        Route::get('/thread/{thread_slug}.{thread_id}', 'ThreadController@show')->name('thread');
+    Route::get('/{forum_slug}.{forum_id}', 'ForumController@index')->name('forum');
+    // Route::get('/category/{category_slug}', 'CategoryController@index')->name('category');
+    Route::get('/thread/{thread_slug}.{thread_id}', 'ThreadController@show')->name('thread');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::prefix('profile')->name('profile.')->group(function () {
+        Route::get('details', 'Profile\DetailsController@index')->name('details');
+
+        // Security
+        Route::get('security', 'Profile\SecurityController@index')->name('security');
+        Route::put('security/update/email', 'Profile\SecurityController@updateEmail')->name('security.update.email')->middleware('throttle:6,1');
+        Route::put('security/update/password', 'Profile\SecurityController@updatePassword')->name('security.update.password')->middleware('throttle:6,1');
+
+        Route::get('security/update/password/confirm/{id}', 'Profile\SecurityController@updatePasswordConfirm')->name('security.update.password.confirm')->middleware('signed', 'throttle:6,1');
+        Route::get('security/update/email/confirm/{id}', 'Profile\SecurityController@updateEmailConfirm')->name('security.update.email.confirm')->middleware('signed', 'throttle:6,1');
     });
+});
 
-    Route::middleware('auth')->group(function () {
-        Route::prefix('profile')->name('profile.')->group(function () {
-            Route::get('details', 'Profile\DetailsController@index')->name('details');
+Route::prefix('admin')->name('admin.')->namespace('Admin')->middleware('super.admin')->group(function () {
+    Route::get('/', 'DashboardController@index')->name('dashboard');
 
-            // Security
-            Route::get('security', 'Profile\SecurityController@index')->name('security');
-            Route::put('security/update/email', 'Profile\SecurityController@updateEmail')->name('security.update.email');
-            Route::put('security/update/password', 'Profile\SecurityController@updatePassword')->name('security.update.password');
-        });
-    });
+    Route::get('/tree', 'TreeController@index')->name('tree');
+    Route::post('/tree/sort', 'TreeController@sort')->name('tree.sort');
 
-    Route::prefix('admin')->name('admin.')->namespace('Admin')->middleware('super.admin')->group(function () {
-        Route::get('/', 'DashboardController@index')->name('dashboard');
+    Route::resource('categories', 'CategoryController')->only([
+        'create', 'store', 'edit', 'update'
+    ]);
 
-        Route::get('/tree', 'TreeController@index')->name('tree');
-        Route::post('/tree/sort', 'TreeController@sort')->name('tree.sort');
-
-        Route::resource('categories', 'CategoryController')->only([
-            'create', 'store', 'edit', 'update'
-        ]);
-
-        Route::resource('forums', 'ForumController')->only([
-            'create', 'store', 'edit', 'update'
-        ]);
-    });
+    Route::resource('forums', 'ForumController')->only([
+        'create', 'store', 'edit', 'update'
+    ]);
+});
 // });

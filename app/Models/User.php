@@ -52,4 +52,14 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->is_super_admin;
     }
+
+    public function sendChangePasswordNotification()
+    {
+        $this->notify(new \App\Notifications\ChangePassword);
+    }
+
+    public function sendChangeEmailNotification()
+    {
+        $this->notify(new \App\Notifications\ChangeEmail);
+    }
 }
