@@ -42,7 +42,15 @@ class ThreadPolicy
 
     public function reply(User $user, Thread $thread)
     {
-        return !$thread->trashed() && $this->can($user, 'write', $thread);
+        if ($thread->trashed() || ($thread->closed && !$user->hasGroup(Group::MANAGER()))) {
+            return false;
+        }
+
+        if ($user->id == $thread->user_id) {
+            return true;
+        }
+
+        return $this->can($user, 'write', $thread);
     }
 
     public function read(?User $user, Thread $thread)
@@ -50,7 +58,7 @@ class ThreadPolicy
         if ($user && $user->id == $thread->user_id) {
             return true;
         }
-        
+
         return $this->can($user, 'read', $thread->forum->category, true)
             && $this->can($user, 'read', $thread->forum, true)
             && $this->can($user, 'read', $thread);
