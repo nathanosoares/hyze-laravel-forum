@@ -196,3 +196,10 @@ hr.dashed {
     }
   }
 }
+
+.form-control.is-invalid,
+.was-validated .form-control:invalid {
+  &.rounded-pull {
+    background-position: 100% calc(0.375em + 0.1875rem);
+  }
+}
