@@ -98,6 +98,10 @@ class Thread extends Model
             if (!is_null($currentHighestGroup)) {
                 $query->orWhereIn('restrict_read', $currentHighestGroup->sameOrLower()->pluck('key'));
             }
+
+            if (auth()->user()) {
+                $query->orWhereIn('user_id', auth()->user()->id);
+            }
         })->whereIn('forum_id', $allowedForumsToReadIds);
     }
 }
