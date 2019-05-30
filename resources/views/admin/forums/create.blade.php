@@ -70,9 +70,11 @@
         </div>
 
         <hr>
-
-        <h3>Para as threads criadas nesse fórum:</h3>
-        <small>Esta opção pode ser sobrescrita pelas opções da própria thread</small>
+        
+        <div class="mb-3">
+            <h4>Para as threads criadas nesse fórum:</h4>
+            <small>Esta opção pode ser sobrescrita pelas opções da própria thread</small>
+        </div>
 
         <div class="form-group row">
             <label for="inputThreadsRestrictRead" class="col-sm-2 col-form-label">Quem pode ler?</label>
