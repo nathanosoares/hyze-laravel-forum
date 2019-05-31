@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Extensions\Markdown\Providers;
-
 
 use App\Extensions\Markdown\Extension\CenterExtension;
 use Illuminate\Support\ServiceProvider;
@@ -40,14 +38,9 @@ class MarkdownParserServiceProvider extends ServiceProvider
 
             $environment = Environment::createCommonMarkEnvironment();
 
-
-
-//            $environment->addInlineRenderer(Center::class, new CenterRenderer());
-           $environment->addInlineRenderer(Link::class, new LinkRenderer(), 1);
-
+            $environment->addInlineRenderer(Link::class, new LinkRenderer(), 1);
 
             $environment->addExtension(new CenterExtension());
-//            $environment->addInlineParser(new TwitterHandleParser());
 
             $converter = new CommonMarkConverter([
                 'html_input' => 'escape',

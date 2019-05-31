@@ -6,28 +6,16 @@ namespace App\Extensions\Markdown\Extension;
 use App\Extensions\Markdown\Inline\Element\Center;
 use App\Extensions\Markdown\Inline\Parser\CenterParser;
 use App\Extensions\Markdown\Inline\Renderer\CenterRenderer;
-use League\CommonMark\Extension\Extension;
+use League\CommonMark\Extension\ExtensionInterface;
+use League\CommonMark\ConfigurableEnvironmentInterface;
 
-class CenterExtension extends Extension
+class CenterExtension implements ExtensionInterface
 {
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockParsers()
+    public function register(ConfigurableEnvironmentInterface $environment)
     {
-        return [
-            new CenterParser(),
-        ];
+        $environment
+            ->addBlockParser(new CenterParser())
+            ->addBlockRenderer(Center::class, new CenterRenderer(), 0);
     }
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockRenderers()
-    {
-        return [
-            Center::class => new CenterRenderer(),
-        ];
-    }
-
 }

@@ -1,18 +1,16 @@
 <?php
 
-
 namespace App\Extensions\Markdown\Inline\Parser;
 
-
 use App\Extensions\Markdown\Inline\Element\Center;
-use League\CommonMark\Block\Parser\AbstractBlockParser;
 use League\CommonMark\ContextInterface;
 use League\CommonMark\Cursor;
+use League\CommonMark\Block\Parser\BlockParserInterface;
 
-class CenterParser extends AbstractBlockParser
+class CenterParser implements BlockParserInterface
 {
 
-    public function parse(ContextInterface $context, Cursor $cursor)
+    public function parse(ContextInterface $context, Cursor $cursor): bool
     {
 
         $tmpCursor = clone $cursor;
@@ -30,7 +28,5 @@ class CenterParser extends AbstractBlockParser
         $cursor->advanceBySpaceOrTab();
 
         return true;
-
     }
-
 }
