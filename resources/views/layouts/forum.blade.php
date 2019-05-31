@@ -19,6 +19,8 @@
     <!-- Styles -->
     <link href="{{ mix('/assets/forums/css/app.css') }}" rel="stylesheet">
 
+<link rel="shortcut icon" href="{{ asset('favicon.png') }}">
+
     @yield('css')
 
     @routes
