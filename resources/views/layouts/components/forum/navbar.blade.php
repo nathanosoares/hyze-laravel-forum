@@ -13,17 +13,17 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item {{ request()->routeIs('home') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('home') }}">Início</a>
+                        <a class="nav-link mr-3 ml-3" href="{{ route('home') }}">Início</a>
                     </li>
 
                     <li class="nav-item {{ request()->routeIs('forums.*') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('forums.home') }}">
+                        <a class="nav-link mr-3 ml-3" href="{{ route('forums.home') }}">
                             Comunidade
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="https://loja.hyze.net" target="_blank">
+                        <a class="nav-link mr-3 ml-3" href="https://loja.hyze.net" target="_blank">
                             Loja
                         </a>
                     </li>
