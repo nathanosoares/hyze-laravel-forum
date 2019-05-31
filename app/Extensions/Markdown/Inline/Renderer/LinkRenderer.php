@@ -35,8 +35,12 @@ class LinkRenderer extends Render
             $attrs['title'] = $inline->data['title'];
         }
 
+        if (isset($attrs['target']) && $attrs['target'] === '_blank' && !isset($attrs['rel'])) {
+            $attrs['rel'] = 'noopener noreferrer nofollow';
+        }
+
         if (url_to_domain($inline->getUrl()) != url_to_domain(env('APP_URL'))) {
-            $attrs['rel'] = 'nofollow';
+            $attrs['rel'] = 'noopener noreferrer nofollow';
         }
 
         return new HtmlElement('a', $attrs, $htmlRenderer->renderInlines($inline->children()));
