@@ -10,6 +10,9 @@ export default {
       required: true,
       type: Object
     },
+    overlay: {
+      type: Object
+    },
     classes: {
       type: Array,
       default: function() {
@@ -57,6 +60,10 @@ export default {
         styles += `background-image: url(https://cravatar.eu/helmavatar/${
           this.user.nick
         }/${pixels}), url(${this.defaultImg});`;
+
+        if (this.overlay && this.overlay.nick != this.user.nick) {
+          // console.log(this.overlay);
+        }
       }
 
       return styles;

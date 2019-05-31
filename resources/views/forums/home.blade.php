@@ -17,7 +17,8 @@
             @foreach($recent as $thread)
             <div class="d-none d-md-flex flex-nowrap bg-ghost align-items-center">
                 <div>
-                    <user-avatar :user="{{$thread->author}}" :classes="['mr-3', 'rounded']" size="s"></user-avatar>
+                    <user-avatar :user="{{$thread->last_post->author}}" :overlay="{{$thread->author}}"
+                        :classes="['mr-3', 'rounded']" size="s"></user-avatar>
                 </div>
 
                 <div class="mr-3">
