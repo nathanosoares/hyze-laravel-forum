@@ -11,7 +11,7 @@ class CreateForumsTable extends Migration
     {
         Schema::create('forums', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('category_id')->unsigned()->default('1');
+            $table->integer('category_id')->unsigned();
             $table->integer('parent_id')->unsigned()->nullable();
             $table->integer('order')->default(1);
             $table->string('name');
@@ -21,6 +21,9 @@ class CreateForumsTable extends Migration
             $table->string('restrict_write')->default(Group::DEFAULT()->key);
             $table->string('threads_restrict_read')->nullable();
             $table->string('threads_restrict_write')->default(Group::DEFAULT()->key);
+            $table->string('threads_restrict_move')->default(Group::MANAGER()->key);
+            $table->string('threads_restrict_close')->default(Group::MANAGER()->key);
+            $table->integer('threads_fallback_forum_id')->unsigned()->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

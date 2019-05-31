@@ -15,8 +15,9 @@ class Forum extends Model
     public $timestamps = true;
 
     protected $fillable = [
-        'name', 'slug', 'restrict_read', 'restrict_write',
-        'description', 'threads_restrict_read', 'threads_restrict_write'
+        'category_id', 'name', 'slug', 'restrict_read', 'restrict_write',
+        'description', 'threads_restrict_read', 'threads_restrict_write',
+        'threads_restrict_move', 'threads_restrict_close', 'threads_fallback_forum_id',
     ];
 
     protected $visible = [
@@ -49,6 +50,11 @@ class Forum extends Model
     public function template()
     {
         return $this->hasOne(Thread::class, 'id', 'template_thread_id');
+    }
+
+    public function fallback()
+    {
+        return $this->hasOne(Forum::class, 'id', 'threads_fallback_forum_id');
     }
 
     /**

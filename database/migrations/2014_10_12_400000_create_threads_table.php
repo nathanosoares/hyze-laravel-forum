@@ -17,6 +17,7 @@ class CreateThreadsTable extends Migration
             $table->string('slug');
             $table->boolean('promoted')->default(false);
             $table->boolean('sticky')->default(false);
+            $table->boolean('closed')->default(false);
             $table->integer('views')->unsigned()->default('0');
             $table->boolean('answered')->default(false);
             $table->timestamp('last_reply_at')->useCurrent();

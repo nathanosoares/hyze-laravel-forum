@@ -89,32 +89,41 @@ class ThreadApiController extends Controller
         ]);
 
         if (Gate::allows('rename', $thread)) {
-            $thread->title = $request->get('title');
+            $thread->title = $request->get('title', $thread->title);
             $thread->slug = str_slug($request->title, '-');
         }
 
         if (Gate::allows('promote', $thread)) {
-            $thread->promoted = $request->get('promoted');
+            $thread->promoted = $request->get('promoted', $thread->promoted);
         }
 
         if (Gate::allows('sticky', $thread)) {
-            $thread->sticky = $request->get('sticky');
+            $thread->sticky = $request->get('sticky', $thread->sticky);
+        }
+
+        if (Gate::allows('close', $thread)) {
+            $oldStatus = $thread->closed;
+            $thread->closed = $request->get('closed', $thread->closed);
+
+            if (!$oldStatus && $thread->closed && $thread->forum->fallback) {
+                $thread->forum_id = $thread->forum->fallback->id;
+            }
         }
 
         if (auth()->user()->hasGroup(Group::ADMINISTRATOR())) {
-            $thread->restrict_read = $request->get('restrict_read');
+            $thread->restrict_read = $request->get('restrict_read', $thread->restrict_read);
         }
 
         if (auth()->user()->hasGroup(Group::MANAGER())) {
-            $thread->restrict_write = $request->get('restrict_write');
+            $thread->restrict_write = $request->get('restrict_write', $thread->restrict_write);
         }
 
         if ($thread->isDirty()) {
             $thread->save();
 
-            return response()->json(null, 200);
+            return response()->json(null, 202);
         }
 
-        return response()->json(null, 304);
+        return response()->json(null, 204);
     }
 }

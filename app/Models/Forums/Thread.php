@@ -18,13 +18,14 @@ class Thread extends Model
     protected $dates = ['deleted_at', 'last_reply_at'];
     protected $casts = [
         'promoted' => 'boolean',
-        'sticky' => 'boolean'
+        'sticky' => 'boolean',
+        'closed' => 'boolean'
     ];
 
     protected $visible = [
         'id', 'title', 'slug', 'forum', 'author', 'main_post',
         'created_at', 'replies_count', 'promoted', 'sticky',
-        'restrict_write', 'restrict_read'
+        'restrict_write', 'restrict_read', 'closed'
     ];
 
     protected $with = ['author'];
