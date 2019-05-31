@@ -30,13 +30,13 @@
 
                     @guest
                     <li class="nav-item">
-                        <a href="{{ route('login') }}" class="nav-link text-white btn btn-primary rounded-pill ml-3">
+                        <a href="{{ route('login') }}" class="nav-link text-white ml-3 bg-primary rounded-pill px-3">
                             Entrar
                         </a>
                     </li>
                     @else
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link text-white dropdown-toggle btn btn-primary rounded-pill ml-3" href="#" role="button"
+                        <a id="navbarDropdown" class="nav-link text-white dropdown-toggle ml-3 bg-primary rounded-pill px-3" href="#" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->nick }} <span class="caret"></span>
                         </a>
