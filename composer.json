@@ -19,6 +19,7 @@
         "laravel/socialite": "^4.0",
         "laravel/tinker": "^1.0",
         "league/commonmark": "^0.19.2",
+        "league/commonmark-ext-autolink": "^0.3.0",
         "league/commonmark-ext-external-link": "^0.1.0",
         "monicahq/laravel-cloudflare": "^1.1",
         "spatie/once": "^2.0",

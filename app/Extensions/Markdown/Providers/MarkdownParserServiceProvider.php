@@ -6,6 +6,7 @@ use App\Extensions\Markdown\Extension\CenterExtension;
 use Illuminate\Support\ServiceProvider;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Environment;
+use League\CommonMark\Ext\Autolink\AutolinkExtension;
 use League\CommonMark\Ext\ExternalLink\ExternalLinkExtension;
 
 class MarkdownParserServiceProvider extends ServiceProvider
@@ -38,6 +39,7 @@ class MarkdownParserServiceProvider extends ServiceProvider
             $environment = Environment::createCommonMarkEnvironment();
 
             // $environment->addInlineRenderer(Link::class, new LinkRenderer(), 1);
+            $environment->addExtension(new AutolinkExtension());
             $environment->addExtension(new ExternalLinkExtension());
 
             $environment->addExtension(new CenterExtension());
