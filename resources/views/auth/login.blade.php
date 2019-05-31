@@ -54,7 +54,7 @@
                 <div class="form-group mb-0">
                     <div class="">
 
-                        <button class="g-recaptcha btn btn-primary" data-callback="onSubmitlogin"
+                        <button class="g-recaptcha btn btn-primary btn rounded-pill" data-callback="onSubmitlogin"
                             data-sitekey="{{ env('NOCAPTCHA_SITEKEY') }}">
                             Entrar
                         </button>
