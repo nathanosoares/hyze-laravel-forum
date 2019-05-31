@@ -6,8 +6,7 @@ use App\Extensions\Markdown\Extension\CenterExtension;
 use Illuminate\Support\ServiceProvider;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Environment;
-use App\Extensions\Markdown\Inline\Renderer\LinkRenderer;
-use League\CommonMark\Inline\Element\Link;
+use League\CommonMark\Ext\ExternalLink\ExternalLinkExtension;
 
 class MarkdownParserServiceProvider extends ServiceProvider
 {
@@ -38,14 +37,18 @@ class MarkdownParserServiceProvider extends ServiceProvider
 
             $environment = Environment::createCommonMarkEnvironment();
 
-            $environment->addInlineRenderer(Link::class, new LinkRenderer(), 1);
+            // $environment->addInlineRenderer(Link::class, new LinkRenderer(), 1);
+            $environment->addExtension(new ExternalLinkExtension());
 
             $environment->addExtension(new CenterExtension());
 
             $converter = new CommonMarkConverter([
                 'html_input' => 'escape',
                 'allow_unsafe_links' => false,
-                'max_nesting_level' => '5'
+                'max_nesting_level' => '5',
+                'internal_hosts' => url_to_domain(env('APP_URL')),
+                'open_in_new_window' => true,
+                'html_class' => 'external-link',
             ], $environment);
 
             return $converter;

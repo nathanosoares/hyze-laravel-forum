@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a971416417d15aa5cafb324b89809b8d",
+    "content-hash": "b6079dd8e462c0b07fe3af12944164f7",
     "packages": [
         {
             "name": "anhskohbo/no-captcha",
@@ -1402,6 +1402,60 @@
                 "parser"
             ],
             "time": "2019-05-19T13:39:36+00:00"
+        },
+        {
+            "name": "league/commonmark-ext-external-link",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/commonmark-ext-external-link.git",
+                "reference": "3e9fd6f2773f2f0417624cfbf791fabe06cb84fe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/commonmark-ext-external-link/zipball/3e9fd6f2773f2f0417624cfbf791fabe06cb84fe",
+                "reference": "3e9fd6f2773f2f0417624cfbf791fabe06cb84fe",
+                "shasum": ""
+            },
+            "require": {
+                "league/commonmark": "^0.19.2",
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.5"
+            },
+            "type": "commonmark-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\CommonMark\\Ext\\ExternalLink\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Colin O'Dell",
+                    "email": "colinodell@gmail.com",
+                    "homepage": "https://www.colinodell.com",
+                    "role": "Lead Developer"
+                }
+            ],
+            "description": "Extension for league/commonmark which adds extra classes and HTML attributes to external links",
+            "homepage": "https://github.com/thephpleague/commonmark-ext-external-link",
+            "keywords": [
+                "commonmark",
+                "extension",
+                "links",
+                "markdown"
+            ],
+            "time": "2019-05-19T14:40:33+00:00"
         },
         {
             "name": "league/event",
