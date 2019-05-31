@@ -26,8 +26,7 @@ class LinkRenderer extends Render
 
         $attrs = $inline->getData('attributes', []);
 
-        $forbidUnsafeLinks = !$this->config->get('allow_unsafe_links');
-
+        $forbidUnsafeLinks = $this->config->getConfig('safe') || !$this->config->getConfig('allow_unsafe_links');
         if (!($forbidUnsafeLinks && RegexHelper::isLinkPotentiallyUnsafe($inline->getUrl()))) {
             $attrs['href'] = $inline->getUrl();
         }
