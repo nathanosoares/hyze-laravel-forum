@@ -41,8 +41,9 @@ class MarkdownParserServiceProvider extends ServiceProvider
             $environment = Environment::createCommonMarkEnvironment();
 
 
+
 //            $environment->addInlineRenderer(Center::class, new CenterRenderer());
-           $environment->addInlineRenderer(Link::class, new LinkRenderer());
+           $environment->addInlineRenderer(Link::class, new LinkRenderer(), 1);
 
 
             $environment->addExtension(new CenterExtension());
