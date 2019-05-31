@@ -1,14 +1,11 @@
 <?php
 
-
 namespace App\Extensions\Markdown\Inline\Renderer;
 
 use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\HtmlElement;
 use League\CommonMark\Inline\Element\AbstractInline;
 use League\CommonMark\Inline\Element\Link;
-use League\CommonMark\Util\ConfigurationAwareInterface;
-use League\CommonMark\Util\ConfigurationInterface;
 use League\CommonMark\Util\RegexHelper;
 use League\CommonMark\Inline\Renderer\LinkRenderer as Render;
 
