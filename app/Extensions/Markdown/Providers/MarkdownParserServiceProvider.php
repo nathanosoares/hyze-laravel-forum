@@ -8,6 +8,8 @@ use App\Extensions\Markdown\Extension\CenterExtension;
 use Illuminate\Support\ServiceProvider;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Environment;
+use App\Extensions\Markdown\Inline\Renderer\LinkRenderer;
+use League\CommonMark\Inline\Element\Link;
 
 class MarkdownParserServiceProvider extends ServiceProvider
 {
@@ -40,7 +42,7 @@ class MarkdownParserServiceProvider extends ServiceProvider
 
 
 //            $environment->addInlineRenderer(Center::class, new CenterRenderer());
-//            $environment->addInlineRenderer(BlankLink::class, new LinkRenderer());
+           $environment->addInlineRenderer(Link::class, new LinkRenderer());
 
 
             $environment->addExtension(new CenterExtension());
