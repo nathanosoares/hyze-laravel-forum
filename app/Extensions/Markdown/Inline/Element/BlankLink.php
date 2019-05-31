@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Providers\Markdown\Inline\Element;
+namespace App\Extensions\Markdown\Inline\Element;
 
 
 use League\CommonMark\Inline\Element\Link;

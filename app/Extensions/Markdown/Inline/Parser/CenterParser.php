@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Providers\Markdown\Inline\Parser;
+namespace App\Extensions\Markdown\Inline\Parser;
 
 
-use App\Providers\Markdown\Inline\Element\Center;
+use App\Extensions\Markdown\Inline\Element\Center;
 use League\CommonMark\Block\Parser\AbstractBlockParser;
 use League\CommonMark\ContextInterface;
 use League\CommonMark\Cursor;

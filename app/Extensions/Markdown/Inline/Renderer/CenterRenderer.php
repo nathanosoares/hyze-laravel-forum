@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Providers\Markdown\Inline\Renderer;
+namespace App\Extensions\Markdown\Inline\Renderer;
 
 
-use App\Providers\Markdown\Inline\Element\Center;
+use App\Extensions\Markdown\Inline\Element\Center;
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Block\Renderer\BlockRendererInterface;
 use League\CommonMark\ElementRendererInterface;

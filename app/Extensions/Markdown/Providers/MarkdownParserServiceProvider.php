@@ -1,19 +1,13 @@
 <?php
 
 
-namespace App\Providers;
+namespace App\Extensions\Markdown\Providers;
 
 
-use App\Providers\Markdown\Extension\CenterExtension;
-use App\Providers\Markdown\Inline\Element\BlankLink;
-use App\Providers\Markdown\Inline\Element\Center;
-use App\Providers\Markdown\Inline\Parser\CenterParser;
-use App\Providers\Markdown\Inline\Parser\TwitterHandleParser;
-use App\Providers\Markdown\Inline\Renderer\CenterRenderer;
+use App\Extensions\Markdown\Extension\CenterExtension;
 use Illuminate\Support\ServiceProvider;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Environment;
-use League\CommonMark\Inline\Renderer\LinkRenderer;
 
 class MarkdownParserServiceProvider extends ServiceProvider
 {

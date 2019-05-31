@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Providers\Markdown\Inline\Parser;
+namespace App\Extensions\Markdown\Inline\Parser;
 
 
-use App\Providers\Markdown\Inline\Element\BlankLink;
+use App\Extensions\Markdown\Inline\Element\BlankLink;
 use League\CommonMark\Inline\Parser\AbstractInlineParser;
 use League\CommonMark\InlineParserContext;
 

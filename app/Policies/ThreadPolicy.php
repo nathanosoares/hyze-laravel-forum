@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Forums\Thread;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use App\Extensions\Permission\Group;
 
 class ThreadPolicy
 {
