@@ -5,8 +5,6 @@ namespace App\Extensions\Markdown\Inline\Element;
 
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Cursor;
-use League\CommonMark\Inline\Element\AbstractInlineContainer;
-use League\CommonMark\Inline\Element\Text;
 
 class Center extends AbstractBlock
 {
@@ -18,7 +16,7 @@ class Center extends AbstractBlock
      *
      * @return bool
      */
-    public function canContain(AbstractBlock $block)
+    public function canContain(AbstractBlock $block): bool
     {
         return true;
     }
@@ -28,7 +26,7 @@ class Center extends AbstractBlock
      *
      * @return bool
      */
-    public function acceptsLines()
+    public function acceptsLines(): bool
     {
         return false;
     }
@@ -38,7 +36,7 @@ class Center extends AbstractBlock
      *
      * @return bool
      */
-    public function isCode()
+    public function isCode(): bool
     {
         return false;
     }
@@ -48,7 +46,7 @@ class Center extends AbstractBlock
      *
      * @return bool
      */
-    public function matchesNextLine(Cursor $cursor)
+    public function matchesNextLine(Cursor $cursor): bool
     {
         $tmpCursor = clone $cursor;
         $tmpCursor->advanceToNextNonSpaceOrTab();
