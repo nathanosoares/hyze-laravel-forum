@@ -46,6 +46,11 @@ class Forum extends Model
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
+    public function template()
+    {
+        return $this->hasOne(Thread::class, 'id', 'template_thread_id');
+    }
+
     /**
      * Scope a query to only include allowed forums to current user.
      *

@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex flex-column col-lg-10 mx-lg-auto">
-    <login-modal v-if="mounted" :cancel-url="route('forums.forum', [forum.slug, forum.id])"></login-modal>
+    <!-- <login-modal v-if="mounted" :cancel-url="route('forums.forum', [forum.slug, forum.id])"></login-modal> -->
 
     <div class="form-group">
       <h5 class>Título</h5>
@@ -26,6 +26,9 @@ export default {
     forum: {
       type: Object,
       required: true
+    },
+    template: {
+      type: Object
     }
   },
   components: {
@@ -35,12 +38,13 @@ export default {
     return {
       title: null,
       canSubmit: false,
-      body: "",
+      body: null,
       mounted: false
     };
   },
   mounted() {
     this.mounted = true;
+    this.body = this.template ? this.template.main_post.body : ""
   },
   watch: {
     title: function() {

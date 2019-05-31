@@ -1,5 +1,7 @@
 @extends('layouts.forum')
 
+@section('page.title', $forum->name . ' - ' . env('APP_NAME'))
+
 @section('content')
 <div class="breadcrumb-scroll rounded">
     {{ Breadcrumbs::render('forums.forum', $forum) }}
