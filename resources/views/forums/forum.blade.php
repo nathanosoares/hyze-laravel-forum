@@ -31,9 +31,10 @@
 </a>
 @endcan
 @endif
+@forelse ($threads->groupBy('sticky') as $sticky)
+<div class="bg-white rounded shadow-sm p-3 @if(!$loop->last) mb-4 @endif">
+    @foreach ($sticky as $thread)
 
-<div class="bg-white rounded shadow-sm p-3">
-    @forelse ($threads as $thread)
     <div class="d-flex align-items-center">
         <div>
             <user-avatar :user="{{$thread->author}}" :classes="['mr-3', 'rounded']" size="s"></user-avatar>
@@ -76,18 +77,20 @@
     <hr class="dashed">
     @endif
 
-    @empty
-    <div class="text-center p-4">
-        @can('write', $forum)
-        <p class="m-4">Nenhuma postagem até o momento. Seja o primeiro a postar algo!</p>
-        <a href="{{ route('forums.forum.create_thread', [$forum->slug, $forum->id]) }}"
-            class="btn btn-lg btn-primary rounded-pill">
-            {{ __('Criar novo post') }}
-        </a>
-        @else
-        <p class="m-4">Nenhuma postagem até o momento.</p>
-        @endcan
-    </div>
-    @endforelse
+    @endforeach
+
 </div>
+@empty
+<div class="text-center p-4">
+    @can('write', $forum)
+    <p class="m-4">Nenhuma postagem até o momento. Seja o primeiro a postar algo!</p>
+    <a href="{{ route('forums.forum.create_thread', [$forum->slug, $forum->id]) }}"
+        class="btn btn-lg btn-primary rounded-pill">
+        {{ __('Criar novo post') }}
+    </a>
+    @else
+    <p class="m-4">Nenhuma postagem até o momento.</p>
+    @endcan
+</div>
+@endforelse
 @stop

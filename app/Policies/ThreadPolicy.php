@@ -23,7 +23,7 @@ class ThreadPolicy
 
     public function destroy(User $user, Thread $thread)
     {
-        return $user->id === $thread->user_id || $user->hasGroup(Group::GAME_MASTER());
+        return $user->hasGroup(Group::GAME_MASTER());
     }
 
     public function forceDelete(User $user, Thread $thread)

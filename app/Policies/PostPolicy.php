@@ -14,12 +14,12 @@ class PostPolicy
 
     public function update(User $user, Post $post)
     {
-        return !$post->thread->trashed() && $user->id === $post->user_id || $user->hasGroup(Group::GAME_MASTER());
+        return $user->hasGroup(Group::GAME_MASTER());
     }
 
     public function destroy(User $user, Post $post)
     {
-        return !$post->thread->trashed() && $user->id === $post->user_id || $user->hasGroup(Group::GAME_MASTER());
+        return $user->hasGroup(Group::GAME_MASTER());
     }
 
     public function forceDelete(User $user, Post $post)
