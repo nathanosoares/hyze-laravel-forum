@@ -7,7 +7,7 @@
 @else
 <div class="alert alert-warning d-flex align-items-center" role="alert">
     <div>
-        <p class="text-lg">Você precisa confirmar seu e-mail.</p>
+        <p class="text-lg">Você precisa confirmar seu e-mail para usar o fórum.</p>
         <p>Seu email poderá ser usado para recuperar sua conta caso você se esqueça da sua senha.</p>
     </div>
 

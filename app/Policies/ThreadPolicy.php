@@ -42,7 +42,7 @@ class ThreadPolicy
 
     public function reply(User $user, Thread $thread)
     {
-        if ($thread->trashed() || ($thread->closed && !$user->hasGroup(Group::MANAGER()))) {
+        if (!$user->hasVerifiedEmail() || $thread->trashed() || ($thread->closed && !$user->hasGroup(Group::MANAGER()))) {
             return false;
         }
 

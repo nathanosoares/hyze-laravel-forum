@@ -17,6 +17,6 @@ class CategoryPolicy
 
     public function write(User $user, Category $category)
     {
-        return $this->can($user, 'write', $category, true);
+        return $user->hasVerifiedEmail() && $this->can($user, 'write', $category, true);
     }
 }

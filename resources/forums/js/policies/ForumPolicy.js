@@ -1,12 +1,14 @@
-import { Group } from './../GroupManager';
+import {
+    Group
+} from './../GroupManager';
 
 export default class ForumPolicy {
     static write(user, forum) {
-        if (!user) {
+        if (!user || !user.email_verified_at) {
             return false;
         }
 
-        for (let current = forum; ; current = current.parent) {
+        for (let current = forum;; current = current.parent) {
             if (!current) {
                 break
             }
