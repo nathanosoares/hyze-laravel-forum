@@ -19,11 +19,21 @@
     <!-- Styles -->
     <link href="{{ mix('/assets/forums/css/app.css') }}" rel="stylesheet">
 
-<link rel="shortcut icon" href="{{ asset('favicon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('favicon.png') }}">
 
     @yield('css')
 
     @routes
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-136128947-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-136128947-2');
+    </script>
 </head>
 
 <body class="d-flex flex-column h-100">
