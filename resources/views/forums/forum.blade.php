@@ -13,7 +13,7 @@
         <ul class="list m-0">
             @foreach($forum->children as $child)
             <li class="list-item">
-                <a href="{{ route('forums.forum', [$child->slug, $child->id]) }}" class="text-lg text-secondary">
+                <a href="{{ route('forums.forum', [$child->slug, $child->id]) }}" class="text-lg">
                     {{ $child->name }}
                 </a>
             </li>
