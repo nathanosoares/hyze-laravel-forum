@@ -10,9 +10,9 @@
 @if($forum->children()->exists())
 <div class="mb-3">
     <div class="bg-white rounded shadow-sm p-3">
-        <ul class="list m-0">
+        <ul class="nav flex-column">
             @foreach($forum->children as $child)
-            <li class="list-item">
+            <li class="nav-link">
                 <a href="{{ route('forums.forum', [$child->slug, $child->id]) }}" class="text-lg">
                     {{ $child->name }}
                 </a>
