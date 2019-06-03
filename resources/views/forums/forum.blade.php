@@ -13,7 +13,7 @@
         <ul class="nav flex-column">
             @foreach($forum->children as $child)
             <li class="nav-link">
-                <a href="{{ route('forums.forum', [$child->slug, $child->id]) }}" class="text-lg">
+                <a href="{{ route('forums.forum', [$child->slug, $child->id]) }}" class="text-lg text-primary">
                     {{ $child->name }}
                 </a>
             </li>
