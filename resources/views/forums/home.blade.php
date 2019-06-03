@@ -119,7 +119,7 @@
             </h4>
 
             <div class="p-3 shadow-sm bg-white rounded">
-                @foreach($category->forums()->allowed()->get() as $forum)
+                @foreach($category->forums()->where('parent_id', null)->allowed()->get() as $forum)
 
                 <a href="{{ route('forums.forum', [$forum->slug, $forum->id]) }}" class="text-primary text-lg">
                     {{ $forum->name }}
