@@ -23,7 +23,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="password" class="text-md-right">{{ __('Password') }}</label>
+                    <label for="password" class="text-md-right">
+                        Nova senha
+                    </label>
 
                     <input id="password" type="password"
                         class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password"
@@ -37,7 +39,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="password-confirm" class="text-md-right">{{ __('Confirm Password') }}</label>
+                    <label for="password-confirm" class="text-md-right">
+                        Confirme a nova senha
+                    </label>
 
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
                         required>
