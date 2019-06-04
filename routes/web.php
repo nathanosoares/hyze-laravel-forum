@@ -11,31 +11,9 @@
 |
 */
 
-// Auth::routes(['verify' => true, 'register' => false]);
-
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'Auth\LoginController@login');
-Route::post('logout', 'Auth\LoginController@logout')->name('logout');
-
-Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
-Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
+Auth::routes(['verify' => true, 'register' => false]);
 
 Route::get('/', 'HomeController@index')->name('home');
-
-// Route::get('auth/login', function () {
-//     $url = \Spatie\Url\Url::fromString(url()->previous());
-
-//     if ($url->getPath() === '/auth/login') {
-//         $url = \Spatie\Url\Url::fromString(route('home'));
-//     }
-
-//     $url = $url->withQueryParameter('modal', 'signin');
-
-//     return redirect((string) $url);
-// })->name('login');
-
-// Route::middleware('group:helper')->group(function () {
-// Route::group(function () {
 
 Route::prefix('forums')->name('forums.')->namespace('Forums')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
@@ -77,4 +55,3 @@ Route::prefix('admin')->name('admin.')->namespace('Admin')->middleware('super.ad
         'create', 'store', 'edit', 'update'
     ]);
 });
-// });

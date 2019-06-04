@@ -38,7 +38,7 @@
                     @endif
                 </div>
 
-                <div class="form-group ">
+                <div class="form-group">
                     <div class="">
                         <div class="custom-control custom-checkbox">
                             <input class="custom-control-input" type="checkbox" name="remember" id="remember"
@@ -66,8 +66,8 @@
                         @endif
 
                         @if (Route::has('password.request'))
-                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                            {{ __('Forgot Your Password?') }}
+                        <a class="btn btn-link text-muted" href="{{ route('password.request') }}">
+                            Esqueceu sua senha?
                         </a>
                         @endif
                     </div>

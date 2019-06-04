@@ -17,6 +17,7 @@ class CreateForumsTable extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('slug');
+            $table->integer('template_thread_id')->unsigned()->nullable();
             $table->string('restrict_read')->nullable();
             $table->string('restrict_write')->default(Group::DEFAULT()->key);
             $table->string('threads_restrict_read')->nullable();

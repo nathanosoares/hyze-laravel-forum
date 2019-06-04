@@ -4,5 +4,10 @@
     "Regards": "Atenciosamente",
     "Verify Email Address": "Verificar e-mail",
     "Please click the button below to verify your email address.": "Por favor, clique no botão abaixo para verificar seu endereço de e-mail.",
-    "If you did not create an account, no further action is required.": "Se você não criou uma conta, ignore essa mensagem."
+    "If you did not create an account, no further action is required.": "Se você não criou uma conta, ignore essa mensagem.",
+    "You are receiving this email because we received a password reset request for your account.": "Você está recebendo este e-mail porque recebemos uma solicitação de redefinição de senha para sua conta.",
+    "This password reset link will expire in :count minutes.": "Este link de redefinição de senha expirará em :count minutos.",
+    "If you did not request a password reset, no further action is required.": "Se você não solicitou uma redefinição de senha, nenhuma ação adicional é necessária.",
+    "Reset Password": "Redefinir Senha",
+    "Reset Password Notification": "Redefinir Senha"
 }
