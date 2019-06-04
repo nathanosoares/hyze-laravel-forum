@@ -14,12 +14,12 @@ class PostPolicy
 
     public function update(User $user, Post $post)
     {
-        return $user->hasGroup(Group::GAME_MASTER());
+        return $user->id == $post->user_id || $user->hasGroup(Group::ADMINISTRATOR());
     }
 
     public function destroy(User $user, Post $post)
     {
-        return $user->hasGroup(Group::GAME_MASTER());
+        return $user->hasGroup(Group::MANAGER());
     }
 
     public function forceDelete(User $user, Post $post)
