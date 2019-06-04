@@ -20,7 +20,7 @@ class ForumPolicy
     public function write(User $user, Forum $forum)
     {
         return $user->hasVerifiedEmail()
-            && $this->can($user, 'write', $forum->category, true)
-            && $this->can($user, 'write', $forum, true);
+            && $this->can($user, 'write', $forum->category)
+            && $this->can($user, 'write', $forum);
     }
 }
