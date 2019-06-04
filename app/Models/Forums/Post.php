@@ -4,16 +4,16 @@ namespace App\Models\Forums;
 
 
 use App\Models\User;
-use function foo\func;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Post extends Model
+class Post extends Model implements Auditable
 {
 
-    use SoftDeletes;
+    use SoftDeletes, \OwenIt\Auditing\Auditable;
 
     protected $table = 'posts';
     public $timestamps = true;
