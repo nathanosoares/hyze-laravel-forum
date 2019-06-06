@@ -149,6 +149,10 @@ hr.dashed {
       margin-top: 1rem;
     }
   }
+
+  img {
+    max-width: 100%;
+  }
 }
 
 @include media-breakpoint-down(md) {
