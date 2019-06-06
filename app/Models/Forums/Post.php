@@ -99,6 +99,6 @@ class Post extends Model implements Auditable
 
     public static function fromRequest(Request $request, Thread $thread, Post $parent = null): Post
     {
-        return self::createNew(auth()->user()->id, $thread, $request->body, $parent);
+        return self::createNew(auth()->user(), $thread, $request->body, $parent);
     }
 }
