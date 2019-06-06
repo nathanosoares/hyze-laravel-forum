@@ -5,6 +5,13 @@
 $body-bg: #f8f9fd;
 $body-color: $gray-600;
 
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1366px
+) !default;
+
 // // Fonts
 // //
 // // Font, line-height, and color for body text, headings, and more.

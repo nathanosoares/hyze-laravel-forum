@@ -13,7 +13,8 @@ class HomeController extends Controller
 
         $threads = Thread::where('promoted', true)
             ->allowed()
-            ->orderBy('last_reply_at', 'desc')->paginate($pagination_results);
+            ->orderBy('created_at', 'desc')
+            ->paginate($pagination_results);
 
         return view('home', compact('threads'));
     }

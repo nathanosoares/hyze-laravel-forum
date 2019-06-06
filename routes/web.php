@@ -15,6 +15,8 @@ Auth::routes(['verify' => true, 'register' => false]);
 
 Route::get('/', 'HomeController@index')->name('home');
 
+Route::get('/pages/{page}', 'PagesController@show')->name('pages');
+
 Route::prefix('forums')->name('forums.')->namespace('Forums')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
 

@@ -34,6 +34,8 @@
 
         gtag('config', 'UA-136128947-2');
     </script>
+
+    @stack('styles')
 </head>
 
 <body class="d-flex flex-column h-100">
