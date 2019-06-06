@@ -89,8 +89,6 @@ class Post extends Model implements Auditable
         //            return $thread->last_post;
         //        }
 
-
-
         return $thread->posts()->create([
             'user_id' => Auth::user()->id,
             'body' => $body

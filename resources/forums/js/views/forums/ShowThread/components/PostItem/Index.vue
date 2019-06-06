@@ -230,7 +230,7 @@ export default {
     },
     orderedReplies: function() {
       let self = this;
-      return this.post.replies.sort((a, b) =>
+      return [...this.post.replies].sort((a, b) =>
         self.moment(a.created_at).diff(self.moment(b.created_at))
       );
     }
