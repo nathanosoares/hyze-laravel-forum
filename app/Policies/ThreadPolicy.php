@@ -41,6 +41,11 @@ class ThreadPolicy
         return $user->hasGroup(Group::GAME_MASTER());
     }
 
+    public function close(User $user, Thread $thread)
+    {
+        return $user->hasGroup(Group::MANAGER());
+    }
+
     public function reply(User $user, Thread $thread)
     {
         if (!$user->hasVerifiedEmail() || $thread->trashed() || ($thread->closed && !$user->hasGroup(Group::MANAGER()))) {

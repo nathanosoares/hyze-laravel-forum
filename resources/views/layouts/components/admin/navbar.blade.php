@@ -17,6 +17,12 @@
             Árvore
           </a>
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('admin.multimoderation.index') }}">
+            Multi Moderação
+          </a>
+        </li>
       </ul>
 
       <ul class="navbar-nav ml-auto">

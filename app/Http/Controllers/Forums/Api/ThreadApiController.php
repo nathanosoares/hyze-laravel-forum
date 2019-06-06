@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Extensions\Permission\Group;
 use Illuminate\Support\Facades\Gate;
 use BenSampo\Enum\Rules\EnumKey;
+use App\Models\Forums\MultiModeration;
 
 class ThreadApiController extends Controller
 {
@@ -86,6 +87,7 @@ class ThreadApiController extends Controller
             'sticky' => 'required|boolean',
             'restrict_read' => ['nullable', new EnumKey(Group::class)],
             'restrict_write' => ['required', new EnumKey(Group::class)],
+            'multimoderation' => 'nullable|exists:multimoderations,id'
         ]);
 
         if (Gate::allows('rename', $thread)) {
@@ -118,8 +120,36 @@ class ThreadApiController extends Controller
             $thread->restrict_write = $request->get('restrict_write', $thread->restrict_write);
         }
 
-        if ($thread->isDirty()) {
-            $thread->save();
+        $autoReplied = false;
+
+        if (!is_null($request->get('multimoderation'))) {
+            $multimoderation = MultiModeration::find($request->get('multimoderation'));
+
+            if ($multimoderation && auth()->user()->hasGroup(Group::getInstances()[$multimoderation->restrict_use])) {
+
+                if ($multimoderation->close_thread) {
+                    $thread->closed = true;
+                }
+
+                if ($multimoderation->move_thread_to) {
+                    $thread->forum_id = $multimoderation->move_thread_to;
+                }
+
+                if ($multimoderation->delete_thread) {
+                    $thread->deleted_at = now();
+                }
+
+                if ($multimoderation->auto_reply_thread) {
+                    $autoReplied = true;
+                    Post::createNew(auth()->user(), $thread, $multimoderation->auto_reply_thread);
+                }
+            }
+        }
+
+        if ($thread->isDirty() || $autoReplied) {
+            if ($thread->isDirty()) {
+                $thread->save();
+            }
 
             return response()->json(null, 202);
         }

@@ -16,6 +16,11 @@
                 <a href="{{ route('forums.forum', [$child->slug, $child->id]) }}" class="text-lg text-primary">
                     {{ $child->name }}
                 </a>
+                @if($child->description)
+                <p class="text-muted">
+                    {{ $child->description }}
+                </p>
+                @endif
             </li>
             @endforeach
         </ul>

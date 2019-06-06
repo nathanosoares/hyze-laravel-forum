@@ -22,7 +22,9 @@ class ThreadController extends Controller
     {
         $this->authorize('read', $thread);
 
-        $thread->load(['forum']);
+        $thread->load(['forum', 'forum.multimoderations' => function ($query) {
+            $query->allowed();
+        }]);
 
         $posts = $thread->posts()
             ->whereNull('parent_id')

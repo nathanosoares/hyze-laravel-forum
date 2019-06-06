@@ -21,7 +21,8 @@ class Forum extends Model
     ];
 
     protected $visible = [
-        'id', 'name', 'slug', 'parent', 'category', 'restrict_read', 'restrict_write', 'children'
+        'id', 'name', 'slug', 'parent', 'category', 'restrict_read', 'restrict_write',
+        'children', 'multimoderations'
     ];
 
     // protected $with = ['parent', 'category'];
@@ -57,6 +58,11 @@ class Forum extends Model
         return $this->hasOne(Forum::class, 'id', 'threads_fallback_forum_id');
     }
 
+    public function multimoderations()
+    {
+        return $this->belongsToMany(MultiModeration::class, 'forum_multimoderation_pivot', 'forum_id', 'multimoderation_id');
+    }
+
     /**
      * Scope a query to only include allowed forums to current user.
      *
@@ -71,9 +77,7 @@ class Forum extends Model
             $query->where('restrict_read', null);
 
             if (auth()->user()) {
-                $query->orWhereIn('restrict_read', $currentHighestGroup->sameOrLower()->map(function ($item) {
-                    return $item->key;
-                }));
+                $query->orWhereIn('restrict_read', $currentHighestGroup->sameOrLower()->pluck('key'));
             }
         });
     }

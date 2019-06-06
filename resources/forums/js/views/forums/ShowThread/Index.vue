@@ -2,7 +2,7 @@
   <div class="thread-wrapper">
     <div class="thread-header mt-2 mb-4">
       <div v-if="hasGroup(Group.ADMINISTRATOR)">
-        <div class="collapse" :id="'thread-options-collapse-' + thread.id">
+        <div class="collapse show" :id="'thread-options-collapse-' + thread.id">
           <div class="bg-white shadow-sm rounded p-4 mb-4">
             <thread-settings :thread="thread"/>
           </div>

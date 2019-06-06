@@ -16,6 +16,7 @@ class ForumController extends Controller
     public function edit(Forum $forum)
     {
         $groups = Group::getInstances();
+
         return view('admin.forums.edit', compact('forum', 'groups'));
     }
 

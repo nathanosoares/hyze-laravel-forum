@@ -32,22 +32,22 @@
         </div>
       </div>
 
-      <div class="row mt-4">
-        <div class="col-4">
-          <custom-switch
-            label="Fechar tópico"
-            v-model="thread.closed"
-            v-if="hasGroup(Group.GAME_MASTER)"
-          />
+      <div>
+        <hr>
+      </div>
+
+      <div class="row">
+        <div class="col-4" v-if="hasGroup(Group.MANAGER)">
+          <custom-switch label="Fechar tópico" v-model="thread.closed"/>
         </div>
 
-        <!-- <div class="col-4" v-if="hasGroup(Group.ADMINISTRATOR)">
+        <div class="col-4" v-if="this.thread.forum.multimoderations.length > 0">
           <custom-select
-            label="Mover para:"
-            v-model="thread.restrict_read"
-            :options="[{label: 'Visitantes', value: null}, ...restrictOptions]"
+            label="Multi Moderação:"
+            v-model="multimoderation"
+            :options="[{label: 'Escolher...', value: null}, ...multimoderationsOptions]"
           />
-        </div>-->
+        </div>
       </div>
 
       <button class="btn btn-primary rounded-pill ml-auto mt-4" @click="trySaveSettings">Salvar</button>
@@ -76,7 +76,9 @@ export default {
   data: function() {
     return {
       restrictOptions: [],
-      Group
+      multimoderationsOptions: [],
+      Group,
+      multimoderation: null
     };
   },
   methods: {
@@ -91,9 +93,10 @@ export default {
           title: this.thread.title,
           promoted: this.thread.promoted,
           sticky: this.thread.sticky,
-          restrict_read: this.thread.restrict_read,
+          restrict_read: this.thread.restrict_read || null,
           restrict_write: this.thread.restrict_write,
-          closed: this.thread.closed
+          closed: this.thread.closed,
+          multimoderation: this.multimoderation || null
         })
         .then(response => {
           if (response.status == 202) {
@@ -113,6 +116,13 @@ export default {
       this.restrictOptions.push({
         label: Group[item].display_name,
         value: item
+      });
+    });
+
+    this.thread.forum.multimoderations.forEach(item => {
+      this.multimoderationsOptions.push({
+        label: item.title,
+        value: item.id
       });
     });
   }

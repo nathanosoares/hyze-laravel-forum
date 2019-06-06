@@ -2,7 +2,7 @@
   <div class="ml-4">
     <draggable handle=".move" :list="forums" :group="{ name: 'forums' }">
       <div v-for="el in forums" :key="el.name" class>
-        <div class="border py-2 px-3 d-flex align-items-center">
+        <div class="border-top py-0 px-3 d-flex align-items-center">
           <span class="mr-4 move">
             <i class="fas fa-sort"></i>
           </span>

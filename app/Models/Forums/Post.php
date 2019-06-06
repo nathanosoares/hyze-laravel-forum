@@ -65,36 +65,40 @@ class Post extends Model implements Auditable
         return $this->replies()->count();
     }
 
-    public static function fromRequest(Request $request, Thread $thread, Post $parent = null): Post
+    public static function createNew(User $user, Thread $thread, string $body, Post $parent = null): Post
     {
         if ($parent) {
             $post = $parent->replies()->create([
-                'user_id' => Auth::user()->id,
+                'user_id' => $user,
                 'thread_id' => $thread->id,
-                'body' => $request->body
+                'body' => $body
             ]);
 
             return $post;
         }
 
-
         $thread->last_reply_at = now();
         $thread->save();
 
         // Merge post
-//        if ($thread->last_post->parent == null && $thread->last_post->author->id === Auth::user()->id) {
-//            $thread->last_post->body .= "\n\n" . $request->body;
-//
-//            $thread->last_post->save();
-//
-//            return $thread->last_post;
-//        }
+        //        if ($thread->last_post->parent == null && $thread->last_post->author->id === Auth::user()->id) {
+        //            $thread->last_post->body .= "\n\n" . $request->body;
+        //
+        //            $thread->last_post->save();
+        //
+        //            return $thread->last_post;
+        //        }
 
 
 
         return $thread->posts()->create([
             'user_id' => Auth::user()->id,
-            'body' => $request->body
+            'body' => $body
         ]);
+    }
+
+    public static function fromRequest(Request $request, Thread $thread, Post $parent = null): Post
+    {
+        return self::createNew(auth()->user->id, $thread, $request->body, $parent);
     }
 }

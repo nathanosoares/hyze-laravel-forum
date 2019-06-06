@@ -47,6 +47,8 @@ Route::prefix('admin')->name('admin.')->namespace('Admin')->middleware('super.ad
     Route::get('/tree', 'TreeController@index')->name('tree');
     Route::post('/tree/sort', 'TreeController@sort')->name('tree.sort');
 
+    Route::get('/multimoderation', 'MultiModerationController@index')->name('multimoderation.index');
+
     Route::resource('categories', 'CategoryController')->only([
         'create', 'store', 'edit', 'update'
     ]);

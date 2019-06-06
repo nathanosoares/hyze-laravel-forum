@@ -18,7 +18,7 @@
       <draggable handle=".move" :list="sorted" :group="{ name: 'categories' }">
         <transition-group>
           <div v-for="category in sorted" :key="category.id">
-            <div class="border py-2 px-3 d-flex align-items-center">
+            <div class="border-top py-1 px-3 d-flex align-items-center">
               <span class="mr-3 move">
                 <i class="fas fa-sort"></i>
               </span>
