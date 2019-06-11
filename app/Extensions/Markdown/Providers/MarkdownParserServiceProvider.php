@@ -51,6 +51,11 @@ class MarkdownParserServiceProvider extends ServiceProvider
                 'internal_hosts' => url_to_domain(env('APP_URL')),
                 'open_in_new_window' => true,
                 'html_class' => 'external-link',
+                'renderer' => [
+                    'block_separator' => "\n",
+                    'inner_separator' => "\n",
+                    'soft_break'      => "<br>",
+                ]
             ], $environment);
 
             return $converter;
