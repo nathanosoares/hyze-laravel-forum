@@ -10,7 +10,7 @@ export default class PostPolicy {
     }
 
     static edit(user, post) {
-        return user.id == post.user_id || Group[user.highest_group.key].isSameOrHigher(Group.ADMINISTRATOR);
+        return user.id == post.user_id || Group[user.highest_group.key].isSameOrHigher(Group.MODERATOR);
     }
 
     static reply(user, post) {
