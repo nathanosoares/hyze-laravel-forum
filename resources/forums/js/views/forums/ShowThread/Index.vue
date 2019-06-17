@@ -16,6 +16,7 @@
             :data-target="'#thread-options-collapse-' + thread.id"
             aria-expanded
           >
+            <span class="mr-2">Opções</span>
             <i class="fas fa-chevron-down"></i>
           </button>
         </div>
@@ -127,7 +128,9 @@ export default {
     });
 
     optionsCollapse.on("show.bs.collapse", function() {
-      optionsCollapseButton.html('<i class="fas fa-chevron-up"></i>');
+      optionsCollapseButton.html(
+        '<span class="mr-2">Opções</span><i class="fas fa-chevron-up"></i>'
+      );
     });
   },
   methods: {
