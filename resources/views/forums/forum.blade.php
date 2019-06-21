@@ -37,6 +37,7 @@
     {{ __('Criar novo post') }}
 </a>
 @endcan
+{{ $threads->links() }}
 @endif
 @forelse ($threads->groupBy('sticky') as $sticky)
 <div class="bg-white rounded shadow-sm p-3 @if(!$loop->last) mb-4 @endif">
@@ -100,4 +101,5 @@
     @endcan
 </div>
 @endforelse
+{{ $threads->links() }}
 @stop
