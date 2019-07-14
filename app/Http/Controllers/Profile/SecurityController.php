@@ -74,6 +74,12 @@ class SecurityController extends Controller
             ]
         ]);
 
+        if ($user->is_banned_permanently) {
+            return redirect()
+                ->route('profile.security')
+                ->with('error', 'Você não pode mudar o email!');
+        }
+
         if ($user->email != $request->get('email')) {
 
             $newEmail = $request->get('email');

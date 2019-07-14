@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
 use App\Extensions\Permission\Traits\HasGroup;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -36,7 +37,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
-    protected $appends = ['is_super_admin', 'groups', 'highest_group'];
+    protected $appends = ['is_super_admin',  'is_banned_permanently', 'groups', 'highest_group'];
 
     /**
      * Determine if the user is a super admin.
@@ -46,6 +47,17 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getIsSuperAdminAttribute(): bool
     {
         return in_array($this->id, config('forum.super_admins', []));
+    }
+
+    public function getIsBannedPermanentlyAttribute(): bool {
+        return DB::connection('hyze')
+            ->table('user_punishments')
+            ->where('user_id', $this->id)
+            ->where('type', 'BAN')
+            ->where('revoker_user_id', null)
+            ->where('duration', '>', 5184000000)
+            ->limit(1)
+            ->count() != 0;
     }
 
     public function isSuperAdmin(): bool
