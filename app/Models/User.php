@@ -26,7 +26,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'id', 'nick'
     ];
 
-    protected $visible = ['id', 'nick', 'is_super_admin', 'groups_due', 'highest_group', 'email_verified_at'];
+    protected $visible = ['id', 'nick', 'is_super_admin', 'is_banned_permanently', 'groups_due', 'highest_group', 'email_verified_at'];
 
     /**
      * The attributes that should be hidden for arrays.
