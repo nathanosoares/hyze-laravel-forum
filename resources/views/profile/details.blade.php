@@ -8,7 +8,6 @@
         <thead>
             <tr>
                 <th scope="col">Grupo</th>
-                <th scope="col">Servidor</th>
                 <th scope="col">Validade</th>
             </tr>
         </thead>
@@ -16,7 +15,6 @@
             @foreach (auth()->user()->groups_due as $group)
             <tr>
                 <td>{{ $group->display_name }}</td>
-                <td>{{ $group->server }}</td>
                 <td>
                     @if(is_null($group->due_at))
                     Permanente

@@ -54,7 +54,7 @@ trait HasGroup
                     // ->on('user_groups_due.server_id', 'user_groups.server_id');
             })
             ->where('user_groups.user_id', $this->id)
-            ->selectRaw('user_groups.group_id, servers.display_name as "server", user_groups_due.due_at')
+            ->selectRaw('user_groups.group_id, user_groups_due.due_at')
             ->get();
 
 
