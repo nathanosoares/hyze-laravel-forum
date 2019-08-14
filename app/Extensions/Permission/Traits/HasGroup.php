@@ -68,7 +68,6 @@ trait HasGroup
                     'name' => $rawGroup->key,
                     'display_name' => $rawGroup->value['display_name'],
                     'priority' => $rawGroup->value['priority'],
-                    'server' => $item->server,
                     'due_at' => null
                 ];
 
