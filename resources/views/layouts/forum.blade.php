@@ -58,7 +58,7 @@
 
                 @if(!request()->routeIs('profile.security'))
                 <div class="ml-auto mt-2">
-                    <a href="{{ route('profile.security') }}" class="btn btn-info rounded-pill">
+                    <a href="{{ route('profile.security') }}" class="btn btn-primary rounded-pill">
                         Definir email
                     </a>
                 </div>
