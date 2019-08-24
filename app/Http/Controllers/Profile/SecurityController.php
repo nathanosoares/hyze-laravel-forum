@@ -99,6 +99,8 @@ class SecurityController extends Controller
             $user->email = $newEmail;
 
             $user->save();
+
+            $user->sendEmailVerificationNotification();
         }
 
         return redirect()

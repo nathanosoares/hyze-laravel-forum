@@ -2,6 +2,7 @@
 <div class="alert alert-success d-flex align-items-center" role="alert">
     <div>
         <p class="text-lg">Enviamos o link de confirmação para o seu email.</p>
+        <p class="text-muted">Verifique a caixa de entrada e o spam de seu email</p>
     </div>
 </div>
 @else
@@ -12,7 +13,7 @@
     </div>
 
     <div class="ml-auto mt-2">
-        <button class="btn btn-info rounded-pill" type="button" data-toggle="modal"
+        <button class="btn btn-primary rounded-pill" type="button" data-toggle="modal"
             data-target="#modalEmailConfirmation">
             Enviar confirmação de email
         </button>
@@ -67,7 +68,7 @@
         let email = "{{ $email }}";
         let input = $('#emailConfirmationInput');
         let button = $('#emailConfirmationButtom');
-        
+
         if (input.val() === email) {
             button.removeClass("disabled");
         } else {
