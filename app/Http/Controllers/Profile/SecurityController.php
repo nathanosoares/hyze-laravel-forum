@@ -101,6 +101,11 @@ class SecurityController extends Controller
             $user->save();
 
             $user->sendEmailVerificationNotification();
+
+
+            return redirect()
+                ->route('profile.security')
+                ->with('success', 'Email alterado com sucesso! Verifique a caixa de entrada do seu email.');
         }
 
         return redirect()
